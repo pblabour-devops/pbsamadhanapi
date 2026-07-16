@@ -1,0 +1,196 @@
+﻿@using pbsamadhannetcoreapi.ViewModels
+@model TemplateTicketCreationToDevTeamNotificationViewModel
+    <!DOCTYPE html>
+    <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+    <head>
+        <title>Ticket Details</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <style>
+            @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+
+            body {
+                font-family: 'Poppins', Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }
+
+            .container {
+                padding: 40px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin-top: 0px;
+                border: 5px solid #4CAF50;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 50px;
+            }
+
+            .details-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .bold {
+                font-weight: bold;
+            }
+
+            .text-danger {
+                color: red;
+                font-weight: bold;
+            }
+
+            .signature {
+                font-weight: 600;
+                margin-top: 20px;
+            }
+
+            .header {
+                font-size: 20px;
+                color: #333;
+            }
+
+            .subheader {
+                color: #777;
+                font-size: 18px;
+            }
+
+            .important {
+                color: #ff5722;
+            }
+
+            .details-table th {
+                background-color: #4CAF50; /* Green color for the first table */
+                color: white;
+            }
+
+            .details-table td {
+                background-color: #fafafa;
+            }
+
+            .details-table tr:nth-child(even) td {
+                background-color: #f1f1f1; /* Alternate row color */
+            }
+
+            /* Second Table (blue color theme) */
+            .details-table-blue th {
+                background-color: #1e90ff;
+                color: white;
+            }
+
+            .details-table-blue tr:nth-child(even) td {
+                background-color: #f1f1f1;
+            }
+
+            .details-table-blue td {
+                text-align: left;
+            }
+
+            .details-table-blue td.center {
+                text-align: center; /* Center the Sr. No column */
+            }
+
+            .ticket-Id {
+                font-weight: bold;
+                font-style: italic;
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p class="header signature">Dear Helpdesk Team,</p>
+            <p class="signature">This is to inform you that following user faces some issue while submitting his/her application. The system has created and assigned a ticket <span class="ticket-Id">(Ticket# @Model.RootActivityRefId)</span> to the concerned developer. Details are as follows:</p>
+
+            <!-- Ticket Details Table with 5 columns -->
+            <table class="details-table">
+                <thead>
+                    <tr>
+                        <th>Detail</th>
+                        <th>Information</th>
+                        <th>Detail</th>
+                        <th>Information</th>
+                        <th>Detail</th>
+                        <th>Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="bold">Establishment Name</span></td>
+                        <td>@Model.EstablishmentName</td>
+                        <td><span class="bold">User Name</span></td>
+                        <td>@Model.UserName</td>
+                        <td><span class="bold">Applicant Name</span></td>
+                        <td>@Model.ApplicantName</td>
+                    </tr>
+                    <tr>
+                        <td><span class="bold">Invest Punjab Ipin</span></td>
+                        <td>@Model.InvestPunjab_Ipin</td>
+                        <td><span class="bold">Invest Punjab AppId</span></td>
+                        <td>@Model.InvestPunjab_AppId</td>
+                        <td><span class="bold">NativeAppId</span></td>
+                        <td>@Model.AppRefId</td>
+                    </tr>
+                    <tr>
+                        <td><span class="bold">Service Type</span></td>
+                        <td>@Model.ApplicationTypeDesc</td>
+                        <td><span class="bold">Service Purpose Type</span></td>
+                        <td>@Model.ApplicationPurposeTypeDesc</td>
+                        <td><span class="bold">Activity Category Type</span></td>
+                        <td>@Model.ToDoActivityCategoryTypeDesc</td>
+                    </tr>
+                    <tr>
+                        <td><span class="bold">Ticket Created On</span></td>
+                        <td>@Model.CreatedOn.ToLongDateString()</td>
+                        <td><span class="bold">Developer Name</span></td>
+                        <td>@Model.DeveloperName</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Error and Status Table with Blue Color Scheme -->
+
+            <br />
+
+            <!-- Signature Section -->
+            <div class="signature">
+                <p>
+                    Thanks & Regards,<br />
+                    Team, Department of Labour <br />
+                    Model Welfare Centre,<br />
+                    Phase 10, Sector 64,<br />
+                    Sahibzada Ajit Singh Nagar,<br />
+                    Punjab 160062 <br />
+                    91-172-2702486
+                </p>
+            </div>
+
+            <!-- Important Note Section -->
+            <div>
+                <p class="text-danger">Note: Do not reply to this message because this email is an automated notification, which is unable to receive replies. Replies to this email are routed to an unmonitored mailbox.</p>
+            </div>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,420 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using pbsamadhannetcoreapi.CommonUtiliteis;
+using pbsamadhannetcoreapi.Models;
+using pbsamadhannetcoreapi.Repositories.Implementations;
+using pbsamadhannetcoreapi.Services.Implementations;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
+
+namespace pbsamadhannetcoreapi.Services
+
+{
+    public class ComplaintService : IComplaintService
+    {
+        private readonly AppDbContext _context;
+        private readonly IApplicationManagementService<WorkerDetail> _iApplicationMamnagementService;
+
+
+        public ComplaintService(
+        AppDbContext context,
+        IApplicationManagementService<WorkerDetail> IApplicationMamnagementService)
+        {
+            _context = context;
+            _iApplicationMamnagementService = IApplicationMamnagementService;
+        }
+
+        public async Task<GenericFormModel<object>> Get_ComplaintsCategories()
+        {
+            GenericFormModel<object> genericFormModel = new GenericFormModel<object>();
+            try
+            {
+                genericFormModel.ListTemplateLists = new List<ListTemplate>();
+                var parentWithChildObject = await _context.ComplaintsCategories.AsNoTracking().OrderBy(x => x.ComplaintCategoryType).ThenBy(x => x.Id).ToListAsync();
+                genericFormModel.FormModel = parentWithChildObject;
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+            return genericFormModel;
+        }
+
+        #region Worker Details
+        public async Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId)
+        {
+            GenericFormModel<WorkerDetail> genericFormModel = new GenericFormModel<WorkerDetail>();
+            try
+            {
+                genericFormModel.ListTemplateLists = new List<ListTemplate>();
+                if (id != 0) //Existing Record
+                {
+                    var parentWithChildObject = await _context.WorkerDetails.Include(x => x.Application).ThenInclude(x => x.ApplicationAction).FirstOrDefaultAsync(x => x.AppRefId == id);
+
+                    genericFormModel.FormModel = parentWithChildObject;
+
+                    genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                    genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                    genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                }
+
+                else //New Record
+                {
+                    genericFormModel.FormModel = new WorkerDetail();
+
+                    //Allow user to edit form
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.ListTemplateLists = new List<ListTemplate>();
+
+                genericFormModel.AppFormStepsList = new List<AppFormStepsInfo>();
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : id), "WD");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+            return genericFormModel;
+        }
+        #endregion
+
+        #region App Complaint Mapping
+        public async Task<GenericServiceResultTemplate> CreateAppComplaintTypeMapping(AppComplaintTypeMapping requestData)
+        {
+            GenericServiceResultTemplate genericServiceResultTemplate = new GenericServiceResultTemplate();
+            try
+            {
+                AppComplaintTypeMapping appComplaintTypeMapping = new AppComplaintTypeMapping()
+                {
+                    AppRefId = requestData.AppRefId,
+                    ComplaintsCategoryRefId = requestData.ComplaintsCategoryRefId
+                };
+
+                await _context.AppComplaintTypeMappings.AddAsync(appComplaintTypeMapping);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                genericServiceResultTemplate.HasException = true;
+                genericServiceResultTemplate.Exceptions = ex;
+            }
+
+            return genericServiceResultTemplate;
+        }
+        #endregion
+
+        #region Get Employer OR Contractor Details
+        public async Task<GenericFormModel<Complaint_EmployerORContractorDetail>> Get_EmployerOrContractorDetails(long id)
+        {
+            GenericFormModel<Complaint_EmployerORContractorDetail> genericFormModel = new GenericFormModel<Complaint_EmployerORContractorDetail>();
+            try
+            {
+                genericFormModel.FormModel = await _context.Complaint_EmployerORContractorDetails.Where(x => x.AppRefId == id).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Get Establishment Details
+
+        public async Task<GenericFormModel<Complaint_EstablishmentDetail>> Get_EstablishmentDetails(long id)
+        {
+            GenericFormModel<Complaint_EstablishmentDetail> genericFormModel = new GenericFormModel<Complaint_EstablishmentDetail>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_EstablishmentDetails.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_EstablishmentDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "ComplaintCategoryTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<ComplaintCategoryTypeEnum>()
+                });
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "WagePeriodtypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<WagePeriodtypeEnum>()
+                });
+
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, genericFormModel.FormModel?.Id ?? id, "EED");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Get Gratuity claim details
+        public async Task<GenericFormModel<Complaint_GratuityClaim>> Get_GratuityClaimDetails(long id)
+        {
+            GenericFormModel<Complaint_GratuityClaim> genericFormModel = new GenericFormModel<Complaint_GratuityClaim>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_GratuityClaims.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_GratuityClaim();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "GratuityClaimBasisTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<GratuityClaimBasisTypeEnum>()
+                });
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "MaritalStatusTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MaritalStatusTypeEnum>()
+                });
+
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, genericFormModel.FormModel?.Id ?? id, "GC");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Get Maternity Benefits Complaint detail
+
+        public async Task<GenericFormModel<Complaint_MaternityBenefitComplaint>> Get_MaternityBenefitsComplaintDetails(long id)
+        {
+            GenericFormModel<Complaint_MaternityBenefitComplaint> genericFormModel = new GenericFormModel<Complaint_MaternityBenefitComplaint>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_MaternityBenefitComplaints.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_MaternityBenefitComplaint();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "MaternityDischargeOptionEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MaternityDischargeOptionEnum>()
+                });
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, genericFormModel.FormModel?.Id ?? id, "MBC");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Claim under code on wages
+
+        public async Task<GenericFormModel<Complaint_Claim_CodeOnWage>> Get_ClaimUnderCodeOnWagesDetails(long id)
+        {
+            GenericFormModel<Complaint_Claim_CodeOnWage> genericFormModel = new GenericFormModel<Complaint_Claim_CodeOnWage>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Claim_CodeOnWages.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Claim_CodeOnWage();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "AllowanceTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<AllowanceTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "PlaceOfWorkTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<PlaceOfWorkTypeEnum>()
+                });
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, genericFormModel.FormModel?.Id ?? id, "CCOW");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Minimum wages not paid
+
+        public async Task<GenericFormModel<Complaint_MinimumWagesNotPaid>> Get_MinimumWagesNotPaidDetails(long id)
+        {
+            GenericFormModel<Complaint_MinimumWagesNotPaid> genericFormModel = new GenericFormModel<Complaint_MinimumWagesNotPaid>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_MinimumWagesNotPaids.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_MinimumWagesNotPaid();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+
+        #region Minimum wages not paid period amount 
+
+        public async Task<GenericFormModel<Complaint_MinimumWagesNotPaidPeriodAmount>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id)
+        {
+            GenericFormModel<Complaint_MinimumWagesNotPaidPeriodAmount> genericFormModel = new GenericFormModel<Complaint_MinimumWagesNotPaidPeriodAmount>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_MinimumWagesNotPaidPeriodAmounts.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_MinimumWagesNotPaidPeriodAmount();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+
+
+
+    }
+}

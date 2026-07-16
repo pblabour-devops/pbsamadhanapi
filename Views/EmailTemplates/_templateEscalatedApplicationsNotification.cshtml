@@ -1,0 +1,156 @@
+﻿@using pbsamadhannetcoreapi.ViewModels
+@model EscalationNotificatonDataViewModel
+
+<!DOCTYPE html>
+<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <title>Escalation Report</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <style>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" >
+
+        body {
+            background-color: #f4f7fb;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Card styling */
+        .email-card {
+            width: 90%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #5d6d7e;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            font-weight: 600;
+        }
+
+        .signature {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4A90E2;
+            margin-top: 30px;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* Styling for the link (not button) */
+        .download-link {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+            .download-link:hover {
+                color: #357ABD;
+                text-decoration: underline;
+            }
+
+        .footer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-card">
+        <h2>Dear Officer,</h2>
+
+        <table>
+            <tr>
+                <th>Officer Name</th>
+                <th>Designation</th>
+                <th>Username</th>
+            </tr>
+            <tr>
+                <td>@Model.OfficerUserDetails.OfficerName</td>
+                <td>@Model.OfficerUserDetails.Designation</td>
+                <td>@Model.OfficerUserDetails.UserName</td>
+            </tr>
+        </table>
+
+        <h3>Please find the escalation report as generated on @Model.EscalationDate</h3>
+
+        <table>
+            <tr>
+                <th>Sr. No</th>
+                <th>Service Name</th>
+                <th>Max TAT days</th>
+                <th>50% time lapsed</th>
+                <th>65% time lapsed</th>
+                <th>80% time lapsed</th>
+            </tr>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in @Model.EscalatedApplicationSlabWise)
+            {
+                <tr>
+                    <td>@i.ToString()</td>
+                    <td>@item.ApplicationTypeDesc</td>
+                    <td>@item.MaxDays_TAT</td>
+                    <td >@item.Slab50</td>
+                    <td >@item.Slab65</td>
+                    <td >@item.Slab80</td>
+                </tr>
+                i++;
+            }
+        </table>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="https://pblabour.gov.in/ePortal/escalation-notification?info=@Model.EncryptedParms" class="download-link" target="_blank">Click here to download the detailed report</a>
+        </div>
+
+        <div>
+            <p>Thanks & Regards, <br /> Team, Department Of Labour <br /> Model Welfare Centre,<br /> Phase 10, Sector 64,<br /> Sahibzada Ajit Singh Nagar,<br /> Punjab 160062 <br /> 91-172-2702486</p>
+        </div>
+
+        <div class="footer">
+            <p class="text-danger">Note: Do not reply to this message because this email is an automated notification, which is unable to receive replies. Replies to this email are routed to an unmonitored mailbox.</p>
+        </div>
+    </div>
+</body>
+</html>

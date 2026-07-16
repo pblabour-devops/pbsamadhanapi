@@ -1,0 +1,68 @@
+﻿@using pbsamadhannetcoreapi.ViewModels
+@model TemplateInspectionOfficerUserNotificationViewModel
+    <!DOCTYPE html>
+    <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+    <head>
+        <title></title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <style>
+            @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                /*background-color: #dddddd;*/
+            }
+            .text-danger{
+                color: red;
+            }
+            .signature {
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body style="background-color: #fff; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+        Dear @Model.OfficerName, <br />
+        This is to inform you that randomization for the month @Model.Month @Model.Year under Factory circle  @Model.CircleName has been processed by the system. Please find the following list of selected establishments for the inspection. <br /><br />
+        <table>
+            <tr>
+                <th>Sr. No</th>
+                <th>Establishment Name</th>
+                <th>Address</th>
+                <th>License No.</th>
+            </tr>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in @Model.EstablishmentsList)
+            {
+                <tr>
+                    <td>@i.ToString()</td>
+                    <td>@item.EstablishmentName</td>
+                    <td>@item.EstablishmentAddress</td>
+                    <td>@item.LicenseNumber</td>
+                </tr>
+                i++;
+            }
+
+        </table>
+
+        <div class="signature">
+            <p>Thanks & Regards, <br /> Team, Department Of Labour <br /> Model Welfare Centre,<br />Phase 10, Sector 64,<br /> Sahibzada Ajit Singh Nagar,<br /> Punjab 160062 <br /> 91-172-2702486</p>
+        </div>
+
+        <div>
+            <p class="text-danger"> Note : Do not reply to this message because this email is an automated notification, which is unable to receive replies. Replies to this email are routed to an unmonitored mailbox.</p>
+        </div>
+    </body>
+    </html>

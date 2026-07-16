@@ -1,0 +1,160 @@
+﻿@using pbsamadhannetcoreapi.ViewModels
+@model NewRegistrationNotificationViewModel
+<!DOCTYPE html>
+<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <title>eLabour Portal Notification</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid #4CAF50;
+            width: 80%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 20px;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subheader {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-weight: 600;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .text-danger {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Clean & simple table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        td, th {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+            border: 1px solid #ccc; /* Optional: remove this if you want no borders */
+            color: #000;
+        }
+
+        th {
+            font-weight: bold;
+            background: none;
+            color: inherit;
+        }
+
+        /* Footer Section */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+
+        .important {
+            color: #ff5722;
+        }
+
+        .container a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .container a:hover {
+                text-decoration: underline;
+            }
+
+        .ticket-Id {
+            font-weight: bold;
+            font-style: italic;
+            color: blue;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <p class="header">Dear @Model.FullName,</p>
+        <p>We are pleased to inform you that your account has been successfully created. </p>
+        <p>Below are your login credentials:</p>
+        <p>
+            <b>Username:</b> @Model.UserName<br>
+            <b>Password:</b> @Model.Password
+        </p>
+
+        <p>
+            We recommend that you log in at your earliest convenience and change your password to ensure the security of your account.
+        </p>
+        <p>
+            You can log in using the following link:<br>
+            <a href="https://pblabour.gov.in/ePortal/" target="_blank" style="color: blue; text-decoration: underline;"> https://pblabour.gov.in/ePortal</a>
+        </p>
+        <p>
+            If you have any questions or need assistance, please feel free to contact our support team.
+        </p>
+        <p>
+            Welcome aboard!
+        </p>
+
+
+
+        <div class="signature">
+            <p>
+                Thanks & Regards,<br />
+                Team, Department Of Labour <br />
+                Model Welfare Centre,<br />
+                Phase 10, Sector 64,<br />
+                Sahibzada Ajit Singh Nagar,<br />
+                Punjab 160062 <br />
+                Technical Helpdesk Contact - Mobile : 91-9814551313, Email : elabourhelpdesk@gmail.com<br />
+            </p>
+        </div>
+
+        <div>
+            <p class="text-danger">Note: Do not reply to this message because this email is an automated notification, which is unable to receive replies. Replies to this email are routed to an unmonitored mailbox.</p>
+        </div>
+    </div>
+</body>
+</html>

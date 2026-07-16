@@ -1,0 +1,91 @@
+﻿@using pbsamadhannetcoreapi.ViewModels
+@model TemplateInspectionIndustryUserNotificationViewModel
+    <!DOCTYPE html>
+    <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+    <head>
+        <title></title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <style>
+            @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                /*background-color: #dddddd;*/
+            }
+            .text-danger{
+                color: red;
+            }
+            .signature {
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body style="background-color: #fff; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+        Dear Industry Official, <br />
+        This is to inform you that your following establishment has been selected for inspection by Inspection System of Department of Labour, Govt. of Punjab.
+        An official of Department of Labour will visit the establishment for this inspection in current month.<br />
+        <table>
+            <tr>
+                <th>Establishment Name</th>
+                <td>@Model.EstablishmentName</td>
+            </tr>
+            <tr>
+                <th>Establishment Address</th>
+                <td>@Model.EstablishmentAddress</td>
+            </tr>
+            <tr>
+                <th>License Number</th>
+                <td>@Model.LicenseNumber</td>
+            </tr>
+        </table>
+
+        <p>Please Note : Your establishment inspection has been assign to following officials :</p>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Factory Wing</th>
+                <th>Labour Wing</th>
+            </tr>
+            <tr>
+                <th>Officer Name</th>
+                <td>@Model.OfficerName_Factory</td>
+                <td>@Model.OfficerName_Labour</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>@Model.Designation_Factory</td>
+                <td>@Model.Designation_Labour</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>@Model.Mobile_Factory</td>
+                <td>@Model.Mobile_Labour</td>
+            </tr>
+            <tr>
+                <th>Circle Name</th>
+                <td>@Model.Circle_Factory</td>
+                <td>@Model.Circle_Labour</td>
+            </tr>
+        </table>
+
+        <div class="signature">
+            <p>Thanks & Regards, <br /> Team, Department Of Labour <br /> Model Welfare Centre,<br />Phase 10, Sector 64,<br /> Sahibzada Ajit Singh Nagar,<br /> Punjab 160062 <br /> 91-172-2702486</p>
+        </div>
+
+        <div>
+            <p class="text-danger"> Note : Do not reply to this message because this email is an automated notification, which is unable to receive replies. Replies to this email are routed to an unmonitored mailbox.</p>
+        </div>
+    </body>
+    </html>
