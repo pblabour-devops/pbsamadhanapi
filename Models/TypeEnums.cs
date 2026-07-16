@@ -1386,6 +1386,9 @@ namespace pbsamadhannetcoreapi.Models
         [Description("Application form sub part save (Individual Complaint Code On Wages form )")]
         APPLICATION_FORM_SUB_PART_SAVE_CODE_ON_WAGES = 2006,
 
+        [Description("Application form sub part save (Individual Minimum Wages form )")]
+        APPLICATION_FORM_SUB_PART_SAVE_MINIMUM_WAGES = 2007,
+
         #endregion
     }
 
