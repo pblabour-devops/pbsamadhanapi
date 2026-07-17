@@ -94,47 +94,47 @@ namespace pbsamadhannetcoreapi.Services
                 is_preRequisites_set_1_meets = false;
             }
 
-            if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
-            {
-                propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "InvestPunjab_AppId");
+            //if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
+            //{
+            //    propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "InvestPunjab_AppId");
 
-                if (propertyFinderResp.HasPropName)
-                {
-                    investPunjab_AppId = Convert.ToInt64(propertyFinderResp.PropValue);
-                }
-                else
-                {
-                    is_preRequisites_set_1_meets = false;
-                }
-            }
+            //    if (propertyFinderResp.HasPropName)
+            //    {
+            //        investPunjab_AppId = Convert.ToInt64(propertyFinderResp.PropValue);
+            //    }
+            //    else
+            //    {
+            //        is_preRequisites_set_1_meets = false;
+            //    }
+            //}
 
-            if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
-            {
-                propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "IPin");
+            //if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
+            //{
+            //    propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "IPin");
 
-                if (propertyFinderResp.HasPropName)
-                {
-                    iPin = Convert.ToInt64(propertyFinderResp.PropValue);
-                }
-                else
-                {
-                    is_preRequisites_set_1_meets = false;
-                }
-            }
+            //    if (propertyFinderResp.HasPropName)
+            //    {
+            //        iPin = Convert.ToInt64(propertyFinderResp.PropValue);
+            //    }
+            //    else
+            //    {
+            //        is_preRequisites_set_1_meets = false;
+            //    }
+            //}
 
-            if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
-            {
-                propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "ProjectSiteRefId");
+            //if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
+            //{
+            //    propertyFinderResp = ReflectionOps.GeValueByPropName(requestData, "ProjectSiteRefId");
 
-                if (propertyFinderResp.HasPropName)
-                {
-                    projectSiteRefId = Convert.ToInt64(propertyFinderResp.PropValue);
-                }
-                else
-                {
-                    is_preRequisites_set_1_meets = false;
-                }
-            }
+            //    if (propertyFinderResp.HasPropName)
+            //    {
+            //        projectSiteRefId = Convert.ToInt64(propertyFinderResp.PropValue);
+            //    }
+            //    else
+            //    {
+            //        is_preRequisites_set_1_meets = false;
+            //    }
+            //}
 
             if (toDoActivityCategoryType != ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK)
             {
@@ -175,8 +175,8 @@ namespace pbsamadhannetcoreapi.Services
                 applicationType = (toDoActivityCategoryType == ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK) ? 0 : application.ResponseDataModel.ApplicationType;
                 applicationPurposeType = (toDoActivityCategoryType == ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK) ? 0 : application.ResponseDataModel.ApplicationPurposeType;
                 investPunjab_AppId = application.ResponseDataModel.InvestPunjab_AppId;
-                iPin = Convert.ToInt64(application.ResponseDataModel.InvestPunjab_Ipin);
-                projectSiteRefId = application.ResponseDataModel.ProjectSiteRefId;
+                //iPin = Convert.ToInt64(application.ResponseDataModel.InvestPunjab_Ipin);
+                //projectSiteRefId = application.ResponseDataModel.ProjectSiteRefId;
                 projectSiteVersion = application.ResponseDataModel.ProjectSiteVersion;
 
                 applicationTypeClone = application.ResponseDataModel.ApplicationType;
@@ -1835,8 +1835,8 @@ namespace pbsamadhannetcoreapi.Services
                 applicationType = (toDoActivityCategoryType == ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK) ? 0 : application.ResponseDataModel.ApplicationType;
                 applicationPurposeType = (toDoActivityCategoryType == ToDoActivityCategoryTypeEnum.APPLICATION_FORM_LOCK) ? 0 : application.ResponseDataModel.ApplicationPurposeType;
                 investPunjab_AppId = application.ResponseDataModel.InvestPunjab_AppId;
-                iPin = Convert.ToInt64(application.ResponseDataModel.InvestPunjab_Ipin);
-                projectSiteRefId = application.ResponseDataModel.ProjectSiteRefId;
+                //iPin = Convert.ToInt64(application.ResponseDataModel.InvestPunjab_Ipin);
+                //projectSiteRefId = application.ResponseDataModel.ProjectSiteRefId;
                 projectSiteVersion = application.ResponseDataModel.ProjectSiteVersion;
 
                 applicationTypeClone = application.ResponseDataModel.ApplicationType;
