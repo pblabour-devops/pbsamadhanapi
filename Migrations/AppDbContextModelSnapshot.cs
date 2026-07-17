@@ -3948,7 +3948,7 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("Complaint_MaternityBenefitComplaints");
                 });
 
-            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesNotPaid", b =>
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWage", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -3973,10 +3973,10 @@ namespace pblabournetcoreapi.Migrations
                     b.HasIndex("AppRefId")
                         .IsUnique();
 
-                    b.ToTable("Complaint_MinimumWagesNotPaids");
+                    b.ToTable("Complaint_MinimumWages");
                 });
 
-            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesNotPaidPeriodAmount", b =>
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesPeriodAmt", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -3999,7 +3999,226 @@ namespace pblabournetcoreapi.Migrations
 
                     b.HasIndex("AppRefId");
 
-                    b.ToTable("Complaint_MinimumWagesNotPaidPeriodAmounts");
+                    b.ToTable("Complaint_MinimumWagesPeriodAmts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TotalReliefSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Wages_Not_Paids");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid_PeriodAmt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_Wages_Not_Paid_PeriodAmts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_OT", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("DetailAboutTheClaim")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TotalReliefSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Wages_OTs");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_OT_PeriodAmt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OverTimeHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_Wages_OT_PeriodAmts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Unauth_Deduct", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TotalReliefSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Wages_Unauth_Deducts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Unauth_Deduct_PeriodAmt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_Wages_Unauth_Deduct_PeriodAmts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_WkDay", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("DetailAboutTheClaim")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TotalReliefSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Wages_WkDays");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_WkDay_PeriodAmt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_Wages_WkDay_PeriodAmts");
                 });
 
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_WorkplaceDetail", b =>
@@ -25815,21 +26034,109 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
-            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesNotPaid", b =>
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWage", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
-                        .WithOne("Complaint_MinimumWagesNotPaid")
-                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesNotPaid", "AppRefId")
+                        .WithOne("Complaint_MinimumWage")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_MinimumWage", "AppRefId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Application");
                 });
 
-            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesNotPaidPeriodAmount", b =>
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MinimumWagesPeriodAmt", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
-                        .WithMany("Complaint_MinimumWagesNotPaidPeriodAmounts")
+                        .WithMany("Complaint_MinimumWagesPeriodAmts")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Wages_Not_Paid")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid_PeriodAmt", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_Wages_Not_Paid_PeriodAmts")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_OT", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Wages_OT")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Wages_OT", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_OT_PeriodAmt", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_Wages_OT_PeriodAmts")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Unauth_Deduct", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Wages_Unauth_Deduct")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Wages_Unauth_Deduct", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Unauth_Deduct_PeriodAmt", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_Wages_Unauth_Deduct_PeriodAmts")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_WkDay", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Wages_WkDay")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Wages_WkDay", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_WkDay_PeriodAmt", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_Wages_WkDay_PeriodAmts")
                         .HasForeignKey("AppRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -27699,9 +28006,25 @@ namespace pblabournetcoreapi.Migrations
 
                     b.Navigation("Complaint_MaternityBenefitComplaints");
 
-                    b.Navigation("Complaint_MinimumWagesNotPaid");
+                    b.Navigation("Complaint_MinimumWage");
 
-                    b.Navigation("Complaint_MinimumWagesNotPaidPeriodAmounts");
+                    b.Navigation("Complaint_MinimumWagesPeriodAmts");
+
+                    b.Navigation("Complaint_Wages_Not_Paid");
+
+                    b.Navigation("Complaint_Wages_Not_Paid_PeriodAmts");
+
+                    b.Navigation("Complaint_Wages_OT");
+
+                    b.Navigation("Complaint_Wages_OT_PeriodAmts");
+
+                    b.Navigation("Complaint_Wages_Unauth_Deduct");
+
+                    b.Navigation("Complaint_Wages_Unauth_Deduct_PeriodAmts");
+
+                    b.Navigation("Complaint_Wages_WkDay");
+
+                    b.Navigation("Complaint_Wages_WkDay_PeriodAmts");
 
                     b.Navigation("Complaint_WorkplaceDetails");
 

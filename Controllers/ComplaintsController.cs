@@ -160,7 +160,7 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
         public async Task<IActionResult> Get_MinimumWagesNotPaidDetail([FromQuery] Int64 id)
         {
-            GenericFormModel<Complaint_MinimumWagesNotPaid> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidDetails(id);
+            GenericFormModel<Complaint_MinimumWage> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidDetails(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
@@ -174,7 +174,33 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
         public async Task<IActionResult> Get_MinimumWagesNotPaidPeriodAmountDetails([FromQuery] Int64 id)
         {
-            GenericFormModel<Complaint_MinimumWagesNotPaidPeriodAmount> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidPeriodAmountDetails(id);
+            GenericFormModel<Complaint_MinimumWagesPeriodAmt> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidPeriodAmountDetails(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region  Claim wages not paid for on weekly day of rest
+        [HttpGet, Route("getWagesNotPaidWeekDayDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesNotPaidWeekDayDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Wages_WkDay> genericFormModel = await _iComplaintService.Get_WagesNotPaidWeekDayDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getWagesNotPaidWeekDayPeriodAmountDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesNotPaidWeekDayPeriodAmountDetails([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Wages_WkDay_PeriodAmt> genericFormModel = await _iComplaintService.Get_WagesNotPaidWeekDayPeriodAmountDetails(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);

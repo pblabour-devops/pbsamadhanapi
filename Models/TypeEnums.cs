@@ -1386,8 +1386,17 @@ namespace pbsamadhannetcoreapi.Models
         [Description("Application form sub part save (Individual Complaint Code On Wages form )")]
         APPLICATION_FORM_SUB_PART_SAVE_CODE_ON_WAGES = 2006,
 
+        [Description("Application form sub part save (Individual Minimum Wages Period And Amount form )")]
+        APPLICATION_FORM_SUB_PART_SAVE_MINIMUM_WAGES_PERIOD_AMOUNT = 2007,
+
         [Description("Application form sub part save (Individual Minimum Wages form )")]
-        APPLICATION_FORM_SUB_PART_SAVE_MINIMUM_WAGES = 2007,
+        APPLICATION_FORM_SUB_PART_SAVE_MINIMUM_WAGES = 2008,
+
+        [Description("Application form sub part save (Individual Claim wages not paid for on weekly day of rest )")]
+        APPLICATION_FORM_SUB_PART_SAVE_WEEKLY_DAY_OF_REST_WAGES = 2009,
+
+        [Description("Application form sub part save (Individual Claim wages not paid for on weekly day of rest Period Amount )")]
+        APPLICATION_FORM_SUB_PART_SAVE_WEEKLY_DAY_OF_REST_PERIOD_AMT_WAGES = 2010,
 
         #endregion
     }
@@ -1968,6 +1977,16 @@ namespace pbsamadhannetcoreapi.Models
         [Description("Punjab")]
         PUNJAB = 2,
     }
+
+    public enum BonusClaimTypeEnum
+    {
+        [Description("Statutory minimum bonus at 8.33%")]
+        Statutory_minimum_bonus_at_8 = 1,
+
+        [Description("Bonus beyond the statutory 8.33%")]
+        Bonus_beyond_the_statutory_8 = 2,
+    }
+
 
     #endregion
 

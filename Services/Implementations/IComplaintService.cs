@@ -13,7 +13,9 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_GratuityClaim>> Get_GratuityClaimDetails(long id);
         Task<GenericFormModel<Complaint_MaternityBenefitComplaint>> Get_MaternityBenefitsComplaintDetails(long id);
         Task<GenericFormModel<Complaint_Claim_CodeOnWage>> Get_ClaimUnderCodeOnWagesDetails(long id);
-        Task<GenericFormModel<Complaint_MinimumWagesNotPaid>> Get_MinimumWagesNotPaidDetails(long id);
-        Task<GenericFormModel<Complaint_MinimumWagesNotPaidPeriodAmount>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id);
+        Task<GenericFormModel<Complaint_MinimumWage>> Get_MinimumWagesNotPaidDetails(long id);
+        Task<GenericFormModel<Complaint_MinimumWagesPeriodAmt>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id);
+        Task<GenericFormModel<Complaint_Wages_WkDay>> Get_WagesNotPaidWeekDayDetail(long id);
+        Task<GenericFormModel<Complaint_Wages_WkDay_PeriodAmt>> Get_WagesNotPaidWeekDayPeriodAmountDetails(long id);
     }
 }

@@ -34,7 +34,7 @@ namespace pbsamadhannetcoreapi.Controllers
         [HttpPost]
         //[CustomFillters.AuthorizeAttribute("INDL")]
         public async Task<IActionResult> CreateUpdate([FromBody] XhrRequestDataParmsViewModel requestData)
-        {
+            {
             var user = new User();
             var userClaims = await _iAuthService.DecryptLoggedInUserClaims(User.Claims);
             if (userClaims.UserName != null)

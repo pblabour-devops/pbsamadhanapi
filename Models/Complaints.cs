@@ -1013,7 +1013,7 @@ namespace pbsamadhannetcoreapi.Models
 
     #region COMPLAINT MINIMUM WAGES NOT PAID
 
-    public class Complaint_MinimumWagesNotPaid
+    public class Complaint_MinimumWage
     {
         [Key]
         public long Id { get; set; }
@@ -1037,22 +1037,10 @@ namespace pbsamadhannetcoreapi.Models
         #region Not Mapped Column For application
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -1070,7 +1058,7 @@ namespace pbsamadhannetcoreapi.Models
 
     }
 
-    public class Complaint_MinimumWagesNotPaidPeriodAmount
+    public class Complaint_MinimumWagesPeriodAmt
     {
         [Key]
         public long Id { get; set; }
@@ -1082,7 +1070,7 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "From Date is required.")]
         public DateTime FromDate { get; set; }
-        
+
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
@@ -1090,8 +1078,495 @@ namespace pbsamadhannetcoreapi.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
+        #region Not Mapped Column For application
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
     }
 
+    #endregion
+
+    #region Claim wages not paid for on weekly day of rest
+    public class Complaint_Wages_WkDay
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalReliefSought { get; set; }
+
+        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationSought { get; set; }
+
+        [StringLength(200, ErrorMessage = "The max length of claim details is 200 characters..!")]
+        public string DetailAboutTheClaim { get; set; }
+
+        #region Not Mapped Column For application
+
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+
+    public class Complaint_Wages_WkDay_PeriodAmt
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "From Date is required.")]
+        public DateTime FromDate { get; set; }
+
+        [Required(ErrorMessage = "To Date is required")]
+        public DateTime ToDate { get; set; }
+
+        [Required(ErrorMessage = "Amount is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
+
+        #region Not Mapped Column
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+    #endregion
+
+    #region Wages not paid for working overtime: 
+    public class Complaint_Wages_OT
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalReliefSought { get; set; }
+
+        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationSought { get; set; }
+
+        [StringLength(200, ErrorMessage = "The max length of claim details is 200 characters..!")]
+        public string DetailAboutTheClaim { get; set; }
+
+        #region Not Mapped Column For application
+
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+
+    public class Complaint_Wages_OT_PeriodAmt
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "From Date is required.")]
+        public DateTime FromDate { get; set; }
+
+        [Required(ErrorMessage = "To Date is required")]
+        public DateTime ToDate { get; set; }
+
+        [Required(ErrorMessage = "Overtime is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal OverTimeHours { get; set; }
+
+        [Required(ErrorMessage = "Amount is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
+
+        #region Not Mapped Column
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+    #endregion
+
+    #region Wages not paid at all
+    public class Complaint_Wages_Not_Paid
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalReliefSought { get; set; }
+
+        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationSought { get; set; }
+
+        [StringLength(200, ErrorMessage = "The max length of Reason is 200 characters..!")]
+        public string Reason { get; set; }
+
+        #region Not Mapped Column For application
+
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+
+    public class Complaint_Wages_Not_Paid_PeriodAmt
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "From Date is required.")]
+        public DateTime FromDate { get; set; }
+
+        [Required(ErrorMessage = "To Date is required")]
+        public DateTime ToDate { get; set; }
+
+        [Required(ErrorMessage = "Amount is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
+
+        #region Not Mapped Column
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+    #endregion
+
+    #region Wages Unauthorised deduction
+    public class Complaint_Wages_Unauth_Deduct
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalReliefSought { get; set; }
+
+        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationSought { get; set; }
+
+        [StringLength(200, ErrorMessage = "The max length of Reason is 200 characters..!")]
+        public string Reason { get; set; }
+
+        #region Not Mapped Column For application
+
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+
+    public class Complaint_Wages_Unauth_Deduct_PeriodAmt
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "From Date is required.")]
+        public DateTime FromDate { get; set; }
+
+        [Required(ErrorMessage = "To Date is required")]
+        public DateTime ToDate { get; set; }
+
+        [Required(ErrorMessage = "Amount is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
+
+        #region Not Mapped Column
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+    #endregion
+
+    #region Non Payment of Bonus
+    public class Complaint_Non_Pay_Bonus
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalReliefSought { get; set; }
+
+        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationSought { get; set; }
+
+        [StringLength(200, ErrorMessage = "The max length of Detail is 200 characters..!")]
+        public string Details { get; set; }
+
+        #region Not Mapped Column For application
+
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
+
+    public class Complaint_Non_Pay_Bonus_PeriodAmt
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application ref id is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+
+        [Required(ErrorMessage = "Accounting year is required.")]
+        [StringLength(200, ErrorMessage = "Accounting Year cannot exceed 200 characters..!.")]
+        public string AccountingYear { get; set; }
+
+        [Required(ErrorMessage = "Amount required.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Amount { get; set; }
+
+        public BonusClaimTypeEnum BonusClaimType { get; set; }
+
+        #region Not Mapped Column
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+    }
     #endregion
 
 

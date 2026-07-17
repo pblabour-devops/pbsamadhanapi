@@ -949,8 +949,17 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_GratuityClaim> Complaint_GratuityClaims { get; set; }
         public DbSet<Complaint_MaternityBenefitComplaint> Complaint_MaternityBenefitComplaints { get; set; }
         public DbSet<Complaint_Claim_CodeOnWage> Complaint_Claim_CodeOnWages { get; set; }
-        public DbSet<Complaint_MinimumWagesNotPaid> Complaint_MinimumWagesNotPaids { get; set; }
-        public DbSet<Complaint_MinimumWagesNotPaidPeriodAmount> Complaint_MinimumWagesNotPaidPeriodAmounts { get; set; }
+        public DbSet<Complaint_MinimumWage> Complaint_MinimumWages { get; set; }
+        public DbSet<Complaint_MinimumWagesPeriodAmt> Complaint_MinimumWagesPeriodAmts { get; set; }
+        public DbSet<Complaint_Wages_WkDay> Complaint_Wages_WkDays { get; set; }
+        public DbSet<Complaint_Wages_WkDay_PeriodAmt> Complaint_Wages_WkDay_PeriodAmts { get; set; }
+        public DbSet<Complaint_Wages_OT> Complaint_Wages_OTs { get; set; }
+        public DbSet<Complaint_Wages_OT_PeriodAmt> Complaint_Wages_OT_PeriodAmts { get; set; }
+        public DbSet<Complaint_Wages_Not_Paid> Complaint_Wages_Not_Paids { get; set; }
+        public DbSet<Complaint_Wages_Not_Paid_PeriodAmt> Complaint_Wages_Not_Paid_PeriodAmts { get; set; }
+        public DbSet<Complaint_Wages_Unauth_Deduct> Complaint_Wages_Unauth_Deducts { get; set; }
+        public DbSet<Complaint_Wages_Unauth_Deduct_PeriodAmt> Complaint_Wages_Unauth_Deduct_PeriodAmts { get; set; }
+
 
 
 
@@ -2198,28 +2207,78 @@ namespace pbsamadhannetcoreapi.Models
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Application>()
-             .HasOne<Complaint_Claim_CodeOnWage>(s => s.Complaint_Claim_CodeOnWages)
-             .WithOne(ad => ad.Application)
-             .HasForeignKey<Complaint_Claim_CodeOnWage>(ad => ad.AppRefId)
-             .OnDelete(DeleteBehavior.Restrict);
+                .HasOne<Complaint_Claim_CodeOnWage>(s => s.Complaint_Claim_CodeOnWages)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Claim_CodeOnWage>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Application>()
-             .HasOne<Complaint_MinimumWagesNotPaid>(s => s.Complaint_MinimumWagesNotPaid)
-             .WithOne(ad => ad.Application)
-             .HasForeignKey<Complaint_MinimumWagesNotPaid>(ad => ad.AppRefId)
-             .OnDelete(DeleteBehavior.Restrict);
+                .HasOne<Complaint_MinimumWage>(s => s.Complaint_MinimumWage)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_MinimumWage>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Application>()
-            .HasOne<Complaint_MinimumWagesNotPaid>(s => s.Complaint_MinimumWagesNotPaid)
-            .WithOne(ad => ad.Application)
-            .HasForeignKey<Complaint_MinimumWagesNotPaid>(ad => ad.AppRefId)
-            .OnDelete(DeleteBehavior.Restrict);
+                .HasOne<Complaint_MinimumWage>(s => s.Complaint_MinimumWage)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_MinimumWage>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Application>()
-            .HasMany<Complaint_MinimumWagesNotPaidPeriodAmount>(x => x.Complaint_MinimumWagesNotPaidPeriodAmounts)
-            .WithOne(x => x.Application)
-            .HasForeignKey(x => x.AppRefId)
-            .OnDelete(DeleteBehavior.Cascade);
+                .HasMany<Complaint_MinimumWagesPeriodAmt>(x => x.Complaint_MinimumWagesPeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_Wages_WkDay>(s => s.Complaint_Wages_WkDay)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Wages_WkDay>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_Wages_WkDay_PeriodAmt>(x => x.Complaint_Wages_WkDay_PeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_Wages_OT>(s => s.Complaint_Wages_OT)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Wages_OT>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_Wages_OT_PeriodAmt>(x => x.Complaint_Wages_OT_PeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_Wages_Not_Paid>(s => s.Complaint_Wages_Not_Paid)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Wages_Not_Paid>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_Wages_Not_Paid_PeriodAmt>(x => x.Complaint_Wages_Not_Paid_PeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_Wages_Unauth_Deduct>(s => s.Complaint_Wages_Unauth_Deduct)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Wages_Unauth_Deduct>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_Wages_Unauth_Deduct_PeriodAmt>(x => x.Complaint_Wages_Unauth_Deduct_PeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
         }
