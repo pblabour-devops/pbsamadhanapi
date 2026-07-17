@@ -94,7 +94,6 @@ namespace pbsamadhannetcoreapi.Models
         public virtual ApplicationAction ApplicationAction { get; set; }
         public virtual Contractor_GeneralDetail Contractor_GeneralDetail { get; set; }
 
-        [Required(ErrorMessage = "ProjectSiteRefId id is required..!")]
         [ForeignKey("ProjectSites")]
         public Int64 ProjectSiteRefId { get; set; }
         public virtual ProjectSite ProjectSites { get; set; }
