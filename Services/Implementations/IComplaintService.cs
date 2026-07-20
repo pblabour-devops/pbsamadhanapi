@@ -1,4 +1,5 @@
 ﻿using pbsamadhannetcoreapi.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace pbsamadhannetcoreapi.Services.Implementations
@@ -14,8 +15,16 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_MaternityBenefitComplaint>> Get_MaternityBenefitsComplaintDetails(long id);
         Task<GenericFormModel<Complaint_Claim_CodeOnWage>> Get_ClaimUnderCodeOnWagesDetails(long id);
         Task<GenericFormModel<Complaint_MinimumWage>> Get_MinimumWagesNotPaidDetails(long id);
-        Task<GenericFormModel<Complaint_MinimumWagesPeriodAmt>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id);
+        Task<GenericFormModel<List<Complaint_MinimumWagesPeriodAmt>>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id);
         Task<GenericFormModel<Complaint_Wages_WkDay>> Get_WagesNotPaidWeekDayDetail(long id);
-        Task<GenericFormModel<Complaint_Wages_WkDay_PeriodAmt>> Get_WagesNotPaidWeekDayPeriodAmountDetails(long id);
+        Task<GenericFormModel<List<Complaint_Wages_WkDay_PeriodAmt>>> Get_WagesNotPaidWeekDayPeriodAmountDetails(long id);
+        Task<GenericFormModel<Complaint_Wages_OT>> Get_WagesWorkingOvertimeDetail(long id);
+        Task<GenericFormModel<List<Complaint_Wages_OT_PeriodAmt>>> Get_WagesWorkingOvertimePerAmtDetail(long id);
+        Task<GenericFormModel<Complaint_Wages_Not_Paid>> Get_WagesNotPaidDetail(long id);
+        Task<GenericFormModel<List<Complaint_Wages_Not_Paid_PeriodAmt>>> Get_WagesNotPaidPerAmtDetail(long id);
+        Task<GenericFormModel<Complaint_Wages_Unauth_Deduct>> Get_UnauthDeductWagesDetail(long id);
+        Task<GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>>> Get_UnauthDeductWagesPerAmtDetail(long id);
+        Task<GenericFormModel<Complaint_Non_Pay_Bonus>> Get_NonPayBonusDetail(long id);
+        Task<GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>>> Get_NonPayBonusPerAmtDetail(long id);
     }
 }

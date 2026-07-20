@@ -959,6 +959,8 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_Wages_Not_Paid_PeriodAmt> Complaint_Wages_Not_Paid_PeriodAmts { get; set; }
         public DbSet<Complaint_Wages_Unauth_Deduct> Complaint_Wages_Unauth_Deducts { get; set; }
         public DbSet<Complaint_Wages_Unauth_Deduct_PeriodAmt> Complaint_Wages_Unauth_Deduct_PeriodAmts { get; set; }
+        public DbSet<Complaint_Non_Pay_Bonus> Complaint_Non_Pay_Bonuses { get; set; }
+        public DbSet<Complaint_Non_Pay_Bonus_PeriodAmt> Complaint_Non_Pay_Bonus_PeriodAmts { get; set; }
 
 
 
@@ -2276,6 +2278,18 @@ namespace pbsamadhannetcoreapi.Models
 
             modelBuilder.Entity<Application>()
                 .HasMany<Complaint_Wages_Unauth_Deduct_PeriodAmt>(x => x.Complaint_Wages_Unauth_Deduct_PeriodAmts)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_Non_Pay_Bonus>(s => s.Complaint_Non_Pay_Bonus)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_Non_Pay_Bonus>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_Non_Pay_Bonus_PeriodAmt>(x => x.Complaint_Non_Pay_Bonus_PeriodAmts)
                 .WithOne(x => x.Application)
                 .HasForeignKey(x => x.AppRefId)
                 .OnDelete(DeleteBehavior.Cascade);

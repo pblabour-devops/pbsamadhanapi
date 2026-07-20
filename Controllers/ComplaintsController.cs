@@ -174,7 +174,7 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
         public async Task<IActionResult> Get_MinimumWagesNotPaidPeriodAmountDetails([FromQuery] Int64 id)
         {
-            GenericFormModel<Complaint_MinimumWagesPeriodAmt> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidPeriodAmountDetails(id);
+            GenericFormModel<List<Complaint_MinimumWagesPeriodAmt>> genericFormModel = await _iComplaintService.Get_MinimumWagesNotPaidPeriodAmountDetails(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
@@ -200,7 +200,7 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
         public async Task<IActionResult> Get_WagesNotPaidWeekDayPeriodAmountDetails([FromQuery] Int64 id)
         {
-            GenericFormModel<Complaint_Wages_WkDay_PeriodAmt> genericFormModel = await _iComplaintService.Get_WagesNotPaidWeekDayPeriodAmountDetails(id);
+            GenericFormModel<List<Complaint_Wages_WkDay_PeriodAmt>> genericFormModel = await _iComplaintService.Get_WagesNotPaidWeekDayPeriodAmountDetails(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
@@ -208,5 +208,111 @@ namespace pbsamadhannetcoreapi.Controllers
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
         #endregion
+
+        #region  Claim wages not paid for working overtime
+        [HttpGet, Route("getWagesWorkingOvertimeDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesWorkingOvertimeDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Wages_OT> genericFormModel = await _iComplaintService.Get_WagesWorkingOvertimeDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getWagesWorkingOvertimePerAmtDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesWorkingOvertimePerAmtDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_Wages_OT_PeriodAmt>> genericFormModel = await _iComplaintService.Get_WagesWorkingOvertimePerAmtDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region  Claim wages not paid for all
+        [HttpGet, Route("getWagesNotPaidDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesNotPaidDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Wages_Not_Paid> genericFormModel = await _iComplaintService.Get_WagesNotPaidDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getWagesNotPaidPerAmtDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WagesNotPaidPerAmtDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_Wages_Not_Paid_PeriodAmt>> genericFormModel = await _iComplaintService.Get_WagesNotPaidPerAmtDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region  Claim wages unauthorised deduction
+        [HttpGet, Route("getUnauthDeductWagesDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_UnauthDeductWagesDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Wages_Unauth_Deduct> genericFormModel = await _iComplaintService.Get_UnauthDeductWagesDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getUnauthDeductWagesPerAmtDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_UnauthDeductWagesPerAmtDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>> genericFormModel = await _iComplaintService.Get_UnauthDeductWagesPerAmtDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region  Non Payment of Bonus
+        [HttpGet, Route("getNonPayBonusDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_NonPayBonusDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Non_Pay_Bonus> genericFormModel = await _iComplaintService.Get_NonPayBonusDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getNonPayBonusPerAmtDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_NonPayBonusPerAmtDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>> genericFormModel = await _iComplaintService.Get_NonPayBonusPerAmtDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+
     }
 }

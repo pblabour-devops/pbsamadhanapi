@@ -377,28 +377,28 @@ namespace pbsamadhannetcoreapi.Services
 
         #region Minimum wages not paid period amount 
 
-        public async Task<GenericFormModel<Complaint_MinimumWagesPeriodAmt>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id)
+        public async Task<GenericFormModel<List<Complaint_MinimumWagesPeriodAmt>>> Get_MinimumWagesNotPaidPeriodAmountDetails(long id)
         {
-            GenericFormModel<Complaint_MinimumWagesPeriodAmt> genericFormModel = new GenericFormModel<Complaint_MinimumWagesPeriodAmt>();
+            GenericFormModel<List<Complaint_MinimumWagesPeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_MinimumWagesPeriodAmt>>();
             try
             {
                 if (id != 0)
                 {
-                    var parentWithChildObject = await _context.Complaint_MinimumWagesPeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+                    var parentWithChildObject = await _context.Complaint_MinimumWagesPeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
                     //var Complaint_MinimumWagesNotPaidPeriodAmount = _context.Complaint_MinimumWagesNotPaidPeriodAmounts.Where(x => x.AppRefId == id).ToListAsync();
 
 
-                    if (parentWithChildObject != null)
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
                     {
                         genericFormModel.FormModel = parentWithChildObject;
-                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
-                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
-                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
                     }
                 }
                 else
                 {
-                    genericFormModel.FormModel = new Complaint_MinimumWagesPeriodAmt();
+                    genericFormModel.FormModel = new List<Complaint_MinimumWagesPeriodAmt>();
                     genericFormModel.IsEditAllowed = true;
                     genericFormModel.IsLocked = false;
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
@@ -452,28 +452,28 @@ namespace pbsamadhannetcoreapi.Services
             return genericFormModel;
         }
 
-        public async Task<GenericFormModel<Complaint_Wages_WkDay_PeriodAmt>> Get_WagesNotPaidWeekDayPeriodAmountDetails(long id)
+        public async Task<GenericFormModel<List<Complaint_Wages_WkDay_PeriodAmt>>> Get_WagesNotPaidWeekDayPeriodAmountDetails(long id)
         {
-            GenericFormModel<Complaint_Wages_WkDay_PeriodAmt> genericFormModel = new GenericFormModel<Complaint_Wages_WkDay_PeriodAmt>();
-            try
+            GenericFormModel<List<Complaint_Wages_WkDay_PeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_Wages_WkDay_PeriodAmt>>(); try
+
             {
                 if (id != 0)
                 {
-                    var parentWithChildObject = await _context.Complaint_Wages_WkDay_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+                    var parentWithChildObject = await _context.Complaint_Wages_WkDay_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
                     //var Complaint_MinimumWagesNotPaidPeriodAmount = _context.Complaint_MinimumWagesNotPaidPeriodAmounts.Where(x => x.AppRefId == id).ToListAsync();
 
 
-                    if (parentWithChildObject != null)
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
                     {
                         genericFormModel.FormModel = parentWithChildObject;
-                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
-                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
-                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
                     }
                 }
                 else
                 {
-                    genericFormModel.FormModel = new Complaint_Wages_WkDay_PeriodAmt();
+                    genericFormModel.FormModel = new List<Complaint_Wages_WkDay_PeriodAmt>();
                     genericFormModel.IsEditAllowed = true;
                     genericFormModel.IsLocked = false;
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
@@ -490,8 +490,297 @@ namespace pbsamadhannetcoreapi.Services
         }
         #endregion
 
+        #region Claim wages not paid for working overtime
 
+        public async Task<GenericFormModel<Complaint_Wages_OT>> Get_WagesWorkingOvertimeDetail(long id)
+        {
+            GenericFormModel<Complaint_Wages_OT> genericFormModel = new GenericFormModel<Complaint_Wages_OT>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_OTs.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
 
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Wages_OT();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_Wages_OT_PeriodAmt>>> Get_WagesWorkingOvertimePerAmtDetail(long id)
+        {
+            GenericFormModel<List<Complaint_Wages_OT_PeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_Wages_OT_PeriodAmt>>(); try
+
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_OT_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_Wages_OT_PeriodAmt>();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Claim wages not paid for all
+
+        public async Task<GenericFormModel<Complaint_Wages_Not_Paid>> Get_WagesNotPaidDetail(long id)
+        {
+            GenericFormModel<Complaint_Wages_Not_Paid> genericFormModel = new GenericFormModel<Complaint_Wages_Not_Paid>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_Not_Paids.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Wages_Not_Paid();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_Wages_Not_Paid_PeriodAmt>>> Get_WagesNotPaidPerAmtDetail(long id)
+        {
+            GenericFormModel<List<Complaint_Wages_Not_Paid_PeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_Wages_Not_Paid_PeriodAmt>>(); try
+
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_Not_Paid_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_Wages_Not_Paid_PeriodAmt>();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Claim wages unauthorised deduction
+
+        public async Task<GenericFormModel<Complaint_Wages_Unauth_Deduct>> Get_UnauthDeductWagesDetail(long id)
+        {
+            GenericFormModel<Complaint_Wages_Unauth_Deduct> genericFormModel = new GenericFormModel<Complaint_Wages_Unauth_Deduct>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_Unauth_Deducts.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Wages_Unauth_Deduct();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>>> Get_UnauthDeductWagesPerAmtDetail(long id)
+        {
+            GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Wages_Unauth_Deduct_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_Wages_Unauth_Deduct_PeriodAmt>();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
+
+        #region Claim wages unauthorised deduction
+
+        public async Task<GenericFormModel<Complaint_Non_Pay_Bonus>> Get_NonPayBonusDetail(long id)
+        {
+            GenericFormModel<Complaint_Non_Pay_Bonus> genericFormModel = new GenericFormModel<Complaint_Non_Pay_Bonus>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Non_Pay_Bonuses.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Non_Pay_Bonus();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>>> Get_NonPayBonusPerAmtDetail(long id)
+        {
+            GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>> genericFormModel = new GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Non_Pay_Bonus_PeriodAmts.Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_Non_Pay_Bonus_PeriodAmt>();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
 
 
     }

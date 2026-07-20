@@ -201,6 +201,8 @@ namespace pbsamadhannetcoreapi.Models
 
         public virtual Complaint_Wages_Unauth_Deduct Complaint_Wages_Unauth_Deduct { get; set; }
         public virtual ICollection<Complaint_Wages_Unauth_Deduct_PeriodAmt> Complaint_Wages_Unauth_Deduct_PeriodAmts { get; set; }
+        public virtual Complaint_Non_Pay_Bonus Complaint_Non_Pay_Bonus { get; set; }
+        public virtual ICollection<Complaint_Non_Pay_Bonus_PeriodAmt> Complaint_Non_Pay_Bonus_PeriodAmts { get; set; }
 
 
 

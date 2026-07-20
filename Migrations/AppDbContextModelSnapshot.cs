@@ -4002,6 +4002,62 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("Complaint_MinimumWagesPeriodAmts");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Non_Pay_Bonus", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Details")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TotalReliefSought")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Non_Pay_Bonuses");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Non_Pay_Bonus_PeriodAmt", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountingYear")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("BonusClaimType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_Non_Pay_Bonus_PeriodAmts");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
                 {
                     b.Property<long>("Id")
@@ -26056,6 +26112,28 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Non_Pay_Bonus", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Non_Pay_Bonus")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Non_Pay_Bonus", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Non_Pay_Bonus_PeriodAmt", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_Non_Pay_Bonus_PeriodAmts")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28009,6 +28087,10 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_MinimumWage");
 
                     b.Navigation("Complaint_MinimumWagesPeriodAmts");
+
+                    b.Navigation("Complaint_Non_Pay_Bonus");
+
+                    b.Navigation("Complaint_Non_Pay_Bonus_PeriodAmts");
 
                     b.Navigation("Complaint_Wages_Not_Paid");
 
