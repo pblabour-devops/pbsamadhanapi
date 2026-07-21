@@ -6,10 +6,11 @@ using pbsamadhannetcoreapi.CommonUtiliteis;
 using pbsamadhannetcoreapi.Models;
 using pbsamadhannetcoreapi.Repositories.Implementations;
 using pbsamadhannetcoreapi.Services.Implementations;
+using pbsamadhannetcoreapi.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace pbsamadhannetcoreapi.Services
 
@@ -51,31 +52,26 @@ namespace pbsamadhannetcoreapi.Services
             GenericFormModel<WorkerDetail> genericFormModel = new GenericFormModel<WorkerDetail>();
             try
             {
-                genericFormModel.ListTemplateLists = new List<ListTemplate>();
-                if (id != 0) //Existing Record
+                if (id != 0)
                 {
-                    var parentWithChildObject = await _context.WorkerDetails.Include(x => x.Application).ThenInclude(x => x.ApplicationAction).FirstOrDefaultAsync(x => x.AppRefId == id);
+                    var parentWithChildObject = await _context.WorkerDetails.Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
 
-                    genericFormModel.FormModel = parentWithChildObject;
-
-                    genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
-                    genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
-                    genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
                 }
-
-                else //New Record
+                else
                 {
                     genericFormModel.FormModel = new WorkerDetail();
-
-                    //Allow user to edit form
                     genericFormModel.IsEditAllowed = true;
                     genericFormModel.IsLocked = false;
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
 
-                genericFormModel.ListTemplateLists = new List<ListTemplate>();
-
-                genericFormModel.AppFormStepsList = new List<AppFormStepsInfo>();
                 genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : id), "WD");
             }
             catch (Exception ex)
@@ -113,18 +109,46 @@ namespace pbsamadhannetcoreapi.Services
         #endregion
 
         #region Get Employer OR Contractor Details
-        public async Task<GenericFormModel<Complaint_EmployerORContractorDetail>> Get_EmployerOrContractorDetails(long id)
+        public async Task<GenericFormModel<List<Complaint_EmployerORContractorDetail>>> Get_EmployerOrContractorDetails(long id)
         {
-            GenericFormModel<Complaint_EmployerORContractorDetail> genericFormModel = new GenericFormModel<Complaint_EmployerORContractorDetail>();
+            GenericFormModel<List<Complaint_EmployerORContractorDetail>> genericFormModel =
+                new GenericFormModel<List<Complaint_EmployerORContractorDetail>>();
+
             try
             {
-                genericFormModel.FormModel = await _context.Complaint_EmployerORContractorDetails.Where(x => x.AppRefId == id).FirstOrDefaultAsync();
+                genericFormModel.FormModel = await _context.Complaint_EmployerORContractorDetails
+                    .Where(x => x.AppRefId == id)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
                 genericFormModel.HasError = true;
                 genericFormModel.ErrorDesc = ex.Message;
             }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region  Get WorkPlace
+        public async Task<GenericFormModel<Complaint_WorkplaceDetail>> Get_WorkPlaceDetail(long id)
+        {
+            GenericFormModel<Complaint_WorkplaceDetail> genericFormModel =
+                new GenericFormModel<Complaint_WorkplaceDetail>();
+
+            try
+            {
+                genericFormModel.FormModel = await _context.Complaint_WorkplaceDetails
+                    .Where(x => x.AppRefId == id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
             return genericFormModel;
         }
 
@@ -782,6 +806,65 @@ namespace pbsamadhannetcoreapi.Services
         }
         #endregion
 
+        #region Complaint details
+        public async Task<GenericFormModel<ComplaintDetailViewModel>> Get_ComplaintDetail(long id)
+        {
+            GenericFormModel<ComplaintDetailViewModel> genericFormModel =
+                new GenericFormModel<ComplaintDetailViewModel>();
+
+            try
+            {
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.ListTemplateLists = new List<ListTemplate>();
+
+                if (id != 0)
+                {
+                    var application = await _context.Applications
+                        .Include(x => x.WorkerDetail)
+                        .Include(x => x.Complaint_EmployerORContractorDetails)
+                        .Include(x => x.Complaint_WorkplaceDetails)
+                        .Include(x => x.Complaint_EstablishmentDetails)
+                        .FirstOrDefaultAsync(x => x.AppId == id);
+
+                    if (application != null)
+                    {
+                        genericFormModel.FormModel = new ComplaintDetailViewModel
+                        {
+                            WorkerDetail = application.WorkerDetail,
+                            Complaint_EmployerORContractorDetails = application.Complaint_EmployerORContractorDetails.ToList(),
+                            Complaint_WorkplaceDetails = application.Complaint_WorkplaceDetails,
+                            Complaint_EstablishmentDetails = application.Complaint_EstablishmentDetails
+                        };
+
+                        genericFormModel.IsEditAllowed = application.IsAllowEdit;
+                        genericFormModel.IsLocked = application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new ComplaintDetailViewModel();
+
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(
+                        id,
+                        ApplicationTypeEnum.SAMADHAN_COMPLAINTS,
+                        id,
+                        "LOCK");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
+            return genericFormModel;
+        }
+        #endregion
 
     }
 }

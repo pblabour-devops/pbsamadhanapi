@@ -775,7 +775,7 @@ namespace pbsamadhannetcoreapi.Services
             GenericResponseTemplateModel<List<WhatsNewInPortal>> genericRespModel = new GenericResponseTemplateModel<List<WhatsNewInPortal>>();
             try
             {
-                genericRespModel.ResponseDataModel = await _context.WhatsNewInPortal.Where(x => ("," + x.Role + ",").Contains("," + roleName + ",") && x.ExpiryDate >= DateTime.Now ).OrderByDescending(x => x.Id).ToListAsync();
+                genericRespModel.ResponseDataModel = await _context.WhatsNewInPortal.Where(x => ("," + x.Role + ",").Contains("," + roleName + ",") && x.ExpiryDate >= DateTime.Now).OrderByDescending(x => x.Id).ToListAsync();
 
             }
             catch (Exception ex)
@@ -814,18 +814,18 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var requestBody= "{\"gstNo\":\""+ gstNumber + "\",\"projectModuleTypeId\":17}";
+                    var requestBody = "{\"gstNo\":\"" + gstNumber + "\",\"projectModuleTypeId\":17}";
                     var encRequestBody = RijndaelManagedCryptoHandler.EncryptFromPlainTextToBase64(requestBody,
                         _iConfiguration.GetSection("ThirdPartyIntegrationConfigs").GetSection("GstIntegration").GetSection("EncryptionKey").Value,
                         _iConfiguration.GetSection("ThirdPartyIntegrationConfigs").GetSection("GstIntegration").GetSection("EncryptionIVKey").Value);
 
-                    StringContent content = new StringContent("{\"body\":\""+ encRequestBody + "\"}",
+                    StringContent content = new StringContent("{\"body\":\"" + encRequestBody + "\"}",
                         Encoding.UTF8, "application/json");
 
                     using (var response = await httpClient.PostAsync(apiUrl, content))
                     {
                         var encryptedResp = await response.Content.ReadAsStringAsync();
-                        if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             var plainResponse = RijndaelManagedCryptoHandler.DecryptFromPlainTextToBase64(JsonConvert.DeserializeObject<string>(encryptedResp.ToString()),
                                 _iConfiguration.GetSection("ThirdPartyIntegrationConfigs").GetSection("GstIntegration").GetSection("EncryptionKey").Value,
@@ -849,5 +849,7 @@ namespace pbsamadhannetcoreapi.Services
             }
             return genericRespModel;
         }
+
+
     }
 }

@@ -70,9 +70,26 @@ namespace pbsamadhannetcoreapi.Controllers
         #region Get Employer OR Contractor Details
         [HttpGet, Route("getEmployerOrContractorDetails")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
-        public async Task<IActionResult> Get_EmployerOrContractorDetails([FromQuery] Int64 id)
+        public async Task<IActionResult> Get_EmployerOrContractorDetails(long id)
         {
-            GenericFormModel<Complaint_EmployerORContractorDetail> genericFormModel = await _iComplaintService.Get_EmployerOrContractorDetails(id);
+            GenericFormModel<List<Complaint_EmployerORContractorDetail>> genericFormModel =
+                await _iComplaintService.Get_EmployerOrContractorDetails(id);
+
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region Get WorkPlace
+        [HttpGet, Route("getComplaintWorkplaceDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_WorkPlaceDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_WorkplaceDetail> genericFormModel = await _iComplaintService.Get_WorkPlaceDetail(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
@@ -80,7 +97,6 @@ namespace pbsamadhannetcoreapi.Controllers
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
         #endregion
-
 
         #region Get Establishment Details
         [HttpGet, Route("getEstablishmentDetails")]
@@ -313,6 +329,21 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
+
+        #region GET DETAILS COMPLAINTS
+        [HttpGet, Route("getComplaintDetail")]
+        public async Task<IActionResult> Get_ComplaintDetail([FromQuery] long id)
+        {
+            GenericFormModel<ComplaintDetailViewModel> genericFormModel = await _iComplaintService.Get_ComplaintDetail(id);
+
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
 
     }
 }

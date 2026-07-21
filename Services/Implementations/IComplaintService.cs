@@ -1,4 +1,6 @@
-﻿using pbsamadhannetcoreapi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using pbsamadhannetcoreapi.Models;
+using pbsamadhannetcoreapi.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +11,8 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<object>> Get_ComplaintsCategories();
         Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId);
         Task<GenericServiceResultTemplate> CreateAppComplaintTypeMapping(AppComplaintTypeMapping requestData);
-        Task<GenericFormModel<Complaint_EmployerORContractorDetail>> Get_EmployerOrContractorDetails(long id);
+        Task<GenericFormModel<List<Complaint_EmployerORContractorDetail>>> Get_EmployerOrContractorDetails(long id);
+        Task<GenericFormModel<Complaint_WorkplaceDetail>> Get_WorkPlaceDetail(long id);
         Task<GenericFormModel<Complaint_EstablishmentDetail>> Get_EstablishmentDetails(long id);
         Task<GenericFormModel<Complaint_GratuityClaim>> Get_GratuityClaimDetails(long id);
         Task<GenericFormModel<Complaint_MaternityBenefitComplaint>> Get_MaternityBenefitsComplaintDetails(long id);
@@ -26,5 +29,6 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<List<Complaint_Wages_Unauth_Deduct_PeriodAmt>>> Get_UnauthDeductWagesPerAmtDetail(long id);
         Task<GenericFormModel<Complaint_Non_Pay_Bonus>> Get_NonPayBonusDetail(long id);
         Task<GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>>> Get_NonPayBonusPerAmtDetail(long id);
+        Task<GenericFormModel<ComplaintDetailViewModel>> Get_ComplaintDetail(long id);
     }
 }

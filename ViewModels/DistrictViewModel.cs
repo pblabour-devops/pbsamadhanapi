@@ -10,5 +10,6 @@ namespace pbsamadhannetcoreapi.ViewModels
     {
         public Int64 DistrictLgdId { get; set; }
         public string DistrictName { get; set; }
+        public Int32 StateRefId { get; set; }
     }
 }
