@@ -14,6 +14,7 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Complaint Title"), StringLength(500, ErrorMessage = "Complaint Title is required")]
         public string ComplaintTitle { get; set; }
+        public string Info { get; set; }
 
         [Required(ErrorMessage = "OshEstablishmentType is required..!")]
         public ComplaintCategoryTypeEnum ComplaintCategoryType { get; set; }
