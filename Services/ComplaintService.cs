@@ -824,6 +824,7 @@ namespace pbsamadhannetcoreapi.Services
                         .Include(x => x.Complaint_EmployerORContractorDetails)
                         .Include(x => x.Complaint_WorkplaceDetails)
                         .Include(x => x.Complaint_EstablishmentDetails)
+                        .Include(x => x.Complaint_GratuityClaims)
                         .FirstOrDefaultAsync(x => x.AppId == id);
 
                     if (application != null)
@@ -833,7 +834,8 @@ namespace pbsamadhannetcoreapi.Services
                             WorkerDetail = application.WorkerDetail,
                             Complaint_EmployerORContractorDetails = application.Complaint_EmployerORContractorDetails.ToList(),
                             Complaint_WorkplaceDetails = application.Complaint_WorkplaceDetails,
-                            Complaint_EstablishmentDetails = application.Complaint_EstablishmentDetails
+                            Complaint_EstablishmentDetails = application.Complaint_EstablishmentDetails,
+                            Complaint_GratuityClaims = application.Complaint_GratuityClaims
                         };
 
                         genericFormModel.IsEditAllowed = application.IsAllowEdit;
@@ -849,12 +851,18 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.IsLocked = false;
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
-
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(
-                        id,
-                        ApplicationTypeEnum.SAMADHAN_COMPLAINTS,
-                        id,
-                        "LOCK");
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "GratuityClaimBasisTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<GratuityClaimBasisTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "MaritalStatusTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MaritalStatusTypeEnum>()
+                });
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id,ApplicationTypeEnum.SAMADHAN_COMPLAINTS,id,"LOCK");
             }
             catch (Exception ex)
             {

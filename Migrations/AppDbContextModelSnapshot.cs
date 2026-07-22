@@ -4329,6 +4329,12 @@ namespace pblabournetcoreapi.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<bool>("HasInfo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Info")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("ComplaintsCategories");
@@ -19280,6 +19286,9 @@ namespace pblabournetcoreapi.Migrations
 
                     b.Property<string>("DistrictName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StateRefId")
+                        .HasColumnType("int");
 
                     b.ToTable("DistrictViewModels");
                 });

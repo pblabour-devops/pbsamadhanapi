@@ -12,5 +12,6 @@ namespace pbsamadhannetcoreapi.ViewModels
         public Complaint_WorkplaceDetail Complaint_WorkplaceDetails { get; set; }
 
         public Complaint_EstablishmentDetail Complaint_EstablishmentDetails { get; set; }
+        public Complaint_GratuityClaim Complaint_GratuityClaims { get; set; }
     }
 }

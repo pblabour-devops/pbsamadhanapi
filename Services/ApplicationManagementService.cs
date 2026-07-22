@@ -282,7 +282,7 @@ namespace pbsamadhannetcoreapi.Services
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
-                    UiNextPageComponentPath = detailPageUiComponentUrl,
+                    UiNextPageComponentPath = "samadhaan/gratuity-claims",
                     ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
 
@@ -301,20 +301,20 @@ namespace pbsamadhannetcoreapi.Services
                 //    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 //});
                 //{
-                //    appFormSteps.Add(new AppFormStepsInfo()
-                //    {
-                //        StepTitle = "Gratuity Claims",
-                //        EntityParentKeyId = entityParentKeyId,
-                //        IsFilled = false,
-                //        IsLink = entityParentKeyId == 0 ? false : true,
-                //        UiPageComponentPath = "/samadhaan/gratuity-claims",
-                //        StepCode = "GC",
-                //        ApplicationType = applicationType,
-                //        AppRefId = appRefId,
-                //        IsCommonStep = false,
-                //        UiNextPageComponentPath = "/samadhaan/mb-complaint",
-                //        ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
-                //    });
+                appFormSteps.Add(new AppFormStepsInfo()
+                {
+                    StepTitle = "Gratuity Claims",
+                    EntityParentKeyId = entityParentKeyId,
+                    IsFilled = false,
+                    IsLink = entityParentKeyId == 0 ? false : true,
+                    UiPageComponentPath = "/samadhaan/gratuity-claims",
+                    StepCode = "GC",
+                    ApplicationType = applicationType,
+                    AppRefId = appRefId,
+                    IsCommonStep = false,
+                    UiNextPageComponentPath = detailPageUiComponentUrl,
+                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
+                });
                 //}
 
                 //    appFormSteps.Add(new AppFormStepsInfo()
