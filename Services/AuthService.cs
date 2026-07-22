@@ -950,27 +950,27 @@ namespace pbsamadhannetcoreapi.Services
                 }
 
                 //Captcha
-                var captcha_Original = requestData.DynamicFormFields.Where(x => x.KeyCode == "OriginalCaptcha").FirstOrDefault().Value;
-                var captcha_Entered = requestData.DynamicFormFields.Where(x => x.KeyCode == "EnteredCaptcha").FirstOrDefault().Value;
-                if(!(isFromPartnerPortal != null && isFromPartnerPortal.Value == "Y"))
-                {
-                    captcha_Original = RijndaelManagedCryptoHandler.DecryptFromPlainTextToBase64(captcha_Original, _iConfiguration.GetSection("EncryptionConfigs").GetSection("MobileAppDataEncryptionKey").Value, _iConfiguration.GetSection("EncryptionConfigs").GetSection("MobileAppDataIVKey").Value);
-                }
-                else
-                {
-                    captcha_Original = captcha_Entered;
-                }
+                //var captcha_Original = requestData.DynamicFormFields.Where(x => x.KeyCode == "OriginalCaptcha").FirstOrDefault().Value;
+                //var captcha_Entered = requestData.DynamicFormFields.Where(x => x.KeyCode == "EnteredCaptcha").FirstOrDefault().Value;
+                //if(!(isFromPartnerPortal != null && isFromPartnerPortal.Value == "Y"))
+                //{
+                //    captcha_Original = RijndaelManagedCryptoHandler.DecryptFromPlainTextToBase64(captcha_Original, _iConfiguration.GetSection("EncryptionConfigs").GetSection("MobileAppDataEncryptionKey").Value, _iConfiguration.GetSection("EncryptionConfigs").GetSection("MobileAppDataIVKey").Value);
+                //}
+                //else
+                //{
+                //    captcha_Original = captcha_Entered;
+                //}
 
 
-                if (captcha_Original != captcha_Entered)
-                {
-                    loginResponse.HasError = true;
-                    loginResponse.ErrorCode = "ERR-CAPTCHA";
-                    loginResponse.ErrorDesc = "Incorrect Capcha..!";
-                    return RijndaelManagedCryptoHandler.EncryptFromPlainTextToBase64(JsonConvert.SerializeObject(loginResponse),
-                        _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionKey").Value,
-                        _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionIVKey").Value);
-                }
+                //if (captcha_Original != captcha_Entered)
+                //{
+                //    loginResponse.HasError = true;
+                //    loginResponse.ErrorCode = "ERR-CAPTCHA";
+                //    loginResponse.ErrorDesc = "Incorrect Capcha..!";
+                //    return RijndaelManagedCryptoHandler.EncryptFromPlainTextToBase64(JsonConvert.SerializeObject(loginResponse),
+                //        _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionKey").Value,
+                //        _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionIVKey").Value);
+                //}
 
                 User user = null;
                 var userName = requestData.DynamicFormFields.Where(x => x.KeyCode == "Username").FirstOrDefault().Value;
@@ -1099,6 +1099,12 @@ namespace pbsamadhannetcoreapi.Services
             }
             catch(Exception ex)
             {
+                loginResponse.HasError = true;
+                loginResponse.ErrorCode = "From Exp";
+                loginResponse.ErrorDesc = JsonConvert.SerializeObject(ex);
+                return RijndaelManagedCryptoHandler.EncryptFromPlainTextToBase64(JsonConvert.SerializeObject(loginResponse),
+                _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionKey").Value,
+                _iConfiguration.GetSection("EncryptionConfigs").GetSection("LoginResponseEncryptionIVKey").Value);
                 throw ex;
             }
 

@@ -171,7 +171,7 @@ namespace pbsamadhannetcoreapi
             //services.AddTransient<IHangfire_AutoAppProcessManagerService, Hangfire_AutoAppProcessManagerService>();
             services.AddScoped<ILicence_ISM_ContractLabourService, Licence_ISM_ContractLabourService>();
             services.AddScoped<IGolferRegistrationService, GolferRegistrationService>();
-            services.AddHostedService<BackgroundService_AutoAction>();
+            //services.AddHostedService<BackgroundService_AutoAction>();
             services.AddScoped<IAnnualReturnService, AnnualReturnService>();
             services.AddScoped<IComplaintService, ComplaintService>();
 
