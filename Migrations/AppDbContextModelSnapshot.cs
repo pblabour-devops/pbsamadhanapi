@@ -3708,7 +3708,13 @@ namespace pblabournetcoreapi.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("EstablishmentType")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsEngagedThroughContractor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEstablishmentCentralGovernment")
                         .HasColumnType("bit");
 
                     b.Property<string>("MobileNumber")

@@ -121,9 +121,7 @@ namespace pbsamadhannetcoreapi.Models
         public virtual Application Application { get; set; }
 
         #region Not Mapped Column For application
-
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
+       
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
@@ -131,14 +129,6 @@ namespace pbsamadhannetcoreapi.Models
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
 
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -166,6 +156,11 @@ namespace pbsamadhannetcoreapi.Models
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Please specify the Establishment Type.")]
+        public bool IsEstablishmentCentralGovernment { get; set; }
+
+        public SamadhaanEstablishmentTypeEnum EstablishmentType { get; set; }
 
         [Required(ErrorMessage = "Please specify whether you are engaged through contractor.")]
         public bool IsEngagedThroughContractor { get; set; }
@@ -201,23 +196,12 @@ namespace pbsamadhannetcoreapi.Models
 
         #region Not Mapped Column For application
 
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -264,23 +248,12 @@ namespace pbsamadhannetcoreapi.Models
 
         #region NotMapped
 
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -363,22 +336,10 @@ namespace pbsamadhannetcoreapi.Models
         #region NotMapped
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -431,22 +392,10 @@ namespace pbsamadhannetcoreapi.Models
         #region NotMapped
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -499,22 +448,10 @@ namespace pbsamadhannetcoreapi.Models
         #region NotMapped
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -567,22 +504,10 @@ namespace pbsamadhannetcoreapi.Models
         #region NotMapped
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -634,26 +559,12 @@ namespace pbsamadhannetcoreapi.Models
 
         #region NotMapped
 
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
-
-        [NotMapped]
-        public int ProjectSiteVersion { get; set; }
 
         [NotMapped]
         public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
@@ -701,10 +612,7 @@ namespace pbsamadhannetcoreapi.Models
         [StringLength(2000)]
         public string ReasonForUnauthorizedDeduction { get; set; }
 
-        #region NotMapped
-
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
+        #region NotMapped       
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
@@ -852,23 +760,12 @@ namespace pbsamadhannetcoreapi.Models
 
         #region NotMapped
 
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -922,22 +819,10 @@ namespace pbsamadhannetcoreapi.Models
         #region Not Mapped Column For application
 
         [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
-
-        [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }
@@ -979,23 +864,12 @@ namespace pbsamadhannetcoreapi.Models
 
         #region Not Mapped Column For application
 
-        [NotMapped]
-        public Int64 ProjectSiteRefId { get; set; }
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
 
         [NotMapped]
         public ApplicationTypeEnum ApplicationType { get; set; }
-
-        [NotMapped]
-        public Int64 IPin { get; set; }
-
-        [NotMapped]
-        public Int64 InvestPunjab_AppId { get; set; }
-
-        [NotMapped]
-        public Int64 FactoryCircleRefId { get; set; }
 
         [NotMapped]
         public int ProjectSiteVersion { get; set; }

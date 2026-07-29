@@ -1987,6 +1987,93 @@ namespace pbsamadhannetcoreapi.Models
         Bonus_beyond_the_statutory_8 = 2,
     }
 
+    public enum SamadhaanEstablishmentTypeEnum
+    {
+        [Description("Airports / Airlines / Air Transport Services and its contractor")]
+        Airports_Airlines_Air_Transport_Services_and_its_contractor = 1,
+
+        [Description("Any Boards / Corporations of the Central Government and its contractor")]
+        Any_Boards_Corporations_of_the_Central_Government_and_its_contractor = 2,
+
+        [Description("Any Controlled Industry, declared so by the Central Government")]
+        Any_Controlled_Industry_declared_so_by_the_Central_Government = 3,
+
+        [Description("Any establishment of the State Public Sector engaged in Mining / Oil & Gas activity and its contractor")]
+        Any_establishment_of_the_State_Public_Sector_engaged_in_Mining_Oil_Gas_activity_and_its_contractor = 4,
+
+        [Description("Any office of the Central Government and its contractor")]
+        Any_office_of_the_Central_Government_and_its_contractor = 5,
+
+        [Description("Any other establishment under Central jurisdiction, not covered above and its contractor")]
+        Any_other_establishment_under_Central_jurisdiction_not_covered_above_and_its_contractor = 6,
+
+        [Description("Any other establishment, being funded by the Central Government and its contractor")]
+        Any_other_establishment_being_funded_by_the_Central_Government_and_its_contractor = 7,
+
+        [Description("Any State PSU engaged as Contractor of Central Government establishment and its contractor")]
+        Any_State_PSU_engaged_as_Contractor_of_Central_Government_establishment_and_its_contractor = 8,
+
+        [Description("Bank & Insurance and its contractor")]
+        Bank_Insurance_and_its_contractor = 9,
+
+        [Description("Cement Industry and its contractor")]
+        Cement_Industry_and_its_contractor = 10,
+
+        [Description("Central Government Autonomous Bodies and its contractor")]
+        Central_Government_Autonomous_Bodies_and_its_contractor = 11,
+
+        [Description("Central Government Institutes / Hospitals and its contractor")]
+        Central_Government_Institutes_Hospitals_and_its_contractor = 12,
+
+        [Description("Central Government Research Institutes and its contractor")]
+        Central_Government_Research_Institutes_and_its_contractor = 13,
+
+        [Description("Central Public Sector Undertaking / Enterprises / Establishment")]
+        Central_Public_Sector_Undertaking_Enterprises_Establishment = 14,
+
+        [Description("Central Regulatory Bodies / Commissions and its contractor")]
+        Central_Regulatory_Bodies_Commissions_and_its_contractor = 15,
+
+        [Description("Central Universities and its contractor")]
+        Central_Universities_and_its_contractor = 16,
+
+        [Description("Co-operative Banks and its contractor")]
+        Co_operative_Banks_and_its_contractor = 17,
+
+        [Description("Coal Industry and its contractor")]
+        Coal_Industry_and_its_contractor = 18,
+
+        [Description("Defence establishments / Cantonment Boards and its contractor")]
+        Defence_establishments_Cantonment_Boards_and_its_contractor = 19,
+
+        [Description("Defence PSU.Central Government Establishments constituted by the Central Act (e.g. NHAI, FCI, CWC etc) and its contractor")]
+        Defence_PSU_Central_Government_Establishments_constituted_by_the_Central_Act_and_its_contractor = 20,
+
+        [Description("Establishment having department or branches in more than one state for the purpose of gratuity & maternity benefit only")]
+        Establishment_having_department_or_branches_in_more_than_one_state_for_the_purpose_of_gratuity_maternity_benefit_only = 21,
+
+        [Description("Major Ports and its contractor")]
+        Major_Ports_and_its_contractor = 22,
+
+        [Description("Mining (In relation to Mining activity or otherwise) and its contractor")]
+        Mining_In_relation_to_Mining_activity_or_otherwise_and_its_contractor = 23,
+
+        [Description("Non Coal Mines & Minerals and its contractor")]
+        Non_Coal_Mines_Minerals_and_its_contractor = 24,
+
+        [Description("Oil & Gas / Pipelines / Oilfields / Oil refinery / Oil & Gas Companies and its contractor")]
+        Oil_Gas_Pipelines_Oilfields_Oil_refinery_Oil_Gas_Companies_and_its_contractor = 25,
+
+        [Description("Quarry (e.g. Stone Mines) and its contractor")]
+        Quarry_e_g_Stone_Mines_and_its_contractor = 26,
+
+        [Description("Railways / Metro Railways / Railway Company / Railway Factory and its contractor")]
+        Railways_Metro_Railways_Railway_Company_Railway_Factory_and_its_contractor = 27,
+
+        [Description("Telecom / Internet Services Provider (e.g. BSNL, Airtel, Jio)")]
+        Telecom_Internet_Services_Provider_e_g_BSNL_Airtel_Jio = 28,
+    }
+
 
     #endregion
 

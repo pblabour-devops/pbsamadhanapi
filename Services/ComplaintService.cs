@@ -114,16 +114,23 @@ namespace pbsamadhannetcoreapi.Services
             GenericFormModel<List<Complaint_EmployerORContractorDetail>> genericFormModel =
                 new GenericFormModel<List<Complaint_EmployerORContractorDetail>>();
 
+            genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+            genericFormModel.ListTemplateLists = new List<ListTemplate>();
+
             try
             {
-                genericFormModel.FormModel = await _context.Complaint_EmployerORContractorDetails
-                    .Where(x => x.AppRefId == id)
-                    .ToListAsync();
+                genericFormModel.FormModel = await _context.Complaint_EmployerORContractorDetails.Where(x => x.AppRefId == id).ToListAsync();
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate
+                {
+                    SelectListTypeCode = "SamadhaanEstablishmentTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<SamadhaanEstablishmentTypeEnum>()
+                });
             }
             catch (Exception ex)
             {
                 genericFormModel.HasError = true;
-                genericFormModel.ErrorDesc = ex.Message;
+                genericFormModel.ErrorDesc = ex.ToString();
             }
 
             return genericFormModel;
@@ -861,6 +868,11 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     SelectListTypeCode = "MaritalStatusTypeEnum",
                     SelectListItems = EnumOps.GetEnumAsSelectList<MaritalStatusTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "WorkerCategoryTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<WorkerCategoryTypeEnum>()
                 });
                 genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id,ApplicationTypeEnum.SAMADHAN_COMPLAINTS,id,"LOCK");
             }
