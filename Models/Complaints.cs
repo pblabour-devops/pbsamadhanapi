@@ -1446,7 +1446,348 @@ namespace pbsamadhannetcoreapi.Models
     }
     #endregion
 
+    #region Recovery of money under section of IR Code
 
+    public class Complaint_ClaimGeneralDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required]
+        public DateTime DemandNoticeServedDate { get; set; }
+
+    }
+
+    public class Complaint_ClaimMoneyDueDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required]
+        public MoneyDueReasonTypeEnum MoneyDueReasonType { get; set; }
+    }
+    public class Complaint_ClaimSettlementDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Name of the parties to the settlement is required.")]
+        [StringLength(300, ErrorMessage = "Name of the parties to the settlement cannot exceed 300 characters.")]
+        public string PartiesName { get; set; }
+
+        [Required(ErrorMessage = "Settlement date is required.")]
+        public DateTime SettlementDate { get; set; }
+
+        [Required(ErrorMessage = "Settlement type is required.")]
+        public SettlementTypeEnum SettlementType { get; set; }
+
+        [StringLength(300, ErrorMessage = "Name and designation of the conciliation officer cannot exceed 300 characters.")]
+        public string ConciliationOfficerNameAndDesignation { get; set; }
+
+        [StringLength(500, ErrorMessage = "Address of the conciliation officer cannot exceed 500 characters.")]
+        public string ConciliationOfficerAddress { get; set; }
+
+        [Required(ErrorMessage = "Money due from which terms of settlement is required.")]
+        [StringLength(500, ErrorMessage = "Money due terms cannot exceed 500 characters.")]
+        public string MoneyDueTerms { get; set; }
+
+        [Required(ErrorMessage = "Amount of money due is required.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Amount of money due cannot be negative.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal AmountDue { get; set; }
+
+        [Required(ErrorMessage = "Date from which settlement money became due is required.")]
+        public DateTime AmountDueFromDate { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_ClaimAwardDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Name of the parties to the award is required.")]
+        [StringLength(300, ErrorMessage = "Name of the parties to the award cannot exceed 300 characters.")]
+        public string PartiesName { get; set; }
+
+        [Required(ErrorMessage = "Name of the CGIT/Arbitrator who gave the award is required.")]
+        [StringLength(300, ErrorMessage = "Name of the CGIT/Arbitrator cannot exceed 300 characters.")]
+        public string CGITOrArbitratorName { get; set; }
+
+        [Required(ErrorMessage = "Award number is required.")]
+        [StringLength(100, ErrorMessage = "Award number cannot exceed 100 characters.")]
+        public string AwardNumber { get; set; }
+
+        [Required(ErrorMessage = "Award date is required.")]
+        public DateTime AwardDate { get; set; }
+
+        [Required(ErrorMessage = "Money due from which terms of award is required.")]
+        [StringLength(500, ErrorMessage = "Money due terms of award cannot exceed 500 characters.")]
+        public string AwardTerms { get; set; }
+
+        [Required(ErrorMessage = "Date from which award money became due is required.")]
+        public DateTime AmountDueFromDate { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_ClaimNoticePayDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Date of joining is required.")]
+        public DateTime DateOfJoining { get; set; }
+
+        [Required(ErrorMessage = "Date of termination is required.")]
+        public DateTime DateOfTermination { get; set; }
+
+        [Required(ErrorMessage = "Period of notice pay is required.")]
+        public NoticePayPeriodTypeEnum NoticePayPeriodType { get; set; }
+
+        [Required(ErrorMessage = "Amount of money due for non-payment of notice pay is required.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Amount of money due cannot be negative.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal AmountDue { get; set; }
+
+        [Required(ErrorMessage = "Date from which payment became due in lieu of notice is required.")]
+        public DateTime AmountDueFromDate { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_ClaimRetrenchmentCompensationDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Date of joining is required.")]
+        public DateTime DateOfJoining { get; set; }
+
+        [Required(ErrorMessage = "Date of retrenchment/closure of establishment is required.")]
+        public DateTime DateOfRetrenchmentOrClosure { get; set; }
+
+        [Required(ErrorMessage = "Total length of service is required.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Total length of service cannot be negative.")]
+        public int TotalLengthOfServiceDays { get; set; }
+
+        [Required(ErrorMessage = "Amount due on account of non-payment of retrenchment/closure compensation is required.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Compensation amount cannot be negative.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationAmountDue { get; set; }
+
+        [Required(ErrorMessage = "Date from which retrenchment/closure compensation became due is required.")]
+        public DateTime CompensationDueFromDate { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_ClaimLayOffDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey(nameof(Application))]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Date of joining is required.")]
+        public DateTime DateOfJoining { get; set; }
+
+        [Required(ErrorMessage = "Date of lay-off is required.")]
+        public DateTime DateOfLayOff { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_ClaimLayOffCompensationDetail
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey(nameof(Application))]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Lay-off from date is required.")]
+        public DateTime LayOffFromDate { get; set; }
+
+        [Required(ErrorMessage = "Lay-off to date is required.")]
+        public DateTime LayOffToDate { get; set; }
+
+        [Required(ErrorMessage = "Amount of compensation is required.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Compensation amount cannot be negative.")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CompensationAmount { get; set; }
+
+        [Required(ErrorMessage = "Date from which lay-off compensation became due is required.")]
+        public DateTime CompensationDueFromDate { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    #endregion
 
 
 }
