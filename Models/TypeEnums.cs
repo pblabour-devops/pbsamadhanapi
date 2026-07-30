@@ -1905,7 +1905,7 @@ namespace pbsamadhannetcoreapi.Models
         [Description("Separated")]
         SEPARATED = 5
     }
-    public enum MaternityDischargeOptionEnum
+    public enum MaternityDischargeTypeEnum
     {
         [Description("Discharged/Dismissal")]
         DischargedDismissal = 1,

@@ -286,20 +286,6 @@ namespace pbsamadhannetcoreapi.Services
                     ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
 
-                //appFormSteps.Add(new AppFormStepsInfo()
-                //{
-                //    StepTitle = "Claim Under Code On Wages",
-                //    EntityParentKeyId = entityParentKeyId,
-                //    IsFilled = false,
-                //    IsLink = entityParentKeyId == 0 ? false : true,
-                //    UiPageComponentPath = "/samadhaan/wages",
-                //    StepCode = "CCOW",
-                //    ApplicationType = applicationType,
-                //    AppRefId = appRefId,
-                //    IsCommonStep = false,
-                //    UiNextPageComponentPath = "/samadhaan/gratuity-claims",
-                //    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
-                //});
                 //{
                 appFormSteps.Add(new AppFormStepsInfo()
                 {
@@ -312,40 +298,55 @@ namespace pbsamadhannetcoreapi.Services
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
-                    UiNextPageComponentPath = detailPageUiComponentUrl,
+                    UiNextPageComponentPath = "samadhaan/wages",
+                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
+                });
+
+                appFormSteps.Add(new AppFormStepsInfo()
+                {
+                    StepTitle = "Claim Under Code On Wages",
+                    EntityParentKeyId = entityParentKeyId,
+                    IsFilled = false,
+                    IsLink = entityParentKeyId == 0 ? false : true,
+                    UiPageComponentPath = "/samadhaan/wages",
+                    StepCode = "CCOW",
+                    ApplicationType = applicationType,
+                    AppRefId = appRefId,
+                    IsCommonStep = false,
+                    UiNextPageComponentPath = "/samadhaan/mb-complaint",
                     ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
                 //}
 
-                //    appFormSteps.Add(new AppFormStepsInfo()
-                //{
-                //    StepTitle = "Meternity Benefits Complaints",
-                //    EntityParentKeyId = entityParentKeyId,
-                //    IsFilled = false,
-                //    IsLink = entityParentKeyId == 0 ? false : true,
-                //    UiPageComponentPath = "/samadhaan/mb-complaint",
-                //    StepCode = "MBC",
-                //    ApplicationType = applicationType,
-                //    AppRefId = appRefId,
-                //    IsCommonStep = false,
-                //    UiNextPageComponentPath = "/samadhaan/recovery-of-money",
-                //    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
-                //});
+                appFormSteps.Add(new AppFormStepsInfo()
+                {
+                    StepTitle = "Meternity Benefits Complaints",
+                    EntityParentKeyId = entityParentKeyId,
+                    IsFilled = false,
+                    IsLink = entityParentKeyId == 0 ? false : true,
+                    UiPageComponentPath = "/samadhaan/mb-complaint",
+                    StepCode = "MBC",
+                    ApplicationType = applicationType,
+                    AppRefId = appRefId,
+                    IsCommonStep = false,
+                    UiNextPageComponentPath = "/samadhaan/recovery-of-money",
+                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
+                });
 
-                //appFormSteps.Add(new AppFormStepsInfo()
-                //{
-                //    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
-                //    EntityParentKeyId = entityParentKeyId,
-                //    IsFilled = false,
-                //    IsLink = entityParentKeyId == 0 ? false : true,
-                //    UiPageComponentPath = "/samadhaan/recovery-of-money",
-                //    StepCode = "RM",
-                //    ApplicationType = applicationType,
-                //    AppRefId = appRefId,
-                //    IsCommonStep = false,
-                //    UiNextPageComponentPath = "/shared/appdocuments",
-                //    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
-                //});
+                appFormSteps.Add(new AppFormStepsInfo()
+                {
+                    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
+                    EntityParentKeyId = entityParentKeyId,
+                    IsFilled = false,
+                    IsLink = entityParentKeyId == 0 ? false : true,
+                    UiPageComponentPath = "/samadhaan/recovery-of-money",
+                    StepCode = "RM",
+                    ApplicationType = applicationType,
+                    AppRefId = appRefId,
+                    IsCommonStep = false,
+                    UiNextPageComponentPath = detailPageUiComponentUrl,
+                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
+                });
             }
 
             #endregion

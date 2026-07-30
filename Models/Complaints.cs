@@ -121,7 +121,7 @@ namespace pbsamadhannetcoreapi.Models
         public virtual Application Application { get; set; }
 
         #region Not Mapped Column For application
-       
+
 
         [NotMapped]
         public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
@@ -799,7 +799,7 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you have been discharged or dismissed/conditions of services have been changed on account of absence from work.")]
         public bool IsDischargedOrDismissedDueToAbsence { get; set; }
 
-        public MaternityDischargeOptionEnum? ApplicableOption { get; set; }
+        public MaternityDischargeTypeEnum? MaternityDischargeType { get; set; }
 
         [Required(ErrorMessage = "Maternity Benefit amount due is required.")]
         [Range(0, double.MaxValue, ErrorMessage = "Maternity Benefit amount cannot be negative.")]
@@ -1445,6 +1445,8 @@ namespace pbsamadhannetcoreapi.Models
 
     }
     #endregion
+
+
 
 
 }

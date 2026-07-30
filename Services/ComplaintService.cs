@@ -298,8 +298,8 @@ namespace pbsamadhannetcoreapi.Services
                 genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
                 genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
                 {
-                    SelectListTypeCode = "MaternityDischargeOptionEnum",
-                    SelectListItems = EnumOps.GetEnumAsSelectList<MaternityDischargeOptionEnum>()
+                    SelectListTypeCode = "MaternityDischargeTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MaternityDischargeTypeEnum>()
                 });
 
                 genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, genericFormModel.FormModel?.Id ?? id, "MBC");
@@ -801,6 +801,12 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.IsLocked = false;
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "BonusClaimTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<BonusClaimTypeEnum>()
+                });
             }
             catch (Exception ex)
             {
