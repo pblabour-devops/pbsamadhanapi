@@ -1448,7 +1448,7 @@ namespace pbsamadhannetcoreapi.Models
 
     #region Recovery of money under section of IR Code
 
-    public class Complaint_ClaimGeneralDetail
+    public class Complaint_RecOfMon_GeneralDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1464,7 +1464,7 @@ namespace pbsamadhannetcoreapi.Models
 
     }
 
-    public class Complaint_ClaimMoneyDueDetail
+    public class Complaint_RecOfMon_MoneyDueDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1478,7 +1478,7 @@ namespace pbsamadhannetcoreapi.Models
         [Required]
         public MoneyDueReasonTypeEnum MoneyDueReasonType { get; set; }
     }
-    public class Complaint_ClaimSettlementDetail
+    public class Complaint_RecOfMon_SettlementDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1540,7 +1540,7 @@ namespace pbsamadhannetcoreapi.Models
         #endregion
     }
 
-    public class Complaint_ClaimAwardDetail
+    public class Complaint_RecOfMon_AwardDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1596,7 +1596,7 @@ namespace pbsamadhannetcoreapi.Models
         #endregion
     }
 
-    public class Complaint_ClaimNoticePayDetail
+    public class Complaint_RecOfMon_NoticePayDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1647,7 +1647,7 @@ namespace pbsamadhannetcoreapi.Models
         #endregion
     }
 
-    public class Complaint_ClaimRetrenchmentCompensationDetail
+    public class Complaint_RecOfMon_RetrenchmentCompDetail
     {
         [Key]
         public long Id { get; set; }
@@ -1699,13 +1699,13 @@ namespace pbsamadhannetcoreapi.Models
         #endregion
     }
 
-    public class Complaint_ClaimLayOffDetail
+    public class Complaint_RecOfMon_LayOffDetail
     {
         [Key]
         public long Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
-        [ForeignKey(nameof(Application))]
+        [ForeignKey("Application")]
         public long AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
@@ -1739,13 +1739,13 @@ namespace pbsamadhannetcoreapi.Models
         #endregion
     }
 
-    public class Complaint_ClaimLayOffCompensationDetail
+    public class Complaint_RecOfMon_LayOffCompDetail
     {
         [Key]
         public long Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
-        [ForeignKey(nameof(Application))]
+        [ForeignKey("Application")]
         public long AppRefId { get; set; }
 
         public virtual Application Application { get; set; }

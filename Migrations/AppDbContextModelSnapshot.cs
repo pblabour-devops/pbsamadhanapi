@@ -3931,14 +3931,14 @@ namespace pblabournetcoreapi.Migrations
                     b.Property<long>("AppRefId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("ApplicableOption")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDischargedOrDismissedDueToAbsence")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("MaternityBenefitAmountDue")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("MaternityDischargeType")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("MedicalBonusMaternityAmountDue")
                         .HasColumnType("decimal(18,2)");
@@ -4062,6 +4062,259 @@ namespace pblabournetcoreapi.Migrations
                     b.HasIndex("AppRefId");
 
                     b.ToTable("Complaint_Non_Pay_Bonus_PeriodAmts");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_AwardDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AmountDueFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("AwardDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AwardNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AwardTerms")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("CGITOrArbitratorName")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("PartiesName")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_AwardDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_GeneralDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DemandNoticeServedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_GeneralDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_LayOffCompDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CompensationDueFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LayOffFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LayOffToDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_RecOfMon_LayOffCompDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_LayOffDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateOfJoining")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfLayOff")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_LayOffDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_MoneyDueDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("MoneyDueReasonType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_MoneyDueDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_NoticePayDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("AmountDue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("AmountDueFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateOfJoining")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfTermination")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NoticePayPeriodType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_NoticePayDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_RetrenchmentCompDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("CompensationAmountDue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CompensationDueFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfJoining")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfRetrenchmentOrClosure")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TotalLengthOfServiceDays")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_RetrenchmentCompDetails");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_SettlementDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("AmountDue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("AmountDueFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ConciliationOfficerAddress")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ConciliationOfficerNameAndDesignation")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("MoneyDueTerms")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("PartiesName")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("SettlementDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SettlementType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_RecOfMon_SettlementDetails");
                 });
 
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
@@ -26149,6 +26402,94 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_AwardDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_AwardDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_AwardDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_GeneralDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_GeneralDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_GeneralDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_LayOffCompDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_RecOfMon_LayOffCompDetails")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_LayOffDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_LayOffDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_LayOffDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_MoneyDueDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_MoneyDueDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_MoneyDueDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_NoticePayDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_NoticePayDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_NoticePayDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_RetrenchmentCompDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_RetrenchmentCompDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_RetrenchmentCompDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_SettlementDetail", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_RecOfMon_SettlementDetail")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_SettlementDetail", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28106,6 +28447,22 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_Non_Pay_Bonus");
 
                     b.Navigation("Complaint_Non_Pay_Bonus_PeriodAmts");
+
+                    b.Navigation("Complaint_RecOfMon_AwardDetail");
+
+                    b.Navigation("Complaint_RecOfMon_GeneralDetail");
+
+                    b.Navigation("Complaint_RecOfMon_LayOffCompDetails");
+
+                    b.Navigation("Complaint_RecOfMon_LayOffDetail");
+
+                    b.Navigation("Complaint_RecOfMon_MoneyDueDetail");
+
+                    b.Navigation("Complaint_RecOfMon_NoticePayDetail");
+
+                    b.Navigation("Complaint_RecOfMon_RetrenchmentCompDetail");
+
+                    b.Navigation("Complaint_RecOfMon_SettlementDetail");
 
                     b.Navigation("Complaint_Wages_Not_Paid");
 
