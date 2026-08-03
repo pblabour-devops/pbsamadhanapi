@@ -245,7 +245,7 @@ namespace pbsamadhannetcoreapi.Services
             #region For samadhaan
             else if (applicationType == ApplicationTypeEnum.SAMADHAN_COMPLAINTS)
             {
-                var parentObject = await _context.WorkerDetails.Include(x => x.Application).FirstOrDefaultAsync(x => x.AppRefId == entityParentKeyId);
+                var parentObject = await _context.WorkerDetails.Include(x => x.Application).FirstOrDefaultAsync(x => x.Id == entityParentKeyId);
                 var mappedComplaintCategoryIds = await _context.AppComplaintTypeMappings.Where(x => x.AppRefId == appRefId).Select(x => x.ComplaintsCategoryRefId).Distinct().ToListAsync();
                 var ComplaintsCategories = await _context.ComplaintsCategories.ToListAsync();
 
