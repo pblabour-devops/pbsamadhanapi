@@ -1327,15 +1327,16 @@ namespace pbsamadhannetcoreapi.Services
 
             return genericFormModel;
         }
+        #endregion
 
-        public async Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication(Int64 appRefId)
+        #region Get Draft application
+
+        public async Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication()
         {
             GenericResponseTemplateModel<List<Application>> genericRespModel = new GenericResponseTemplateModel<List<Application>>();
             try
             {
-                genericRespModel.ResponseDataModel = await _context.Applications
-                    .Where(x => x.AppId == appRefId && x.IsDeleted == false && x.IsLocked == false)
-                    .ToListAsync();
+                genericRespModel.ResponseDataModel = await _context.Applications.Where(x => !x.IsDeleted && !x.IsLocked).OrderByDescending(x => x.AppId).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -1344,8 +1345,54 @@ namespace pbsamadhannetcoreapi.Services
             }
             return genericRespModel;
         }
-
         #endregion
+
+        #region Lock Application
+
+        public async Task<GenericResponseTemplateModel<bool>> LockComplaintsApplication(long id)
+        {
+            GenericResponseTemplateModel<bool> genericRespModel = new GenericResponseTemplateModel<bool>();
+
+            try
+            {
+                var application = await _context.Applications.FirstOrDefaultAsync(x => x.AppId == id && !x.IsDeleted);
+
+                application.IsLocked = true;
+                application.IsAllowEdit = false;
+
+                _context.Applications.Update(application);
+                await _context.SaveChangesAsync();
+
+                genericRespModel.ResponseDataModel = true;
+            }
+            catch (Exception ex)
+            {
+                genericRespModel.HasError = true;
+                genericRespModel.ErrorDesc = ex.Message;
+            }
+
+            return genericRespModel;
+        }
+        #endregion
+
+        #region GET LOCK APPLICATION
+
+        public async Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication()
+        {
+            GenericResponseTemplateModel<List<Application>> genericRespModel = new GenericResponseTemplateModel<List<Application>>();
+            try
+            {
+                genericRespModel.ResponseDataModel = await _context.Applications.OrderByDescending(x => x.AppId).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                genericRespModel.HasError = true;
+                genericRespModel.ErrorDesc = ex.Message;
+            }
+            return genericRespModel;
+        }
+        #endregion
+
 
     }
 }

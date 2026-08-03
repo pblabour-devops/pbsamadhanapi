@@ -40,6 +40,8 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_RecOfMon_LayOffDetail>> GetComplaintRecOfMonLayOffDetail(long appRefId);
         Task<GenericFormModel<List<Complaint_RecOfMon_LayOffCompDetail>>> GetComplaintRecOfMonLayOffCompDetail(long appRefId);
         Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id);
-        Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication(Int64 appRefId);
+        Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication();
+        Task<GenericResponseTemplateModel<bool>> LockComplaintsApplication(long id);
+        Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication();
     }
 }

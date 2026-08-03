@@ -451,12 +451,44 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
-        #region
+        #region Get Draft application
         [HttpGet, Route("getComplaintsDraftApplication")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
-        public async Task<IActionResult> Get_ComplaintsDraftApplication([FromQuery] long id)
+        public async Task<IActionResult> Get_ComplaintsDraftApplication()
         {
-            GenericResponseTemplateModel<List<Application>> genericFormModel = await _iComplaintService.Get_ComplaintsDraftApplication(id);
+            GenericResponseTemplateModel<List<Application>> genericFormModel = await _iComplaintService.Get_ComplaintsDraftApplication();
+
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region Lock Application
+        [HttpGet, Route("lockComplaintsApplication")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> LockComplaintsApplication([FromQuery] long id)
+        {
+            GenericResponseTemplateModel<bool> genericFormModel = await _iComplaintService.LockComplaintsApplication(id);
+
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region Get All application
+        [HttpGet, Route("getAllApplications")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_AllApplication()
+        {
+            GenericResponseTemplateModel<List<Application>> genericFormModel = await _iComplaintService.Get_AllApplication();
 
             if (genericFormModel.HasError)
             {
