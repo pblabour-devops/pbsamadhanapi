@@ -1462,6 +1462,28 @@ namespace pbsamadhannetcoreapi.Models
         [Required]
         public DateTime DemandNoticeServedDate { get; set; }
 
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
     }
 
     public class Complaint_RecOfMon_MoneyDueDetail
@@ -1516,6 +1538,7 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Date from which settlement money became due is required.")]
         public DateTime AmountDueFromDate { get; set; }
+
 
         #region NotMapped
 

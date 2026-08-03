@@ -819,6 +819,353 @@ namespace pbsamadhannetcoreapi.Services
         }
         #endregion
 
+        #region Recovery of code
+        #region General Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_GeneralDetail>> GetComplaintRecOfMonGeneralDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_GeneralDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_GeneralDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_GeneralDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "MoneyDueReasonTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MoneyDueReasonTypeEnum>()
+                });
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "RM");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Money Due Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_MoneyDueDetail>> GetComplaintRecOfMonMoneyDueDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_MoneyDueDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_MoneyDueDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_MoneyDueDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "RM");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Settlement Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_SettlementDetail>> GetComplaintRecOfMonSettlementDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_SettlementDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_SettlementDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_SettlementDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate
+                {
+                    SelectListTypeCode = "SettlementTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<SettlementTypeEnum>()
+                });
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "SETL");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Award Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_AwardDetail>> GetComplaintRecOfMonAwardDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_AwardDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_AwardDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_AwardDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "AWRD");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Notice Pay Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_NoticePayDetail>> GetComplaintRecOfMonNoticePayDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_NoticePayDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_NoticePayDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_NoticePayDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "NoticePayPeriodTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<NoticePayPeriodTypeEnum>()
+                });
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "NOTP");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Retrenchment Compensation Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_RetrenchmentCompDetail>> GetComplaintRecOfMonRetrenchmentCompDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_RetrenchmentCompDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_RetrenchmentCompDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_RetrenchmentCompDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "RETR");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Lay-Off Detail
+
+        public async Task<GenericFormModel<Complaint_RecOfMon_LayOffDetail>> GetComplaintRecOfMonLayOffDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_RecOfMon_LayOffDetail>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_LayOffDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_RecOfMon_LayOffDetail();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "LOFF");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
+        #region Lay-Off Compensation Detail
+
+        public async Task<GenericFormModel<List<Complaint_RecOfMon_LayOffCompDetail>>> GetComplaintRecOfMonLayOffCompDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<List<Complaint_RecOfMon_LayOffCompDetail>>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_RecOfMon_LayOffCompDetails.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).ToListAsync();
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.First().Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.First().Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.First().Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_RecOfMon_LayOffCompDetail>();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "LOFC");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+        #endregion
+
         #region Complaint details
         public async Task<GenericFormModel<ComplaintDetailViewModel>> Get_ComplaintDetail(long id)
         {
