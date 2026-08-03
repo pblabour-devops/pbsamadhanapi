@@ -4317,6 +4317,34 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("Complaint_RecOfMon_SettlementDetails");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Review_OfDismissal", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Review_OfDismissals");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
                 {
                     b.Property<long>("Id")
@@ -26490,6 +26518,17 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Review_OfDismissal", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Review_OfDismissal")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Review_OfDismissal", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28463,6 +28502,8 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_RecOfMon_RetrenchmentCompDetail");
 
                     b.Navigation("Complaint_RecOfMon_SettlementDetail");
+
+                    b.Navigation("Complaint_Review_OfDismissal");
 
                     b.Navigation("Complaint_Wages_Not_Paid");
 

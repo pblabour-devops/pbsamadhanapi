@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using pbsamadhannetcoreapi.Models;
 using pbsamadhannetcoreapi.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -38,5 +39,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_RecOfMon_RetrenchmentCompDetail>> GetComplaintRecOfMonRetrenchmentCompDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_LayOffDetail>> GetComplaintRecOfMonLayOffDetail(long appRefId);
         Task<GenericFormModel<List<Complaint_RecOfMon_LayOffCompDetail>>> GetComplaintRecOfMonLayOffCompDetail(long appRefId);
+        Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id);
+        Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication(Int64 appRefId);
     }
 }

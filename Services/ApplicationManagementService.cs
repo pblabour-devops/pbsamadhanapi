@@ -268,7 +268,6 @@ namespace pbsamadhannetcoreapi.Services
                     AppRefId = appRefId,
                     IsCommonStep = false,
                     UiNextPageComponentPath = "/samadhaan/employer-details",
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
 
                 appFormSteps.Add(new AppFormStepsInfo()
@@ -283,7 +282,6 @@ namespace pbsamadhannetcoreapi.Services
                     AppRefId = appRefId,
                     IsCommonStep = false,
                     UiNextPageComponentPath = "samadhaan/gratuity-claims",
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
 
                 //{
@@ -299,7 +297,6 @@ namespace pbsamadhannetcoreapi.Services
                     AppRefId = appRefId,
                     IsCommonStep = false,
                     UiNextPageComponentPath = "samadhaan/wages",
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
 
                 appFormSteps.Add(new AppFormStepsInfo()
@@ -314,7 +311,6 @@ namespace pbsamadhannetcoreapi.Services
                     AppRefId = appRefId,
                     IsCommonStep = false,
                     UiNextPageComponentPath = "/samadhaan/mb-complaint",
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
                 });
                 //}
 
@@ -329,24 +325,37 @@ namespace pbsamadhannetcoreapi.Services
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
-                    UiNextPageComponentPath = "/samadhaan/recovery-of-money",
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
+                    UiNextPageComponentPath = detailPageUiComponentUrl,
                 });
 
-                appFormSteps.Add(new AppFormStepsInfo()
-                {
-                    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
-                    EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
-                    IsLink = entityParentKeyId == 0 ? false : true,
-                    UiPageComponentPath = "/samadhaan/recovery-of-money",
-                    StepCode = "RM",
-                    ApplicationType = applicationType,
-                    AppRefId = appRefId,
-                    IsCommonStep = false,
-                    UiNextPageComponentPath = detailPageUiComponentUrl,
-                    ProjectSiteRefId = parentObject == null ? 0 : parentObject.Application.ProjectSiteRefId
-                });
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = false,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/recovery-of-money",
+                //    StepCode = "RM",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = detailPageUiComponentUrl,
+                //});
+
+
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Review",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = false,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/review",
+                //    StepCode = "ROD",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = detailPageUiComponentUrl,
+                //});
             }
 
             #endregion

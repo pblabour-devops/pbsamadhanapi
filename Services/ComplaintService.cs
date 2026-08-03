@@ -1185,6 +1185,21 @@ namespace pbsamadhannetcoreapi.Services
                         .Include(x => x.Complaint_WorkplaceDetails)
                         .Include(x => x.Complaint_EstablishmentDetails)
                         .Include(x => x.Complaint_GratuityClaims)
+                        .Include(x => x.Complaint_Claim_CodeOnWages)
+                        .Include(x => x.Complaint_MinimumWage)
+                        .Include(x => x.Complaint_MinimumWage)
+                        .Include(x => x.Complaint_MinimumWagesPeriodAmts)
+                        .Include(x => x.Complaint_Wages_WkDay)
+                        .Include(x => x.Complaint_Wages_WkDay_PeriodAmts)
+                        .Include(x => x.Complaint_Wages_WkDay_PeriodAmts)
+                        .Include(x => x.Complaint_Wages_OT)
+                        .Include(x => x.Complaint_Wages_Not_Paid)
+                        .Include(x => x.Complaint_Wages_Not_Paid_PeriodAmts)
+                        .Include(x => x.Complaint_Wages_Unauth_Deduct)
+                        .Include(x => x.Complaint_Wages_Unauth_Deduct_PeriodAmts)
+                        .Include(x => x.Complaint_Non_Pay_Bonus)
+                        .Include(x => x.Complaint_Non_Pay_Bonus_PeriodAmts)
+                        .Include(x => x.Complaint_MaternityBenefitComplaints)
                         .FirstOrDefaultAsync(x => x.AppId == id);
 
                     if (application != null)
@@ -1195,7 +1210,22 @@ namespace pbsamadhannetcoreapi.Services
                             Complaint_EmployerORContractorDetails = application.Complaint_EmployerORContractorDetails.ToList(),
                             Complaint_WorkplaceDetails = application.Complaint_WorkplaceDetails,
                             Complaint_EstablishmentDetails = application.Complaint_EstablishmentDetails,
-                            Complaint_GratuityClaims = application.Complaint_GratuityClaims
+
+                            Complaint_GratuityClaims = application.Complaint_GratuityClaims,
+                            Complaint_Claim_CodeOnWages = application.Complaint_Claim_CodeOnWages,
+                            Complaint_MinimumWage = application.Complaint_MinimumWage,
+                            Complaint_MinimumWagesPeriodAmts = application.Complaint_MinimumWagesPeriodAmts,
+                            Complaint_Wages_WkDay = application.Complaint_Wages_WkDay,
+                            Complaint_Wages_WkDay_PeriodAmts = application.Complaint_Wages_WkDay_PeriodAmts,
+                            Complaint_Wages_OT = application.Complaint_Wages_OT,
+                            Complaint_Wages_OT_PeriodAmts = application.Complaint_Wages_OT_PeriodAmts,
+                            Complaint_Wages_Not_Paid = application.Complaint_Wages_Not_Paid,
+                            Complaint_Wages_Not_Paid_PeriodAmts = application.Complaint_Wages_Not_Paid_PeriodAmts,
+                            Complaint_Wages_Unauth_Deduct = application.Complaint_Wages_Unauth_Deduct,
+                            Complaint_Wages_Unauth_Deduct_PeriodAmts = application.Complaint_Wages_Unauth_Deduct_PeriodAmts,
+                            Complaint_Non_Pay_Bonus = application.Complaint_Non_Pay_Bonus,
+                            Complaint_Non_Pay_Bonus_PeriodAmts = application.Complaint_Non_Pay_Bonus_PeriodAmts,
+                            Complaint_MaternityBenefitComplaints = application.Complaint_MaternityBenefitComplaints
                         };
 
                         genericFormModel.IsEditAllowed = application.IsAllowEdit;
@@ -1227,7 +1257,27 @@ namespace pbsamadhannetcoreapi.Services
                     SelectListTypeCode = "WorkerCategoryTypeEnum",
                     SelectListItems = EnumOps.GetEnumAsSelectList<WorkerCategoryTypeEnum>()
                 });
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id,ApplicationTypeEnum.SAMADHAN_COMPLAINTS,id,"LOCK");
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "MaternityDischargeTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<MaternityDischargeTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "AllowanceTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<AllowanceTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "PlaceOfWorkTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<PlaceOfWorkTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "BonusClaimTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<BonusClaimTypeEnum>()
+                });
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, id, "LOCK");
             }
             catch (Exception ex)
             {
@@ -1237,6 +1287,64 @@ namespace pbsamadhannetcoreapi.Services
 
             return genericFormModel;
         }
+        #endregion
+
+        #region Review Of Dismissal
+
+        public async Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_Review_OfDismissal>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Review_OfDismissals.AsNoTracking().Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Review_OfDismissal();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, id, "ROD");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication(Int64 appRefId)
+        {
+            GenericResponseTemplateModel<List<Application>> genericRespModel = new GenericResponseTemplateModel<List<Application>>();
+            try
+            {
+                genericRespModel.ResponseDataModel = await _context.Applications
+                    .Where(x => x.AppId == appRefId && x.IsDeleted == false && x.IsLocked == false)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                genericRespModel.HasError = true;
+                genericRespModel.ErrorDesc = ex.Message;
+            }
+            return genericRespModel;
+        }
+
         #endregion
 
     }

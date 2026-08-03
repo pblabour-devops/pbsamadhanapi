@@ -1813,4 +1813,51 @@ namespace pbsamadhannetcoreapi.Models
     #endregion
 
 
+    #region Review
+    public class Complaint_Review_OfDismissal
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+
+        [Required(ErrorMessage = "Order number against which review is being filed is required.")]
+        public int OrderNumber { get; set; }
+
+        [Required(ErrorMessage = "Date of the order is required.")]
+        public DateTime OrderDate { get; set; }
+
+        [StringLength(1000, ErrorMessage = "Remarks cannot exceed 1000 characters.")]
+        public string Remarks { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+    #endregion
+
+
 }

@@ -970,11 +970,7 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_RecOfMon_RetrenchmentCompDetail> Complaint_RecOfMon_RetrenchmentCompDetails { get; set; }
         public DbSet<Complaint_RecOfMon_LayOffDetail> Complaint_RecOfMon_LayOffDetails { get; set; }
         public DbSet<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
-
-
-
-
-
+        public DbSet<Complaint_Review_OfDismissal> Complaint_Review_OfDismissals { get; set; }
 
         #endregion
 
@@ -2135,6 +2131,12 @@ namespace pbsamadhannetcoreapi.Models
                 .WithOne(ad => ad.Application)
                 .HasForeignKey<OSH_Form_21_ContractLabour_MigrantWorker>(ad => ad.AppRefId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+              .HasOne<Complaint_Review_OfDismissal>(s => s.Complaint_Review_OfDismissal)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey<Complaint_Review_OfDismissal>(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Restrict);
 
 
 
