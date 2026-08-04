@@ -72,8 +72,7 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
         public async Task<IActionResult> Get_EmployerOrContractorDetails(long id)
         {
-            GenericFormModel<List<Complaint_EmployerORContractorDetail>> genericFormModel =
-                await _iComplaintService.Get_EmployerOrContractorDetails(id);
+            GenericFormModel<List<Complaint_EmployerORContractorDetail>> genericFormModel = await _iComplaintService.Get_EmployerOrContractorDetails(id);
 
             if (genericFormModel.HasError)
             {
@@ -342,16 +341,28 @@ namespace pbsamadhannetcoreapi.Controllers
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
 
-        [HttpGet, Route("getComplaintRecOfMonMoneyDueDetail")]
-        public async Task<IActionResult> GetComplaintRecOfMonMoneyDueDetail([FromQuery] Int64 id)
+
+        [HttpGet, Route("getComplaintRecOfMonDueDetail")]
+        public async Task<IActionResult> GetComplaintRecOfMonDueDetail([FromQuery] Int64 id)
         {
-            GenericFormModel<Complaint_RecOfMon_MoneyDueDetail> genericFormModel = await _iComplaintService.GetComplaintRecOfMonMoneyDueDetail(id);
+            GenericFormModel<List<Complaint_RecOfMon_MoneyDueDetail>> genericFormModel = await _iComplaintService.GetComplaintRecOfMonDueDetail(id);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
             }
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
+
+        //[HttpGet, Route("getComplaintRecOfMonMoneyDueDetail")]
+        //public async Task<IActionResult> GetComplaintRecOfMonMoneyDueDetail([FromQuery] Int64 id)
+        //{
+        //    GenericFormModel<Complaint_RecOfMon_MoneyDueDetail> genericFormModel = await _iComplaintService.GetComplaintRecOfMonMoneyDueDetail(id);
+        //    if (genericFormModel.HasError)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+        //    }
+        //    return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        //}
 
         [HttpGet, Route("getComplaintRecOfMonSettlementDetail")]
         public async Task<IActionResult> GetComplaintRecOfMonSettlementDetail([FromQuery] Int64 id)

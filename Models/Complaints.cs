@@ -1499,6 +1499,31 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required]
         public MoneyDueReasonTypeEnum MoneyDueReasonType { get; set; }
+
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+
+
     }
     public class Complaint_RecOfMon_SettlementDetail
     {

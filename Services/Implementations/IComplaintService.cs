@@ -32,6 +32,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<List<Complaint_Non_Pay_Bonus_PeriodAmt>>> Get_NonPayBonusPerAmtDetail(long id);
         Task<GenericFormModel<ComplaintDetailViewModel>> Get_ComplaintDetail(long id);
         Task<GenericFormModel<Complaint_RecOfMon_GeneralDetail>> GetComplaintRecOfMonGeneralDetail(long appRefId);
+        Task<GenericFormModel<List<Complaint_RecOfMon_MoneyDueDetail>>> GetComplaintRecOfMonDueDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_MoneyDueDetail>> GetComplaintRecOfMonMoneyDueDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_SettlementDetail>> GetComplaintRecOfMonSettlementDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_AwardDetail>> GetComplaintRecOfMonAwardDetail(long appRefId);
