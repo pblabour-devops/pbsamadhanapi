@@ -1394,34 +1394,6 @@ namespace pbsamadhannetcoreapi.Services
         }
         #endregion
 
-        #region Lock Application
-
-        public async Task<GenericResponseTemplateModel<bool>> LockComplaintsApplication(long id)
-        {
-            GenericResponseTemplateModel<bool> genericRespModel = new GenericResponseTemplateModel<bool>();
-
-            try
-            {
-                var application = await _context.Applications.FirstOrDefaultAsync(x => x.AppId == id && !x.IsDeleted);
-
-                application.IsLocked = true;
-                application.IsAllowEdit = false;
-
-                _context.Applications.Update(application);
-                await _context.SaveChangesAsync();
-
-                genericRespModel.ResponseDataModel = true;
-            }
-            catch (Exception ex)
-            {
-                genericRespModel.HasError = true;
-                genericRespModel.ErrorDesc = ex.Message;
-            }
-
-            return genericRespModel;
-        }
-        #endregion
-
         #region GET LOCK APPLICATION
 
         public async Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication()

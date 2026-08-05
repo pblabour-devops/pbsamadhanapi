@@ -246,11 +246,13 @@ namespace pbsamadhannetcoreapi.Services
             else if (applicationType == ApplicationTypeEnum.SAMADHAN_COMPLAINTS)
             {
                 parentWithChildObject = await _context.Applications
-                                   .Include(x => x.WorkerDetail)    
+                                   .Include(x => x.WorkerDetail)
                                    .Include(x => x.Complaint_EmployerORContractorDetails)
                                    .Include(x => x.Complaint_GratuityClaims)
                                    .Include(x => x.Complaint_Claim_CodeOnWages)
-                                   .Include(x => x.Complaint_MaternityBenefitComplaints).Where(x => x.AppId == appRefId).FirstOrDefaultAsync(); 
+                                   .Include(x => x.Complaint_MaternityBenefitComplaints)
+                                   .Include(x => x.Complaint_RecOfMon_GeneralDetail)
+                                   .Where(x => x.AppId == appRefId).FirstOrDefaultAsync();
                 var mappedComplaintCategoryIds = await _context.AppComplaintTypeMappings.Where(x => x.AppRefId == appRefId).Select(x => x.ComplaintsCategoryRefId).Distinct().ToListAsync();
                 var ComplaintsCategories = await _context.ComplaintsCategories.ToListAsync();
 
@@ -282,7 +284,7 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Employer Establishment Details",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
+                    IsFilled = parentWithChildObject?.Complaint_EmployerORContractorDetails != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/employer-details",
                     StepCode = "EED",
@@ -300,7 +302,7 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Gratuity Claims",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
+                    IsFilled = parentWithChildObject?.Complaint_GratuityClaims != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/gratuity-claims",
                     StepCode = "GC",
@@ -317,7 +319,7 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Claim Under Code On Wages",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
+                    IsFilled = parentWithChildObject?.Complaint_Claim_CodeOnWages != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/wages",
                     StepCode = "CCOW",
@@ -335,7 +337,7 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Meternity Benefits Complaints",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
+                    IsFilled = parentWithChildObject?.Complaint_MaternityBenefitComplaints != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/mb-complaint",
                     StepCode = "MBC",
@@ -352,17 +354,30 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = false,
+                    IsFilled = parentWithChildObject?.Complaint_RecOfMon_GeneralDetail != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/recovery-of-money",
                     StepCode = "RM",
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
-                    UiNextPageComponentPath = detailPageUiComponentUrl,
+                    UiNextPageComponentPath = "/shared/appdocuments",
                     RootActivityRefId = "0",
                     ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
                     ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                });
+
+                appFormSteps.Add(new AppFormStepsInfo()
+                {
+                    StepTitle = "Upload Documents",
+                    EntityParentKeyId = entityParentKeyId,
+                    IsFilled = await DetermineAreAppDocumentsUploaded(appRefId, applicationType),
+                    IsLink = entityParentKeyId == 0 ? false : true,
+                    UiPageComponentPath = "/shared/appdocuments",
+                    StepCode = "DOC",
+                    ApplicationType = applicationType,
+                    AppRefId = appRefId,
+                    IsCommonStep = true
                 });
 
 
@@ -791,7 +806,7 @@ namespace pbsamadhannetcoreapi.Services
                 }
                 if (AppId > 0)
                 {
-                    var application = _context.Applications.Where(x => x.AppId == AppId && x.IsDeleted == false).Include(x=>x.ProjectSites).FirstOrDefault();
+                    var application = _context.Applications.Where(x => x.AppId == AppId && x.IsDeleted == false).FirstOrDefault();
                     if (application.ApplicationType == ApplicationTypeEnum.BUILDING_PLAN_HUD)
                     {
                         var buildingPlanHud = _context.BuildingPlanHUD_GeneralDetails.Where(x => x.AppRefId == AppId).FirstOrDefault();

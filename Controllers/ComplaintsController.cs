@@ -478,22 +478,7 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
-        #region Lock Application
-        [HttpGet, Route("lockComplaintsApplication")]
-        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
-        public async Task<IActionResult> LockComplaintsApplication([FromQuery] long id)
-        {
-            GenericResponseTemplateModel<bool> genericFormModel = await _iComplaintService.LockComplaintsApplication(id);
-
-            if (genericFormModel.HasError)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
-            }
-
-            return StatusCode(StatusCodes.Status200OK, genericFormModel);
-        }
-        #endregion
-
+        
         #region Get All application
         [HttpGet, Route("getAllApplications")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]

@@ -33,7 +33,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<ComplaintDetailViewModel>> Get_ComplaintDetail(long id);
         Task<GenericFormModel<Complaint_RecOfMon_GeneralDetail>> GetComplaintRecOfMonGeneralDetail(long appRefId);
         Task<GenericFormModel<List<Complaint_RecOfMon_MoneyDueDetail>>> GetComplaintRecOfMonDueDetail(long appRefId);
-        Task<GenericFormModel<Complaint_RecOfMon_MoneyDueDetail>> GetComplaintRecOfMonMoneyDueDetail(long appRefId);
+        //Task<GenericFormModel<Complaint_RecOfMon_MoneyDueDetail>> GetComplaintRecOfMonMoneyDueDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_SettlementDetail>> GetComplaintRecOfMonSettlementDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_AwardDetail>> GetComplaintRecOfMonAwardDetail(long appRefId);
         Task<GenericFormModel<Complaint_RecOfMon_NoticePayDetail>> GetComplaintRecOfMonNoticePayDetail(long appRefId);
@@ -42,7 +42,6 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<List<Complaint_RecOfMon_LayOffCompDetail>>> GetComplaintRecOfMonLayOffCompDetail(long appRefId);
         Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id);
         Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication();
-        Task<GenericResponseTemplateModel<bool>> LockComplaintsApplication(long id);
         Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication();
     }
 }
