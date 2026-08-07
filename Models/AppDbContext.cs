@@ -962,9 +962,15 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_Non_Pay_Bonus> Complaint_Non_Pay_Bonuses { get; set; }
         public DbSet<Complaint_Non_Pay_Bonus_PeriodAmt> Complaint_Non_Pay_Bonus_PeriodAmts { get; set; }
 
-
-
-
+        public DbSet<Complaint_RecOfMon_GeneralDetail> Complaint_RecOfMon_GeneralDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_MoneyDueDetail> Complaint_RecOfMon_MoneyDueDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_SettlementDetail> Complaint_RecOfMon_SettlementDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_AwardDetail> Complaint_RecOfMon_AwardDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_NoticePayDetail> Complaint_RecOfMon_NoticePayDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_RetrenchmentCompDetail> Complaint_RecOfMon_RetrenchmentCompDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_LayOffDetail> Complaint_RecOfMon_LayOffDetails { get; set; }
+        public DbSet<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
+        public DbSet<Complaint_Review_OfDismissal> Complaint_Review_OfDismissals { get; set; }
 
         #endregion
 
@@ -2126,6 +2132,12 @@ namespace pbsamadhannetcoreapi.Models
                 .HasForeignKey<OSH_Form_21_ContractLabour_MigrantWorker>(ad => ad.AppRefId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Application>()
+              .HasOne<Complaint_Review_OfDismissal>(s => s.Complaint_Review_OfDismissal)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey<Complaint_Review_OfDismissal>(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Restrict);
+
 
 
             #region Samadhan portal
@@ -2293,6 +2305,58 @@ namespace pbsamadhannetcoreapi.Models
                 .WithOne(x => x.Application)
                 .HasForeignKey(x => x.AppRefId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            #region Recovery of money
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_GeneralDetail>(s => s.Complaint_RecOfMon_GeneralDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_GeneralDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_MoneyDueDetail>(s => s.Complaint_RecOfMon_MoneyDueDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_MoneyDueDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_SettlementDetail>(s => s.Complaint_RecOfMon_SettlementDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_SettlementDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_AwardDetail>(s => s.Complaint_RecOfMon_AwardDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_AwardDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_NoticePayDetail>(s => s.Complaint_RecOfMon_NoticePayDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_NoticePayDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_RetrenchmentCompDetail>(s => s.Complaint_RecOfMon_RetrenchmentCompDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_RetrenchmentCompDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasOne<Complaint_RecOfMon_LayOffDetail>(s => s.Complaint_RecOfMon_LayOffDetail)
+                .WithOne(ad => ad.Application)
+                .HasForeignKey<Complaint_RecOfMon_LayOffDetail>(ad => ad.AppRefId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+                .HasMany<Complaint_RecOfMon_LayOffCompDetail>(x => x.Complaint_RecOfMon_LayOffCompDetails)
+                .WithOne(x => x.Application)
+                .HasForeignKey(x => x.AppRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            #endregion
             #endregion
 
         }

@@ -204,8 +204,23 @@ namespace pbsamadhannetcoreapi.Models
         public virtual Complaint_Non_Pay_Bonus Complaint_Non_Pay_Bonus { get; set; }
         public virtual ICollection<Complaint_Non_Pay_Bonus_PeriodAmt> Complaint_Non_Pay_Bonus_PeriodAmts { get; set; }
 
+        public virtual Complaint_RecOfMon_GeneralDetail Complaint_RecOfMon_GeneralDetail { get; set; }
 
+        public virtual Complaint_RecOfMon_MoneyDueDetail Complaint_RecOfMon_MoneyDueDetail { get; set; }
 
+        public virtual Complaint_RecOfMon_SettlementDetail Complaint_RecOfMon_SettlementDetail { get; set; }
+
+        public virtual Complaint_RecOfMon_AwardDetail Complaint_RecOfMon_AwardDetail { get; set; }
+
+        public virtual Complaint_RecOfMon_NoticePayDetail Complaint_RecOfMon_NoticePayDetail { get; set; }
+
+        public virtual Complaint_RecOfMon_RetrenchmentCompDetail Complaint_RecOfMon_RetrenchmentCompDetail { get; set; }
+
+        public virtual Complaint_RecOfMon_LayOffDetail Complaint_RecOfMon_LayOffDetail { get; set; }
+
+        public virtual ICollection<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
+
+        public virtual Complaint_Review_OfDismissal Complaint_Review_OfDismissal { get; set; }
 
         #endregion]
 

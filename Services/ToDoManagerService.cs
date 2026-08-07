@@ -2368,8 +2368,12 @@ namespace pbsamadhannetcoreapi.Services
 
         public async Task<bool> SEND_NOTIFICATION(Int64 appRefId, string rootActivityRefId, ToDoCodeTypeEnum toDoCodeType)
         {
-            var application = await _context.Applications.Where(x => x.AppId == appRefId && x.IsDeleted == false).Include(x => x.ProjectSites).FirstOrDefaultAsync().ConfigureAwait(false);
+            var application = await _context.Applications.Where(x => x.AppId == appRefId && x.IsDeleted == false).FirstOrDefaultAsync().ConfigureAwait(false);
             var appAction = new ApplicationAction();
+            if (application.ApplicationType == ApplicationTypeEnum.SAMADHAN_COMPLAINTS)
+            {
+                return true;
+            }
             if (application.ApplicationType == ApplicationTypeEnum.BUILDING_PLAN_PSIEC)
             {
                 var parentWithChildObject = await _context.ApplicationAction_ParallelProcesses.Where(x => x.ApplicationRefId == appRefId && x.IsAlive == true).OrderByDescending(x => x.AppActionParallelProcessId).FirstOrDefaultAsync();
