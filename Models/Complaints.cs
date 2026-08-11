@@ -29,7 +29,7 @@ namespace pbsamadhannetcoreapi.Models
     public class AppComplaintTypeMapping
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
@@ -48,7 +48,7 @@ namespace pbsamadhannetcoreapi.Models
     public class WorkerDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(200, ErrorMessage = "Name cannot exceed 200 characters.")]
@@ -149,7 +149,7 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_EmployerORContractorDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
@@ -222,7 +222,7 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_WorkplaceDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
@@ -274,7 +274,7 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_EstablishmentDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
@@ -360,11 +360,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_MinimumWageClaimDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -416,11 +416,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_WeeklyDayOfRestClaim
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -472,11 +472,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_OvertimeClaim
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -528,11 +528,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_WagesNotPaidClaim
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -583,11 +583,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_UnauthorizedDeductionClaim
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -658,11 +658,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_GratuityClaim
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         #region Claim Information
@@ -788,11 +788,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_MaternityBenefitComplaint
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Please specify whether you have been discharged or dismissed/conditions of services have been changed on account of absence from work.")]
@@ -845,11 +845,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Claim_CodeOnWage
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Allowance Type required.")]
@@ -892,11 +892,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_MinimumWage
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -937,11 +937,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_MinimumWagesPeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -984,11 +984,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_WkDay
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -1030,11 +1030,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_WkDay_PeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -1076,11 +1076,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_OT
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -1122,11 +1122,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_OT_PeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -1172,11 +1172,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_Not_Paid
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -1218,11 +1218,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_Not_Paid_PeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -1264,11 +1264,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_Unauth_Deduct
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -1310,11 +1310,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Wages_Unauth_Deduct_PeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "From Date is required.")]
@@ -1356,11 +1356,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Non_Pay_Bonus
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         [Required(ErrorMessage = "Total Relief Sought is required.")]
@@ -1402,11 +1402,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Non_Pay_Bonus_PeriodAmt
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
 
@@ -1450,11 +1450,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_GeneralDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1488,11 +1488,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_MoneyDueDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1527,11 +1527,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_SettlementDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1590,11 +1590,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_AwardDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1646,11 +1646,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_NoticePayDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1697,11 +1697,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_RetrenchmentCompDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1749,11 +1749,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_LayOffDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1789,11 +1789,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_RecOfMon_LayOffCompDetail
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1841,11 +1841,11 @@ namespace pbsamadhannetcoreapi.Models
     public class Complaint_Review_OfDismissal
     {
         [Key]
-        public long Id { get; set; }
+        public Int64 Id { get; set; }
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
@@ -1892,7 +1892,7 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Application reference is required.")]
         [ForeignKey("Application")]
-        public long AppRefId { get; set; }
+        public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
