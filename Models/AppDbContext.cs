@@ -971,6 +971,8 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_RecOfMon_LayOffDetail> Complaint_RecOfMon_LayOffDetails { get; set; }
         public DbSet<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
         public DbSet<Complaint_Review_OfDismissal> Complaint_Review_OfDismissals { get; set; }
+        public DbSet<Complaint_Appeal> Complaint_Appeals { get; set; }
+
 
         #endregion
 
@@ -2305,6 +2307,12 @@ namespace pbsamadhannetcoreapi.Models
                 .WithOne(x => x.Application)
                 .HasForeignKey(x => x.AppRefId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Application>()
+              .HasOne<Complaint_Appeal>(s => s.Complaint_Appeal)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey<Complaint_Appeal>(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Restrict);
 
             #region Recovery of money
             modelBuilder.Entity<Application>()

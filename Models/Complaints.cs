@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -1881,6 +1880,88 @@ namespace pbsamadhannetcoreapi.Models
         public string RootActivityRefId { get; set; }
 
         #endregion
+    }
+    #endregion
+
+    #region Appeal Form
+
+    public class Complaint_Appeal
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public long AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        public OrderNumTypeEnum OrderNumType { get; set; }
+
+        [Required(ErrorMessage = "Date of the order is required.")]
+        public DateTime OrderDate { get; set; }
+
+        [Required(ErrorMessage = "Name of authority is required.")]
+        [StringLength(100, ErrorMessage = "Name of authority cannot exceed 100 characters.")]
+        public string NameOfAuthority { get; set; }
+
+        [Required(ErrorMessage = "Address of authority is required.")]
+        [StringLength(500, ErrorMessage = "Address of authority cannot exceed 500 characters.")]
+        public string AddressOfAuthority { get; set; }
+
+        [Required(ErrorMessage = "Name of appellant is required.")]
+        [StringLength(100, ErrorMessage = "Name of appellant cannot exceed 100 characters.")]
+        public string NameOfAppellant { get; set; }
+
+        [Required(ErrorMessage = "Address of appellant is required.")]
+        [StringLength(500, ErrorMessage = "Address of appellant cannot exceed 500 characters.")]
+        public string AddressOfAppellant { get; set; }
+
+        [Required(ErrorMessage = "Name of respondent is required.")]
+        [StringLength(100, ErrorMessage = "Name of respondent cannot exceed 100 characters.")]
+        public string NameOfRespondent { get; set; }
+
+        [Required(ErrorMessage = "Address of respondent is required.")]
+        [StringLength(500, ErrorMessage = "Address of respondent cannot exceed 500 characters.")]
+        public string AddressOfRespondent { get; set; }
+
+        [Required(ErrorMessage = "Facts of case is required.")]
+        [StringLength(500, ErrorMessage = "Facts of case cannot exceed 500 characters.")]
+        public string FactsOfCase { get; set; }
+
+        [Required(ErrorMessage = "Ground of appeal is required.")]
+        [StringLength(500, ErrorMessage = "Ground of appeal cannot exceed 500 characters.")]
+        public string GroundOfAppeal { get; set; }
+
+        [Required(ErrorMessage = "Relief sought is required.")]
+        [StringLength(500, ErrorMessage = "Relief sought cannot exceed 500 characters.")]
+        public string Reliefsought { get; set; }
+
+        [Required(ErrorMessage = "Remarks is required.")]
+        [StringLength(500, ErrorMessage = "Remarks cannot exceed 500 characters.")]
+        public string Remarks { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion  
     }
     #endregion
 

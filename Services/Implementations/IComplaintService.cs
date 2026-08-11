@@ -43,5 +43,6 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id);
         Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication();
         Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication();
+        Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId);
     }
 }

@@ -2074,6 +2074,13 @@ namespace pbsamadhannetcoreapi.Models
         Telecom_Internet_Services_Provider_e_g_BSNL_Airtel_Jio = 28,
     }
 
+    public enum OrderNumTypeEnum
+    {
+        [Description("Statutory minimum bonus at 8.33%")]
+        ORDER_NUM = 1,
+
+    }
+
 
     #endregion
 

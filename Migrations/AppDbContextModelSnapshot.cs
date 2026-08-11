@@ -3651,6 +3651,80 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("CommonLicences_SelectedLicenceMappings");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Appeal", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressOfAppellant")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("AddressOfAuthority")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("AddressOfRespondent")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FactsOfCase")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("GroundOfAppeal")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("NameOfAppellant")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NameOfAuthority")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NameOfRespondent")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderNumType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reliefsought")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_Appeals");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Claim_CodeOnWage", b =>
                 {
                     b.Property<long>("Id")
@@ -26315,6 +26389,17 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("CommonLicence_GeneralDetail");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Appeal", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_Appeal")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Appeal", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Claim_CodeOnWage", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28468,6 +28553,8 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("BuildingPlanHUDPaymentDetails");
 
                     b.Navigation("CommonLicence_GeneralDetail");
+
+                    b.Navigation("Complaint_Appeal");
 
                     b.Navigation("Complaint_Claim_CodeOnWages");
 

@@ -140,7 +140,7 @@ namespace pbsamadhannetcoreapi.Services
                 });
 
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id,ApplicationTypeEnum.SAMADHAN_COMPLAINTS,id,"EED");
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, id, "EED");
             }
             catch (Exception ex)
             {
@@ -1410,6 +1410,46 @@ namespace pbsamadhannetcoreapi.Services
             }
             return genericRespModel;
         }
+        #endregion
+
+        #region GET APPEAL DETAILS
+        public async Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_Appeal>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_Appeals.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_Appeal();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "LOFF");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
         #endregion
 
 

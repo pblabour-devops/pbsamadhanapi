@@ -478,7 +478,6 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
-        
         #region Get All application
         [HttpGet, Route("getAllApplications")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
@@ -491,6 +490,20 @@ namespace pbsamadhannetcoreapi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
             }
 
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
+        #region Appeal
+        [HttpGet, Route("getAppealDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> GetAppealDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_Appeal> genericFormModel = await _iComplaintService.GetAppealDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
         #endregion

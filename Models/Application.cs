@@ -221,6 +221,8 @@ namespace pbsamadhannetcoreapi.Models
         public virtual ICollection<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
 
         public virtual Complaint_Review_OfDismissal Complaint_Review_OfDismissal { get; set; }
+        public virtual Complaint_Appeal Complaint_Appeal { get; set; }
+
 
         #endregion]
 
