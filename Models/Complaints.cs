@@ -62,22 +62,22 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Name is required..!")]
         [StringLength(200, ErrorMessage = "Name cannot exceed 200 characters.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Gender is required.")]
+        [Required(ErrorMessage = "Gender is required..!")]
         [StringLength(20, ErrorMessage = "Gender cannot exceed 20 characters.")]
         public string Gender { get; set; }
 
-        [Required(ErrorMessage = "Designation is required.")]
+        [Required(ErrorMessage = "Designation is required..!")]
         [StringLength(200, ErrorMessage = "Designation cannot exceed 200 characters.")]
         public string Designation { get; set; }
 
         [StringLength(50, ErrorMessage = "Marital Status cannot exceed 50 characters.")]
         public string MaritalStatus { get; set; }
 
-        [Required(ErrorMessage = "Mobile Number is required.")]
+        [Required(ErrorMessage = "Mobile Number is required..!")]
         [StringLength(10, ErrorMessage = "Mobile Number cannot exceed 10 characters.")]
         public string MobileNumber { get; set; }
 
@@ -85,15 +85,15 @@ namespace pbsamadhannetcoreapi.Models
         [StringLength(200, ErrorMessage = "Email cannot exceed 200 characters.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Permanent Address is required.")]
+        [Required(ErrorMessage = "Permanent Address is required..!")]
         [StringLength(500, ErrorMessage = "Permanent Address cannot exceed 500 characters.")]
         public string PermanentAddress { get; set; }
 
-        [Required(ErrorMessage = "Permanent Country is required.")]
+        [Required(ErrorMessage = "Permanent Country is required..!")]
         [StringLength(100, ErrorMessage = "Permanent Country cannot exceed 100 characters.")]
         public string PermanentCountry { get; set; }
 
-        [Required(ErrorMessage = "Permanent State is required.")]
+        [Required(ErrorMessage = "Permanent State is required..!")]
         [StringLength(100, ErrorMessage = "Permanent State cannot exceed 100 characters.")]
         public string PermanentState { get; set; }
 
@@ -102,7 +102,7 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 PermanentDistrictRefId { get; set; }
         public virtual DistrictLgd PermanentDistrictLgd { get; set; }
 
-        [Required(ErrorMessage = "Permanent Pincode is required.")]
+        [Required(ErrorMessage = "Permanent Pincode is required..!")]
         [StringLength(10, ErrorMessage = "Permanent Pincode cannot exceed 10 characters.")]
         public string PermanentPincode { get; set; }
 
@@ -177,15 +177,15 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you are engaged through contractor.")]
         public bool IsEngagedThroughContractor { get; set; }
 
-        [Required(ErrorMessage = "Employer Name and Designation is required.")]
+        [Required(ErrorMessage = "Employer Name and Designation is required..!")]
         [StringLength(300, ErrorMessage = "Employer Name and Designation cannot exceed 300 characters.")]
         public string EmployerORContractorNameAndDesignation { get; set; }
 
-        [Required(ErrorMessage = "Employer Address is required.")]
+        [Required(ErrorMessage = "Employer Address is required..!")]
         [StringLength(500, ErrorMessage = "Employer Address cannot exceed 500 characters.")]
         public string EmployerORContractorAddress { get; set; }
 
-        [Required(ErrorMessage = "State is required.")]
+        [Required(ErrorMessage = "State is required..!")]
         public string State { get; set; }
 
         [Required(ErrorMessage = "District is required..!")]
@@ -193,11 +193,11 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 DistrictRefId { get; set; }
         public virtual DistrictLgd DistrictLgd { get; set; }
 
-        [Required(ErrorMessage = "PIN Code is required.")]
+        [Required(ErrorMessage = "PIN Code is required..!")]
         [StringLength(10, ErrorMessage = "PIN Code cannot exceed 10 characters.")]
         public string PinCode { get; set; }
 
-        [Required(ErrorMessage = "Mobile Number is required.")]
+        [Required(ErrorMessage = "Mobile Number is required..!")]
         [StringLength(10, ErrorMessage = "Mobile Number cannot exceed 10 digits.")]
         public string MobileNumber { get; set; }
 
@@ -242,11 +242,11 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Workplace Address is required.")]
+        [Required(ErrorMessage = "Workplace Address is required..!")]
         [StringLength(500, ErrorMessage = "Workplace Address cannot exceed 500 characters.")]
         public string WorkplaceAddress { get; set; }
 
-        [Required(ErrorMessage = "State is required.")]
+        [Required(ErrorMessage = "State is required..!")]
         public string State { get; set; }
 
         [Required(ErrorMessage = "District is required..!")]
@@ -254,7 +254,7 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 DistrictRefId { get; set; }
         public virtual DistrictLgd DistrictLgd { get; set; }
 
-        [Required(ErrorMessage = "PIN Code is required.")]
+        [Required(ErrorMessage = "PIN Code is required..!")]
         [StringLength(10, ErrorMessage = "PIN Code cannot exceed 10 characters.")]
         public string PinCode { get; set; }
 
@@ -294,15 +294,15 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Name of Establishment is required.")]
+        [Required(ErrorMessage = "Name of Establishment is required..!")]
         [StringLength(300, ErrorMessage = "Name of Establishment cannot exceed 300 characters.")]
         public string EstablishmentName { get; set; }
 
-        [Required(ErrorMessage = "Address of Establishment is required.")]
+        [Required(ErrorMessage = "Address of Establishment is required..!")]
         [StringLength(500, ErrorMessage = "Address of Establishment cannot exceed 500 characters.")]
         public string EstablishmentAddress { get; set; }
 
-        [Required(ErrorMessage = "State is required.")]
+        [Required(ErrorMessage = "State is required..!")]
         public string State { get; set; }
 
         [Required(ErrorMessage = "District is required..!")]
@@ -311,11 +311,11 @@ namespace pbsamadhannetcoreapi.Models
         public virtual DistrictLgd DistrictLgd { get; set; }
 
 
-        [Required(ErrorMessage = "PIN Code is required.")]
+        [Required(ErrorMessage = "PIN Code is required..!")]
         [StringLength(10, ErrorMessage = "PIN Code cannot exceed 10 characters.")]
         public string PinCode { get; set; }
 
-        [Required(ErrorMessage = "Mobile Number is required.")]
+        [Required(ErrorMessage = "Mobile Number is required..!")]
         [StringLength(10, ErrorMessage = "Mobile Number must be 10 digits.")]
         public string MobileNumber { get; set; }
 
@@ -329,19 +329,19 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you are still working for the same employer/contractor.")]
         public bool IsStillWorking { get; set; }
 
-        [Required(ErrorMessage = "Worker category type is required.")]
+        [Required(ErrorMessage = "Worker category type is required..!")]
         public WorkerCategoryTypeEnum WorkerCategoryType { get; set; }
 
-        [Required(ErrorMessage = "Date of start of employment is required.")]
+        [Required(ErrorMessage = "Date of start of employment is required..!")]
         public DateTime EmploymentStartDate { get; set; }
 
-        [Required(ErrorMessage = "Date of end of employment is required.")]
+        [Required(ErrorMessage = "Date of end of employment is required..!")]
         public DateTime EmploymentEndDate { get; set; }
 
-        [Required(ErrorMessage = "Wage Period Type is required.")]
+        [Required(ErrorMessage = "Wage Period Type is required..!")]
         public WagePeriodtypeEnum WagePeriodType { get; set; }
 
-        [Required(ErrorMessage = "Rate of wages is required.")]
+        [Required(ErrorMessage = "Rate of wages is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal WageRate { get; set; }
 
@@ -380,21 +380,21 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
-        [Required(ErrorMessage = "To Date is required.")]
+        [Required(ErrorMessage = "To Date is required..!")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Total relief sought is required.")]
+        [Required(ErrorMessage = "Total relief sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation sought is required.")]
+        [Required(ErrorMessage = "Compensation sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -436,21 +436,21 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
-        [Required(ErrorMessage = "To Date is required.")]
+        [Required(ErrorMessage = "To Date is required..!")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Total relief sought is required.")]
+        [Required(ErrorMessage = "Total relief sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation sought is required.")]
+        [Required(ErrorMessage = "Compensation sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -492,21 +492,21 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
-        [Required(ErrorMessage = "To Date is required.")]
+        [Required(ErrorMessage = "To Date is required..!")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Total relief sought is required.")]
+        [Required(ErrorMessage = "Total relief sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation sought is required.")]
+        [Required(ErrorMessage = "Compensation sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -548,21 +548,21 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
-        [Required(ErrorMessage = "To Date is required.")]
+        [Required(ErrorMessage = "To Date is required..!")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Total relief sought is required.")]
+        [Required(ErrorMessage = "Total relief sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation sought is required.")]
+        [Required(ErrorMessage = "Compensation sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -603,21 +603,21 @@ namespace pbsamadhannetcoreapi.Models
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
-        [Required(ErrorMessage = "To Date is required.")]
+        [Required(ErrorMessage = "To Date is required..!")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Total relief sought is required.")]
+        [Required(ErrorMessage = "Total relief sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation sought is required.")]
+        [Required(ErrorMessage = "Compensation sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -673,23 +673,23 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
         #region Claim Information
 
-        [Required(ErrorMessage = "Basis of claim type is required.")]
+        [Required(ErrorMessage = "Basis of claim type is required..!")]
         public GratuityClaimBasisTypeEnum BasisOfClaimType { get; set; }
 
-        [Required(ErrorMessage = "Date of start of employment is required.")]
+        [Required(ErrorMessage = "Date of start of employment is required..!")]
         public DateTime EmploymentStartDate { get; set; }
 
-        [Required(ErrorMessage = "Date of end of employment is required.")]
+        [Required(ErrorMessage = "Date of end of employment is required..!")]
         public DateTime EmploymentEndDate { get; set; }
 
-        [Required(ErrorMessage = "Years of continuous service is required.")]
+        [Required(ErrorMessage = "Years of continuous service is required..!")]
         public int YearsOfContinuousService { get; set; }
 
         [Required(ErrorMessage = "Please specify whether application was made to employer.")]
@@ -705,22 +705,22 @@ namespace pbsamadhannetcoreapi.Models
 
         #region Annexure
 
-        [Required(ErrorMessage = "Applicant name and address is required.")]
+        [Required(ErrorMessage = "Applicant name and address is required..!")]
         [StringLength(500, ErrorMessage = "Applicant name and address cannot exceed 500 characters.")]
         public string ApplicantNameAndAddress { get; set; }
 
-        [Required(ErrorMessage = "Claim basis description is required.")]
+        [Required(ErrorMessage = "Claim basis description is required..!")]
         [StringLength(500, ErrorMessage = "Claim basis description cannot exceed 500 characters.")]
         public string ClaimBasisDescription { get; set; }
 
-        [Required(ErrorMessage = "Employee name and address is required.")]
+        [Required(ErrorMessage = "Employee name and address is required..!")]
         [StringLength(500, ErrorMessage = "Employee name and address cannot exceed 500 characters.")]
         public string EmployeeNameAndAddress { get; set; }
 
-        [Required(ErrorMessage = "Marital status is required.")]
+        [Required(ErrorMessage = "Marital status is required..!")]
         public MaritalStatusTypeEnum MaritalStatusType { get; set; }
 
-        [Required(ErrorMessage = "Employer name and address is required.")]
+        [Required(ErrorMessage = "Employer name and address is required..!")]
         [StringLength(500, ErrorMessage = "Employer name and address cannot exceed 500 characters.")]
         public string EmployerNameAndAddress { get; set; }
 
@@ -739,7 +739,7 @@ namespace pbsamadhannetcoreapi.Models
 
         public string TotalServicePeriod { get; set; }
 
-        [Required(ErrorMessage = "Last drawn wages is required.")]
+        [Required(ErrorMessage = "Last drawn wages is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal LastDrawnWages { get; set; }
 
@@ -757,14 +757,14 @@ namespace pbsamadhannetcoreapi.Models
         [Column(TypeName = "decimal(5,2)")]
         public decimal? GratuityPercentagePayable { get; set; }
 
-        [Required(ErrorMessage = "Gratuity amount claimed is required.")]
+        [Required(ErrorMessage = "Gratuity amount claimed is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal GratuityAmountClaimed { get; set; }
 
-        [Required(ErrorMessage = "Claim date is required.")]
+        [Required(ErrorMessage = "Claim date is required..!")]
         public DateTime ClaimDate { get; set; }
 
-        [Required(ErrorMessage = "Place is required.")]
+        [Required(ErrorMessage = "Place is required..!")]
         [StringLength(300, ErrorMessage = "Place cannot exceed 300 characters.")]
         public string Place { get; set; }
 
@@ -803,7 +803,7 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
@@ -811,20 +811,20 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you have been discharged or dismissed/conditions of services have been changed on account of absence from work.")]
         public bool IsDischargedOrDismissedDueToAbsence { get; set; }
 
-        [Required(ErrorMessage = "Maternity discharge type is required.")]
+        [Required(ErrorMessage = "Maternity discharge type is required..!")]
         public MaternityDischargeTypeEnum? MaternityDischargeType { get; set; }
 
-        [Required(ErrorMessage = "Maternity Benefit amount due is required.")]
+        [Required(ErrorMessage = "Maternity Benefit amount due is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Maternity Benefit amount cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal MaternityBenefitAmountDue { get; set; }
 
-        [Required(ErrorMessage = "Medical Bonus (Maternity) amount due is required.")]
+        [Required(ErrorMessage = "Medical Bonus (Maternity) amount due is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Medical Bonus amount cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal MedicalBonusMaternityAmountDue { get; set; }
 
-        [Required(ErrorMessage = "Wages for Maternity Leave amount due is required.")]
+        [Required(ErrorMessage = "Wages for Maternity Leave amount due is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Wages for Maternity Leave amount cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal WagesForMaternityLeaveAmountDue { get; set; }
@@ -861,12 +861,12 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Allowance Type required.")]
+        [Required(ErrorMessage = "Allowance Type required..!")]
         public AllowanceTypeEnum AllowanceType { get; set; }
 
         public PlaceOfWorkTypeEnum? PlaceOfWorkTypeA { get; set; }
@@ -908,16 +908,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -953,18 +953,18 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
@@ -1000,16 +1000,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -1046,18 +1046,18 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
@@ -1092,16 +1092,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -1138,22 +1138,22 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Overtime is required.")]
+        [Required(ErrorMessage = "Overtime is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal OverTimeHours { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
@@ -1188,16 +1188,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -1234,18 +1234,18 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
@@ -1280,16 +1280,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -1326,18 +1326,18 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "From Date is required.")]
+        [Required(ErrorMessage = "From Date is required..!")]
         public DateTime FromDate { get; set; }
 
         [Required(ErrorMessage = "To Date is required")]
         public DateTime ToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount is required.")]
+        [Required(ErrorMessage = "Amount is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
@@ -1372,16 +1372,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Total Relief Sought is required.")]
+        [Required(ErrorMessage = "Total Relief Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalReliefSought { get; set; }
 
-        [Required(ErrorMessage = "Compensation Sought is required.")]
+        [Required(ErrorMessage = "Compensation Sought is required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationSought { get; set; }
 
@@ -1418,21 +1418,21 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application ref id is required.")]
+        [Required(ErrorMessage = "Application ref id is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
         public virtual Application Application { get; set; }
 
 
-        [Required(ErrorMessage = "Accounting year is required.")]
+        [Required(ErrorMessage = "Accounting year is required..!")]
         [StringLength(200, ErrorMessage = "Accounting Year cannot exceed 200 characters..!.")]
         public string AccountingYear { get; set; }
 
-        [Required(ErrorMessage = "Amount required.")]
+        [Required(ErrorMessage = "Amount required..!")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Bonus Claim Type is required.")]
+        [Required(ErrorMessage = "Bonus Claim Type is required..!")]
         public BonusClaimTypeEnum BonusClaimType { get; set; }
 
         #region Not Mapped Column
@@ -1511,7 +1511,7 @@ namespace pbsamadhannetcoreapi.Models
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Money due reason type is required.")]
+        [Required(ErrorMessage = "Money due reason type is required..!")]
         public MoneyDueReasonTypeEnum MoneyDueReasonType { get; set; }
 
 
@@ -1544,20 +1544,20 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Name of the parties to the settlement is required.")]
+        [Required(ErrorMessage = "Name of the parties to the settlement is required..!")]
         [StringLength(300, ErrorMessage = "Name of the parties to the settlement cannot exceed 300 characters.")]
         public string PartiesName { get; set; }
 
-        [Required(ErrorMessage = "Settlement date is required.")]
+        [Required(ErrorMessage = "Settlement date is required..!")]
         public DateTime SettlementDate { get; set; }
 
-        [Required(ErrorMessage = "Settlement type is required.")]
+        [Required(ErrorMessage = "Settlement type is required..!")]
         public SettlementTypeEnum SettlementType { get; set; }
 
         [StringLength(300, ErrorMessage = "Name and designation of the conciliation officer cannot exceed 300 characters.")]
@@ -1566,16 +1566,16 @@ namespace pbsamadhannetcoreapi.Models
         [StringLength(500, ErrorMessage = "Address of the conciliation officer cannot exceed 500 characters.")]
         public string ConciliationOfficerAddress { get; set; }
 
-        [Required(ErrorMessage = "Money due from which terms of settlement is required.")]
+        [Required(ErrorMessage = "Money due from which terms of settlement is required..!")]
         [StringLength(500, ErrorMessage = "Money due terms cannot exceed 500 characters.")]
         public string MoneyDueTerms { get; set; }
 
-        [Required(ErrorMessage = "Amount of money due is required.")]
+        [Required(ErrorMessage = "Amount of money due is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Amount of money due cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal AmountDue { get; set; }
 
-        [Required(ErrorMessage = "Date from which settlement money became due is required.")]
+        [Required(ErrorMessage = "Date from which settlement money became due is required..!")]
         public DateTime AmountDueFromDate { get; set; }
 
 
@@ -1607,32 +1607,32 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Name of the parties to the award is required.")]
+        [Required(ErrorMessage = "Name of the parties to the award is required..!")]
         [StringLength(300, ErrorMessage = "Name of the parties to the award cannot exceed 300 characters.")]
         public string PartiesName { get; set; }
 
-        [Required(ErrorMessage = "Name of the CGIT/Arbitrator who gave the award is required.")]
+        [Required(ErrorMessage = "Name of the CGIT/Arbitrator who gave the award is required..!")]
         [StringLength(300, ErrorMessage = "Name of the CGIT/Arbitrator cannot exceed 300 characters.")]
         public string CGITOrArbitratorName { get; set; }
 
-        [Required(ErrorMessage = "Award number is required.")]
+        [Required(ErrorMessage = "Award number is required..!")]
         [StringLength(100, ErrorMessage = "Award number cannot exceed 100 characters.")]
         public string AwardNumber { get; set; }
 
-        [Required(ErrorMessage = "Award date is required.")]
+        [Required(ErrorMessage = "Award date is required..!")]
         public DateTime AwardDate { get; set; }
 
-        [Required(ErrorMessage = "Money due from which terms of award is required.")]
+        [Required(ErrorMessage = "Money due from which terms of award is required..!")]
         [StringLength(500, ErrorMessage = "Money due terms of award cannot exceed 500 characters.")]
         public string AwardTerms { get; set; }
 
-        [Required(ErrorMessage = "Date from which award money became due is required.")]
+        [Required(ErrorMessage = "Date from which award money became due is required..!")]
         public DateTime AmountDueFromDate { get; set; }
 
         #region NotMapped
@@ -1663,27 +1663,27 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Date of joining is required.")]
+        [Required(ErrorMessage = "Date of joining is required..!")]
         public DateTime DateOfJoining { get; set; }
 
-        [Required(ErrorMessage = "Date of termination is required.")]
+        [Required(ErrorMessage = "Date of termination is required..!")]
         public DateTime DateOfTermination { get; set; }
 
-        [Required(ErrorMessage = "Period of notice pay is required.")]
+        [Required(ErrorMessage = "Period of notice pay is required..!")]
         public NoticePayPeriodTypeEnum NoticePayPeriodType { get; set; }
 
-        [Required(ErrorMessage = "Amount of money due for non-payment of notice pay is required.")]
+        [Required(ErrorMessage = "Amount of money due for non-payment of notice pay is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Amount of money due cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal AmountDue { get; set; }
 
-        [Required(ErrorMessage = "Date from which payment became due in lieu of notice is required.")]
+        [Required(ErrorMessage = "Date from which payment became due in lieu of notice is required..!")]
         public DateTime AmountDueFromDate { get; set; }
 
         #region NotMapped
@@ -1714,28 +1714,28 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Date of joining is required.")]
+        [Required(ErrorMessage = "Date of joining is required..!")]
         public DateTime DateOfJoining { get; set; }
 
-        [Required(ErrorMessage = "Date of retrenchment/closure of establishment is required.")]
+        [Required(ErrorMessage = "Date of retrenchment/closure of establishment is required..!")]
         public DateTime DateOfRetrenchmentOrClosure { get; set; }
 
-        [Required(ErrorMessage = "Total length of service is required.")]
+        [Required(ErrorMessage = "Total length of service is required..!")]
         [Range(0, int.MaxValue, ErrorMessage = "Total length of service cannot be negative.")]
         public int TotalLengthOfServiceDays { get; set; }
 
-        [Required(ErrorMessage = "Amount due on account of non-payment of retrenchment/closure compensation is required.")]
+        [Required(ErrorMessage = "Amount due on account of non-payment of retrenchment/closure compensation is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Compensation amount cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationAmountDue { get; set; }
 
-        [Required(ErrorMessage = "Date from which retrenchment/closure compensation became due is required.")]
+        [Required(ErrorMessage = "Date from which retrenchment/closure compensation became due is required..!")]
         public DateTime CompensationDueFromDate { get; set; }
 
         #region NotMapped
@@ -1766,16 +1766,16 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Date of joining is required.")]
+        [Required(ErrorMessage = "Date of joining is required..!")]
         public DateTime DateOfJoining { get; set; }
 
-        [Required(ErrorMessage = "Date of lay-off is required.")]
+        [Required(ErrorMessage = "Date of lay-off is required..!")]
         public DateTime DateOfLayOff { get; set; }
 
         #region NotMapped
@@ -1806,24 +1806,24 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Lay-off from date is required.")]
+        [Required(ErrorMessage = "Lay-off from date is required..!")]
         public DateTime LayOffFromDate { get; set; }
 
-        [Required(ErrorMessage = "Lay-off to date is required.")]
+        [Required(ErrorMessage = "Lay-off to date is required..!")]
         public DateTime LayOffToDate { get; set; }
 
-        [Required(ErrorMessage = "Amount of compensation is required.")]
+        [Required(ErrorMessage = "Amount of compensation is required..!")]
         [Range(0, double.MaxValue, ErrorMessage = "Compensation amount cannot be negative.")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal CompensationAmount { get; set; }
 
-        [Required(ErrorMessage = "Date from which lay-off compensation became due is required.")]
+        [Required(ErrorMessage = "Date from which lay-off compensation became due is required..!")]
         public DateTime CompensationDueFromDate { get; set; }
 
         #region NotMapped
@@ -1858,17 +1858,17 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
 
-        [Required(ErrorMessage = "Order number against which review is being filed is required.")]
+        [Required(ErrorMessage = "Order number against which review is being filed is required..!")]
         public int OrderNumber { get; set; }
 
-        [Required(ErrorMessage = "Date of the order is required.")]
+        [Required(ErrorMessage = "Date of the order is required..!")]
         public DateTime OrderDate { get; set; }
 
         [StringLength(1000, ErrorMessage = "Remarks cannot exceed 1000 characters.")]
@@ -1905,55 +1905,55 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Application reference is required.")]
+        [Required(ErrorMessage = "Application reference is required..!")]
         [ForeignKey("Application")]
         public Int64 AppRefId { get; set; }
 
         public virtual Application Application { get; set; }
 
-        [Required(ErrorMessage = "Order num type is required.")]
+        [Required(ErrorMessage = "Order num type is required..!")]
         public OrderNumTypeEnum OrderNumType { get; set; }
 
-        [Required(ErrorMessage = "Date of the order is required.")]
+        [Required(ErrorMessage = "Date of the order is required..!")]
         public DateTime OrderDate { get; set; }
 
-        [Required(ErrorMessage = "Name of authority is required.")]
+        [Required(ErrorMessage = "Name of authority is required..!")]
         [StringLength(100, ErrorMessage = "Name of authority cannot exceed 100 characters.")]
         public string NameOfAuthority { get; set; }
 
-        [Required(ErrorMessage = "Address of authority is required.")]
+        [Required(ErrorMessage = "Address of authority is required..!")]
         [StringLength(500, ErrorMessage = "Address of authority cannot exceed 500 characters.")]
         public string AddressOfAuthority { get; set; }
 
-        [Required(ErrorMessage = "Name of appellant is required.")]
+        [Required(ErrorMessage = "Name of appellant is required..!")]
         [StringLength(100, ErrorMessage = "Name of appellant cannot exceed 100 characters.")]
         public string NameOfAppellant { get; set; }
 
-        [Required(ErrorMessage = "Address of appellant is required.")]
+        [Required(ErrorMessage = "Address of appellant is required..!")]
         [StringLength(500, ErrorMessage = "Address of appellant cannot exceed 500 characters.")]
         public string AddressOfAppellant { get; set; }
 
-        [Required(ErrorMessage = "Name of respondent is required.")]
+        [Required(ErrorMessage = "Name of respondent is required..!")]
         [StringLength(100, ErrorMessage = "Name of respondent cannot exceed 100 characters.")]
         public string NameOfRespondent { get; set; }
 
-        [Required(ErrorMessage = "Address of respondent is required.")]
+        [Required(ErrorMessage = "Address of respondent is required..!")]
         [StringLength(500, ErrorMessage = "Address of respondent cannot exceed 500 characters.")]
         public string AddressOfRespondent { get; set; }
 
-        [Required(ErrorMessage = "Facts of case is required.")]
+        [Required(ErrorMessage = "Facts of case is required..!")]
         [StringLength(500, ErrorMessage = "Facts of case cannot exceed 500 characters.")]
         public string FactsOfCase { get; set; }
 
-        [Required(ErrorMessage = "Ground of appeal is required.")]
+        [Required(ErrorMessage = "Ground of appeal is required..!")]
         [StringLength(500, ErrorMessage = "Ground of appeal cannot exceed 500 characters.")]
         public string GroundOfAppeal { get; set; }
 
-        [Required(ErrorMessage = "Relief sought is required.")]
+        [Required(ErrorMessage = "Relief sought is required..!")]
         [StringLength(500, ErrorMessage = "Relief sought cannot exceed 500 characters.")]
         public string Reliefsought { get; set; }
 
-        [Required(ErrorMessage = "Remarks is required.")]
+        [Required(ErrorMessage = "Remarks is required..!")]
         [StringLength(500, ErrorMessage = "Remarks cannot exceed 500 characters.")]
         public string Remarks { get; set; }
 
