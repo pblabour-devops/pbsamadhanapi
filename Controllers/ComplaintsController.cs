@@ -43,7 +43,7 @@ namespace pbsamadhannetcoreapi.Controllers
         //[CustomFillters.AuthorizeAttribute("Worker_INDL")]
         public async Task<IActionResult> Get_SelfComplaints()
         {
-            GenericFormModel<List<ComplainantTypeComplaintTypeMapping>> genericFormModel = await _iComplaintService.Get_SelfComplaints();
+            GenericFormModel<List<ComplaintsCategory>> genericFormModel = await _iComplaintService.Get_SelfComplaints();
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);

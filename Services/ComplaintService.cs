@@ -34,7 +34,6 @@ namespace pbsamadhannetcoreapi.Services
             GenericFormModel<object> genericFormModel = new GenericFormModel<object>();
             try
             {
-                genericFormModel.ListTemplateLists = new List<ListTemplate>();
                 var parentWithChildObject = await _context.ComplaintsCategories.AsNoTracking().OrderBy(x => x.ComplaintCategoryType).ThenBy(x => x.Id).ToListAsync();
                 genericFormModel.FormModel = parentWithChildObject;
             }
@@ -47,14 +46,30 @@ namespace pbsamadhannetcoreapi.Services
         }
 
         #region Self Complaints
-        public async Task<GenericFormModel<List<ComplainantTypeComplaintTypeMapping>>> Get_SelfComplaints()
+        public async Task<GenericFormModel<List<ComplaintsCategory>>> Get_SelfComplaints()
         {
-            var genericFormModel = new GenericFormModel<List<ComplainantTypeComplaintTypeMapping>>();
+            var genericFormModel =
+                new GenericFormModel<List<ComplaintsCategory>>();
 
             try
             {
-                genericFormModel.FormModel = await (from mapping in _context.ComplainantTypeComplaintTypeMappings join complaint in _context.ComplaintsCategories
-                 on mapping.ComplaintType equals complaint.Id where mapping.ComplainantType == complainantType select complaint).AsNoTracking().ToListAsync();
+                genericFormModel.FormModel = await (
+                        from mapping in _context.ComplainantTypeComplaintTypeMappings
+                        join complaint in _context.ComplaintsCategories
+                            on mapping.ComplaintType equals complaint.Id
+                        where mapping.ComplainantType == ComplainantTypeEnum.SELF
+                        select complaint
+                    )
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "ComplainantTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<ComplainantTypeEnum>()
+                });
             }
             catch (Exception ex)
             {
@@ -1239,8 +1254,6 @@ namespace pbsamadhannetcoreapi.Services
             try
             {
                 genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
-                genericFormModel.ListTemplateLists = new List<ListTemplate>();
-
                 if (id != 0)
                 {
                     var application = await _context.Applications
