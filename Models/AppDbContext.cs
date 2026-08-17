@@ -943,7 +943,7 @@ namespace pbsamadhannetcoreapi.Models
 
         public DbSet<WorkerDetail> WorkerDetails { get; set; }
         public DbSet<AppComplaintTypeMapping> AppComplaintTypeMappings { get; set; }
-        public DbSet<ComplainantTypeComplaintTypeMapping> ComplainantTypeComplaintTypeMapping { get; set; }
+        public DbSet<ComplainantTypeComplaintTypeMapping> ComplainantTypeComplaintTypeMappings { get; set; }
 
         public DbSet<Complaint_EmployerORContractorDetail> Complaint_EmployerORContractorDetails { get; set; }
         public DbSet<Complaint_WorkplaceDetail> Complaint_WorkplaceDetails { get; set; }

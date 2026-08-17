@@ -103,7 +103,7 @@ namespace pbsamadhannetcoreapi.Models
         public virtual DistrictLgd PermanentDistrictLgd { get; set; }
 
         [Required(ErrorMessage = "Permanent Pincode is required..!")]
-        [StringLength(10, ErrorMessage = "Permanent Pincode cannot exceed 10 characters.")]
+        [StringLength(6, ErrorMessage = "Invalid Pin code..!")]
         public string PermanentPincode { get; set; }
 
         [Required(ErrorMessage = "Please specify whether the correspondence address is same as the permanent address.")]
@@ -112,18 +112,21 @@ namespace pbsamadhannetcoreapi.Models
         [StringLength(500, ErrorMessage = "Correspondence Address cannot exceed 500 characters.")]
         public string CorrespondenceAddress { get; set; }
 
+        [Required(ErrorMessage = "Correspondence Country is required..!")]
         [StringLength(100, ErrorMessage = "Correspondence Country cannot exceed 100 characters.")]
         public string CorrespondenceCountry { get; set; }
 
+        [Required(ErrorMessage = "Correspondence State is required..!")]
         [StringLength(100, ErrorMessage = "Correspondence State cannot exceed 100 characters.")]
         public string CorrespondenceState { get; set; }
 
-        [Required(ErrorMessage = "District is required..!")]
+        [Required(ErrorMessage = "Correspondence District is required..!")]
         [ForeignKey(nameof(CorrespondenceDistrictLgd))]
         public Int64 CorrespondenceDistrictRefId { get; set; }
         public virtual DistrictLgd CorrespondenceDistrictLgd { get; set; }
 
-        [StringLength(10, ErrorMessage = "Correspondence Pincode cannot exceed 10 characters.")]
+        [Required(ErrorMessage = "Correspondence Pincode is required..!")]
+        [StringLength(6, ErrorMessage = "Invalid Pin code..!")]
         public string CorrespondencePincode { get; set; }
 
         [Required(ErrorMessage = "Application ref id is required..!")]

@@ -396,6 +396,65 @@ namespace pbsamadhannetcoreapi.Services
                 //});
             }
 
+            //else if (applicationType == ApplicationTypeEnum.SAMADHAN_COMPLAINTS)
+            //{
+            //    parentWithChildObject = await _context.Applications.Include(x => x.Complaint_Appeal).Where(x => x.AppId == appRefId).FirstOrDefaultAsync();
+            //    var mappedComplaintCategoryIds = await _context.AppComplaintTypeMappings.Where(x => x.AppRefId == appRefId).Select(x => x.ComplaintsCategoryRefId).Distinct().ToListAsync();
+            //    var ComplaintsCategories = await _context.ComplaintsCategories.ToListAsync();
+
+            //    detailPageUiComponentUrl = "/samadhaan/details";
+
+            //    if (parentWithChildObject != null)
+            //    {
+            //        entityParentKeyId = parentWithChildObject.Complaint_Appeal.Id;
+            //        isParentTableHasData = true;
+            //    }
+            //    appFormSteps.Add(new AppFormStepsInfo()
+            //    {
+            //        StepTitle = "Appeal",
+            //        EntityParentKeyId = entityParentKeyId,
+            //        IsFilled = parentWithChildObject != null,
+            //        IsLink = true,
+            //        UiPageComponentPath = "/samadhaan/appeal",
+            //        StepCode = "AP",
+            //        ApplicationType = applicationType,
+            //        AppRefId = appRefId,
+            //        IsCommonStep = false,
+            //        UiNextPageComponentPath = "/shared/appdocuments",
+            //        RootActivityRefId = "0",
+            //        ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+            //        ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+            //    });
+
+            //    appFormSteps.Add(new AppFormStepsInfo()
+            //    {
+            //        StepTitle = "Upload Documents",
+            //        EntityParentKeyId = entityParentKeyId,
+            //        IsFilled = await DetermineAreAppDocumentsUploaded(appRefId, applicationType),
+            //        IsLink = entityParentKeyId == 0 ? false : true,
+            //        UiPageComponentPath = "/shared/appdocuments",
+            //        StepCode = "DOC",
+            //        ApplicationType = applicationType,
+            //        AppRefId = appRefId,
+            //        IsCommonStep = true
+            //    });
+
+
+            //    //appFormSteps.Add(new AppFormStepsInfo()
+            //    //{
+            //    //    StepTitle = "Review",
+            //    //    EntityParentKeyId = entityParentKeyId,
+            //    //    IsFilled = false,
+            //    //    IsLink = entityParentKeyId == 0 ? false : true,
+            //    //    UiPageComponentPath = "/samadhaan/review",
+            //    //    StepCode = "ROD",
+            //    //    ApplicationType = applicationType,
+            //    //    AppRefId = appRefId,
+            //    //    IsCommonStep = false,
+            //    //    UiNextPageComponentPath = detailPageUiComponentUrl,
+            //    //});
+            //}
+
             #endregion
 
             //Common Steps

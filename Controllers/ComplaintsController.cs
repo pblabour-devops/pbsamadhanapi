@@ -24,7 +24,7 @@ namespace pbsamadhannetcoreapi.Controllers
             _iComplaintService = complaintService;
         }
 
-
+        #region Complaints Categories
         [HttpGet, Route("getComplaintsCategories")]
         //[CustomFillters.AuthorizeAttribute("Worker_INDL")]
         public async Task<IActionResult> Get_ComplaintsCategories()
@@ -36,6 +36,21 @@ namespace pbsamadhannetcoreapi.Controllers
             }
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
+        #endregion
+
+        #region Self Complaints
+        [HttpGet, Route("getSelfComplaints")]
+        //[CustomFillters.AuthorizeAttribute("Worker_INDL")]
+        public async Task<IActionResult> Get_SelfComplaints()
+        {
+            GenericFormModel<List<ComplainantTypeComplaintTypeMapping>> genericFormModel = await _iComplaintService.Get_SelfComplaints();
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
         #region Worker details
         [HttpGet, Route("getWorkerDetails")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]

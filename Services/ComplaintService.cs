@@ -46,6 +46,27 @@ namespace pbsamadhannetcoreapi.Services
             return genericFormModel;
         }
 
+        #region Self Complaints
+        public async Task<GenericFormModel<List<ComplainantTypeComplaintTypeMapping>>> Get_SelfComplaints()
+        {
+            var genericFormModel = new GenericFormModel<List<ComplainantTypeComplaintTypeMapping>>();
+
+            try
+            {
+                genericFormModel.FormModel = await (from mapping in _context.ComplainantTypeComplaintTypeMappings join complaint in _context.ComplaintsCategories
+                 on mapping.ComplaintType equals complaint.Id where mapping.ComplainantType == complainantType select complaint).AsNoTracking().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
+
         #region Worker Details
         public async Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId)
         {
@@ -987,7 +1008,6 @@ namespace pbsamadhannetcoreapi.Services
                     SelectListItems = EnumOps.GetEnumAsSelectList<SettlementTypeEnum>()
                 });
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "SETL");
             }
             catch (Exception ex)
             {
@@ -1028,7 +1048,6 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "AWRD");
             }
             catch (Exception ex)
             {
@@ -1075,7 +1094,6 @@ namespace pbsamadhannetcoreapi.Services
                     SelectListItems = EnumOps.GetEnumAsSelectList<NoticePayPeriodTypeEnum>()
                 });
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "NOTP");
             }
             catch (Exception ex)
             {
@@ -1116,7 +1134,6 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "RETR");
             }
             catch (Exception ex)
             {
