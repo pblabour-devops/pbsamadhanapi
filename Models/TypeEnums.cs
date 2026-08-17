@@ -1981,103 +1981,124 @@ namespace pbsamadhannetcoreapi.Models
     public enum BonusClaimTypeEnum
     {
         [Description("Statutory minimum bonus at 8.33%")]
-        Statutory_minimum_bonus_at_8 = 1,
+        STATUTORY_MINIMUM_BONUS_AT_8 = 1,
 
         [Description("Bonus beyond the statutory 8.33%")]
-        Bonus_beyond_the_statutory_8 = 2,
+        BONUS_BEYOND_THE_STATUTORY_8 = 2,
     }
 
     public enum SamadhaanEstablishmentTypeEnum
     {
         [Description("Airports / Airlines / Air Transport Services and its contractor")]
-        Airports_Airlines_Air_Transport_Services_and_its_contractor = 1,
+        AIRPORTS_AIRLINES_AIR_TRANSPORT_SERVICES_AND_ITS_CONTRACTOR = 1,
 
         [Description("Any Boards / Corporations of the Central Government and its contractor")]
-        Any_Boards_Corporations_of_the_Central_Government_and_its_contractor = 2,
+        ANY_BOARDS_CORPORATIONS_OF_THE_CENTRAL_GOVERNMENT_AND_ITS_CONTRACTOR = 2,
 
         [Description("Any Controlled Industry, declared so by the Central Government")]
-        Any_Controlled_Industry_declared_so_by_the_Central_Government = 3,
+        ANY_CONTROLLED_INDUSTRY_DECLARED_SO_BY_THE_CENTRAL_GOVERNMENT = 3,
 
         [Description("Any establishment of the State Public Sector engaged in Mining / Oil & Gas activity and its contractor")]
-        Any_establishment_of_the_State_Public_Sector_engaged_in_Mining_Oil_Gas_activity_and_its_contractor = 4,
+        ANY_ESTABLISHMENT_OF_THE_STATE_PUBLIC_SECTOR_ENGAGED_IN_MINING_OIL_GAS_ACTIVITY_AND_ITS_CONTRACTOR = 4,
 
         [Description("Any office of the Central Government and its contractor")]
-        Any_office_of_the_Central_Government_and_its_contractor = 5,
+        ANY_OFFICE_OF_THE_CENTRAL_GOVERNMENT_AND_ITS_CONTRACTOR = 5,
 
         [Description("Any other establishment under Central jurisdiction, not covered above and its contractor")]
-        Any_other_establishment_under_Central_jurisdiction_not_covered_above_and_its_contractor = 6,
+        ANY_OTHER_ESTABLISHMENT_UNDER_CENTRAL_JURISDICTION_NOT_COVERED_ABOVE_AND_ITS_CONTRACTOR = 6,
 
         [Description("Any other establishment, being funded by the Central Government and its contractor")]
-        Any_other_establishment_being_funded_by_the_Central_Government_and_its_contractor = 7,
+        ANY_OTHER_ESTABLISHMENT_BEING_FUNDED_BY_THE_CENTRAL_GOVERNMENT_AND_ITS_CONTRACTOR = 7,
 
         [Description("Any State PSU engaged as Contractor of Central Government establishment and its contractor")]
-        Any_State_PSU_engaged_as_Contractor_of_Central_Government_establishment_and_its_contractor = 8,
+        ANY_STATE_PSU_ENGAGED_AS_CONTRACTOR_OF_CENTRAL_GOVERNMENT_ESTABLISHMENT_AND_ITS_CONTRACTOR = 8,
 
         [Description("Bank & Insurance and its contractor")]
-        Bank_Insurance_and_its_contractor = 9,
+        BANK_INSURANCE_AND_ITS_CONTRACTOR = 9,
 
         [Description("Cement Industry and its contractor")]
-        Cement_Industry_and_its_contractor = 10,
+        CEMENT_INDUSTRY_AND_ITS_CONTRACTOR = 10,
 
         [Description("Central Government Autonomous Bodies and its contractor")]
-        Central_Government_Autonomous_Bodies_and_its_contractor = 11,
+        CENTRAL_GOVERNMENT_AUTONOMOUS_BODIES_AND_ITS_CONTRACTOR = 11,
 
         [Description("Central Government Institutes / Hospitals and its contractor")]
-        Central_Government_Institutes_Hospitals_and_its_contractor = 12,
+        CENTRAL_GOVERNMENT_INSTITUTES_HOSPITALS_AND_ITS_CONTRACTOR = 12,
 
         [Description("Central Government Research Institutes and its contractor")]
-        Central_Government_Research_Institutes_and_its_contractor = 13,
+        CENTRAL_GOVERNMENT_RESEARCH_INSTITUTES_AND_ITS_CONTRACTOR = 13,
 
         [Description("Central Public Sector Undertaking / Enterprises / Establishment")]
-        Central_Public_Sector_Undertaking_Enterprises_Establishment = 14,
+        CENTRAL_PUBLIC_SECTOR_UNDERTAKING_ENTERPRISES_ESTABLISHMENT = 14,
 
         [Description("Central Regulatory Bodies / Commissions and its contractor")]
-        Central_Regulatory_Bodies_Commissions_and_its_contractor = 15,
+        CENTRAL_REGULATORY_BODIES_COMMISSIONS_AND_ITS_CONTRACTOR = 15,
 
         [Description("Central Universities and its contractor")]
-        Central_Universities_and_its_contractor = 16,
+        CENTRAL_UNIVERSITIES_AND_ITS_CONTRACTOR = 16,
 
         [Description("Co-operative Banks and its contractor")]
-        Co_operative_Banks_and_its_contractor = 17,
+        CO_OPERATIVE_BANKS_AND_ITS_CONTRACTOR = 17,
 
         [Description("Coal Industry and its contractor")]
-        Coal_Industry_and_its_contractor = 18,
+        COAL_INDUSTRY_AND_ITS_CONTRACTOR = 18,
 
         [Description("Defence establishments / Cantonment Boards and its contractor")]
-        Defence_establishments_Cantonment_Boards_and_its_contractor = 19,
+        DEFENCE_ESTABLISHMENTS_CANTONMENT_BOARDS_AND_ITS_CONTRACTOR = 19,
 
         [Description("Defence PSU.Central Government Establishments constituted by the Central Act (e.g. NHAI, FCI, CWC etc) and its contractor")]
-        Defence_PSU_Central_Government_Establishments_constituted_by_the_Central_Act_and_its_contractor = 20,
+        DEFENCE_PSU_CENTRAL_GOVERNMENT_ESTABLISHMENTS_CONSTITUTED_BY_THE_CENTRAL_ACT_AND_ITS_CONTRACTOR = 20,
 
         [Description("Establishment having department or branches in more than one state for the purpose of gratuity & maternity benefit only")]
-        Establishment_having_department_or_branches_in_more_than_one_state_for_the_purpose_of_gratuity_maternity_benefit_only = 21,
+        ESTABLISHMENT_HAVING_DEPARTMENT_OR_BRANCHES_IN_MORE_THAN_ONE_STATE_FOR_THE_PURPOSE_OF_GRATUITY_MATERNITY_BENEFIT_ONLY = 21,
 
         [Description("Major Ports and its contractor")]
-        Major_Ports_and_its_contractor = 22,
+        MAJOR_PORTS_AND_ITS_CONTRACTOR = 22,
 
         [Description("Mining (In relation to Mining activity or otherwise) and its contractor")]
-        Mining_In_relation_to_Mining_activity_or_otherwise_and_its_contractor = 23,
+        MINING_IN_RELATION_TO_MINING_ACTIVITY_OR_OTHERWISE_AND_ITS_CONTRACTOR = 23,
 
         [Description("Non Coal Mines & Minerals and its contractor")]
-        Non_Coal_Mines_Minerals_and_its_contractor = 24,
+        NON_COAL_MINES_MINERALS_AND_ITS_CONTRACTOR = 24,
 
         [Description("Oil & Gas / Pipelines / Oilfields / Oil refinery / Oil & Gas Companies and its contractor")]
-        Oil_Gas_Pipelines_Oilfields_Oil_refinery_Oil_Gas_Companies_and_its_contractor = 25,
+        OIL_GAS_PIPELINES_OILFIELDS_OIL_REFINERY_OIL_GAS_COMPANIES_AND_ITS_CONTRACTOR = 25,
 
         [Description("Quarry (e.g. Stone Mines) and its contractor")]
-        Quarry_e_g_Stone_Mines_and_its_contractor = 26,
+        QUARRY_E_G_STONE_MINES_AND_ITS_CONTRACTOR = 26,
 
         [Description("Railways / Metro Railways / Railway Company / Railway Factory and its contractor")]
-        Railways_Metro_Railways_Railway_Company_Railway_Factory_and_its_contractor = 27,
+        RAILWAYS_METRO_RAILWAYS_RAILWAY_COMPANY_RAILWAY_FACTORY_AND_ITS_CONTRACTOR = 27,
 
         [Description("Telecom / Internet Services Provider (e.g. BSNL, Airtel, Jio)")]
-        Telecom_Internet_Services_Provider_e_g_BSNL_Airtel_Jio = 28,
+        TELECOM_INTERNET_SERVICES_PROVIDER_E_G_BSNL_AIRTEL_JIO = 28,
     }
-
     public enum OrderNumTypeEnum
     {
         [Description("Statutory minimum bonus at 8.33%")]
         ORDER_NUM = 1,
+
+    }
+
+    public enum ComplainantTypeEnum
+    {
+        [Description("Self")]
+        SELF = 1,
+
+        [Description("Nominee")]
+        NOMINEE = 2,
+
+        [Description("Legal Heir")]
+        LEGAL_HEIR = 3,
+
+        [Description("Legal Representative")]
+        LEGAL_REPRESENTATIVE = 4,
+
+        [Description("Authorized Representative")]
+        AUTHORIZED_REPRESENTATIVE = 5,
+
+        [Description("Group Of Workers")]
+        GROUP_OF_WORKERS = 6,
 
     }
 

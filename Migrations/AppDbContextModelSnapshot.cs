@@ -3651,6 +3651,24 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("CommonLicences_SelectedLicenceMappings");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.ComplainantTypeComplaintTypeMapping", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ComplainantType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ComplaintType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ComplainantTypeComplaintTypeMapping");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Appeal", b =>
                 {
                     b.Property<long>("Id")
@@ -3868,7 +3886,7 @@ namespace pblabournetcoreapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WagePeriod")
+                    b.Property<int>("WagePeriodType")
                         .HasColumnType("int");
 
                     b.Property<decimal>("WageRate")
@@ -3905,7 +3923,7 @@ namespace pblabournetcoreapi.Migrations
                     b.Property<DateTime?>("AppointmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("BasisOfClaim")
+                    b.Property<int>("BasisOfClaimType")
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimBasisDescription")
@@ -3956,7 +3974,7 @@ namespace pblabournetcoreapi.Migrations
                     b.Property<decimal>("LastDrawnWages")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("MaritalStatus")
+                    b.Property<int>("MaritalStatusType")
                         .HasColumnType("int");
 
                     b.Property<string>("NominationNumber")
@@ -4011,7 +4029,7 @@ namespace pblabournetcoreapi.Migrations
                     b.Property<decimal>("MaternityBenefitAmountDue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("MaternityDischargeType")
+                    b.Property<int>("MaternityDischargeType")
                         .HasColumnType("int");
 
                     b.Property<decimal>("MedicalBonusMaternityAmountDue")

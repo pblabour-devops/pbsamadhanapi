@@ -11,13 +11,13 @@ namespace pbsamadhannetcoreapi.Models
         [Key]
         public Int64 Id { get; set; }
 
-        [Required(ErrorMessage = "Complaint Title"), StringLength(500, ErrorMessage = "Complaint Title is required")]
+        [Required(ErrorMessage = "Complaint Title"), StringLength(500, ErrorMessage = "Complaint Title is required..!")]
         public string ComplaintTitle { get; set; }
         public string Info { get; set; }
 
         public bool HasInfo { get; set; }
 
-        [Required(ErrorMessage = "OshEstablishmentType is required..!")]
+        [Required(ErrorMessage = "Complaint Category Type is required..!")]
         public ComplaintCategoryTypeEnum ComplaintCategoryType { get; set; }
 
         public virtual ICollection<AppComplaintTypeMapping> AppComplaintTypeMappings { get; set; }
@@ -38,12 +38,24 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Complaint ref id is required..!")]
         [ForeignKey("ComplaintsCategory")]
-        public Int64 ComplaintsCategoryRefId { get; set; }
+        public Int64 ComplaintsCategoryRefId { get; set; }      
         public virtual ComplaintsCategory ComplaintsCategory { get; set; }
 
     }
     #endregion
 
+    #region Complaintent Type Complaint Type Mapping
+    public class ComplainantTypeComplaintTypeMapping
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Complainant Type is required..!")]
+        public ComplainantTypeEnum ComplainantType { get; set; }
+
+        public int ComplaintType { get; set; }
+    }
+    #endregion
     #region WORKER DETAILS
     public class WorkerDetail
     {
@@ -159,6 +171,7 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify the Establishment Type.")]
         public bool IsEstablishmentCentralGovernment { get; set; }
 
+        [Required(ErrorMessage = "Establishment Type is required..!")]
         public SamadhaanEstablishmentTypeEnum EstablishmentType { get; set; }
 
         [Required(ErrorMessage = "Please specify whether you are engaged through contractor.")]
@@ -316,7 +329,7 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you are still working for the same employer/contractor.")]
         public bool IsStillWorking { get; set; }
 
-        [Required(ErrorMessage = "Category is required.")]
+        [Required(ErrorMessage = "Worker category type is required.")]
         public WorkerCategoryTypeEnum WorkerCategoryType { get; set; }
 
         [Required(ErrorMessage = "Date of start of employment is required.")]
@@ -325,8 +338,8 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Date of end of employment is required.")]
         public DateTime EmploymentEndDate { get; set; }
 
-        [Required(ErrorMessage = "Wage Period is required.")]
-        public WagePeriodtypeEnum WagePeriod { get; set; }
+        [Required(ErrorMessage = "Wage Period Type is required.")]
+        public WagePeriodtypeEnum WagePeriodType { get; set; }
 
         [Required(ErrorMessage = "Rate of wages is required.")]
         [Column(TypeName = "decimal(18,2)")]
@@ -667,8 +680,8 @@ namespace pbsamadhannetcoreapi.Models
 
         #region Claim Information
 
-        [Required(ErrorMessage = "Basis of claim is required.")]
-        public GratuityClaimBasisTypeEnum BasisOfClaim { get; set; }
+        [Required(ErrorMessage = "Basis of claim type is required.")]
+        public GratuityClaimBasisTypeEnum BasisOfClaimType { get; set; }
 
         [Required(ErrorMessage = "Date of start of employment is required.")]
         public DateTime EmploymentStartDate { get; set; }
@@ -705,7 +718,7 @@ namespace pbsamadhannetcoreapi.Models
         public string EmployeeNameAndAddress { get; set; }
 
         [Required(ErrorMessage = "Marital status is required.")]
-        public MaritalStatusTypeEnum MaritalStatus { get; set; }
+        public MaritalStatusTypeEnum MaritalStatusType { get; set; }
 
         [Required(ErrorMessage = "Employer name and address is required.")]
         [StringLength(500, ErrorMessage = "Employer name and address cannot exceed 500 characters.")]
@@ -798,6 +811,7 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Please specify whether you have been discharged or dismissed/conditions of services have been changed on account of absence from work.")]
         public bool IsDischargedOrDismissedDueToAbsence { get; set; }
 
+        [Required(ErrorMessage = "Maternity discharge type is required.")]
         public MaternityDischargeTypeEnum? MaternityDischargeType { get; set; }
 
         [Required(ErrorMessage = "Maternity Benefit amount due is required.")]
@@ -1418,6 +1432,7 @@ namespace pbsamadhannetcoreapi.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
+        [Required(ErrorMessage = "Bonus Claim Type is required.")]
         public BonusClaimTypeEnum BonusClaimType { get; set; }
 
         #region Not Mapped Column
@@ -1496,7 +1511,7 @@ namespace pbsamadhannetcoreapi.Models
 
         public virtual Application Application { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Money due reason type is required.")]
         public MoneyDueReasonTypeEnum MoneyDueReasonType { get; set; }
 
 
@@ -1896,6 +1911,7 @@ namespace pbsamadhannetcoreapi.Models
 
         public virtual Application Application { get; set; }
 
+        [Required(ErrorMessage = "Order num type is required.")]
         public OrderNumTypeEnum OrderNumType { get; set; }
 
         [Required(ErrorMessage = "Date of the order is required.")]
