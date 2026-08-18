@@ -3666,7 +3666,7 @@ namespace pblabournetcoreapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ComplainantTypeComplaintTypeMapping");
+                    b.ToTable("ComplainantTypeComplaintTypeMappings");
                 });
 
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Appeal", b =>
@@ -4011,6 +4011,95 @@ namespace pblabournetcoreapi.Migrations
                         .IsUnique();
 
                     b.ToTable("Complaint_GratuityClaims");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDispute", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateOfAction")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfAppointment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IndustrialDisputeDetails")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("IndustrialDisputeType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OtherReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("OtherRelief")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("ReliefSought")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_IndustrialDisputes");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReasonMapping", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("IndustrialDisputesReasonType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_IndustrialDisputeReasonMappings");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReliefSoughtMapping", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("IndustrialDisputesReliefSoughtType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_IndustrialDisputeReliefSoughtMappings");
                 });
 
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MaternityBenefitComplaint", b =>
@@ -17865,6 +17954,7 @@ namespace pblabournetcoreapi.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("CorrespondenceCountry")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -17872,10 +17962,12 @@ namespace pblabournetcoreapi.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("CorrespondencePincode")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("CorrespondenceState")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -17922,8 +18014,8 @@ namespace pblabournetcoreapi.Migrations
 
                     b.Property<string>("PermanentPincode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("PermanentState")
                         .IsRequired()
@@ -26478,6 +26570,39 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDispute", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_IndustrialDispute")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_IndustrialDispute", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReasonMapping", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_IndustrialDisputeReasonMapping")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReasonMapping", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReliefSoughtMapping", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_IndustrialDisputeReliefSoughtMapping")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_IndustrialDisputeReliefSoughtMapping", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_MaternityBenefitComplaint", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28581,6 +28706,12 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_EstablishmentDetails");
 
                     b.Navigation("Complaint_GratuityClaims");
+
+                    b.Navigation("Complaint_IndustrialDispute");
+
+                    b.Navigation("Complaint_IndustrialDisputeReasonMapping");
+
+                    b.Navigation("Complaint_IndustrialDisputeReliefSoughtMapping");
 
                     b.Navigation("Complaint_MaternityBenefitComplaints");
 

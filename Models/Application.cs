@@ -222,6 +222,10 @@ namespace pbsamadhannetcoreapi.Models
 
         public virtual Complaint_Review_OfDismissal Complaint_Review_OfDismissal { get; set; }
         public virtual Complaint_Appeal Complaint_Appeal { get; set; }
+        public virtual Complaint_IndustrialDispute Complaint_IndustrialDispute { get; set; }
+        public virtual Complaint_IndustrialDisputeReasonMapping Complaint_IndustrialDisputeReasonMapping { get; set; }
+        public virtual Complaint_IndustrialDisputeReliefSoughtMapping Complaint_IndustrialDisputeReliefSoughtMapping { get; set; }
+
 
 
         #endregion]

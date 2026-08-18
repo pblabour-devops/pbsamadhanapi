@@ -38,7 +38,7 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Complaint ref id is required..!")]
         [ForeignKey("ComplaintsCategory")]
-        public Int64 ComplaintsCategoryRefId { get; set; }      
+        public Int64 ComplaintsCategoryRefId { get; set; }
         public virtual ComplaintsCategory ComplaintsCategory { get; set; }
 
     }
@@ -1984,5 +1984,104 @@ namespace pbsamadhannetcoreapi.Models
     }
     #endregion
 
+
+    #region Industrial Disputes
+    public class Complaint_IndustrialDispute
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+
+        [Required(ErrorMessage = "Industrial dispute type is required.")]
+        public IndustrialDisputeTypeEnum IndustrialDisputeType { get; set; }
+
+        public DateTime? DateOfAppointment { get; set; }
+
+        public DateTime? DateOfAction { get; set; }
+
+
+        [StringLength(2000, ErrorMessage = "Industrial dispute details cannot exceed 2000 characters.")]
+        public string IndustrialDisputeDetails { get; set; }
+
+
+        [StringLength(1000, ErrorMessage = "Other reason cannot exceed 1000 characters.")]
+        public string OtherReason { get; set; }
+
+
+        [StringLength(1000, ErrorMessage = "Other relief cannot exceed 1000 characters.")]
+        public string OtherRelief { get; set; }
+
+        [StringLength(2000, ErrorMessage = "Relief sought cannot exceed 2000 characters.")]
+        public string ReliefSought { get; set; }
+
+
+        [StringLength(2000, ErrorMessage = "Remarks cannot exceed 2000 characters.")]
+        public string Remarks { get; set; }
+
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    #region Industrial Disputes Reason Mapping
+    public class Complaint_IndustrialDisputeReasonMapping
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Money due reason type is required..!")]
+        public IndustrialDisputesReasonTypeEnum IndustrialDisputesReasonType { get; set; }
+    }
+
+    #endregion
+
+    #region
+
+    public class Complaint_IndustrialDisputeReliefSoughtMapping
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+
+        [Required(ErrorMessage = "Money due reason type is required..!")]
+        public IndustrialDisputesReliefSoughtTypeEnum IndustrialDisputesReliefSoughtType { get; set; }
+    }
+    #endregion
+    #endregion
 
 }

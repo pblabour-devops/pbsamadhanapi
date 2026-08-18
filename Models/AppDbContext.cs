@@ -974,7 +974,9 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_RecOfMon_LayOffCompDetail> Complaint_RecOfMon_LayOffCompDetails { get; set; }
         public DbSet<Complaint_Review_OfDismissal> Complaint_Review_OfDismissals { get; set; }
         public DbSet<Complaint_Appeal> Complaint_Appeals { get; set; }
-
+        public DbSet<Complaint_IndustrialDispute> Complaint_IndustrialDisputes { get; set; }
+        public DbSet<Complaint_IndustrialDisputeReasonMapping> Complaint_IndustrialDisputeReasonMappings { get; set; }
+        public DbSet<Complaint_IndustrialDisputeReliefSoughtMapping> Complaint_IndustrialDisputeReliefSoughtMappings { get; set; }
 
         #endregion
 
@@ -2316,6 +2318,7 @@ namespace pbsamadhannetcoreapi.Models
               .HasForeignKey<Complaint_Appeal>(ad => ad.AppRefId)
               .OnDelete(DeleteBehavior.Restrict);
 
+
             #region Recovery of money
             modelBuilder.Entity<Application>()
                 .HasOne<Complaint_RecOfMon_GeneralDetail>(s => s.Complaint_RecOfMon_GeneralDetail)
@@ -2367,6 +2370,27 @@ namespace pbsamadhannetcoreapi.Models
 
 
             #endregion
+            #endregion
+
+            #region Industrial Disputes
+
+            modelBuilder.Entity<Application>()
+              .HasOne<Complaint_IndustrialDispute>(s => s.Complaint_IndustrialDispute)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey<Complaint_IndustrialDispute>(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+              .HasOne<Complaint_IndustrialDisputeReasonMapping>(s => s.Complaint_IndustrialDisputeReasonMapping)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey<Complaint_IndustrialDisputeReasonMapping>(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+            .HasOne<Complaint_IndustrialDisputeReliefSoughtMapping>(s => s.Complaint_IndustrialDisputeReliefSoughtMapping)
+            .WithOne(ad => ad.Application)
+            .HasForeignKey<Complaint_IndustrialDisputeReliefSoughtMapping>(ad => ad.AppRefId)
+            .OnDelete(DeleteBehavior.Restrict);
             #endregion
 
         }

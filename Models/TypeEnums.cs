@@ -2102,6 +2102,63 @@ namespace pbsamadhannetcoreapi.Models
 
     }
 
+    public enum IndustrialDisputeTypeEnum
+    {
+        [Description("Dismissal")]
+        DISMISSAL = 1,
+
+        [Description("Discharge")]
+        DISCHARGE = 2,
+
+        [Description("Retrenchment")]
+        RETRENCHMENT = 3,
+
+        [Description("Termination")]
+        TERMINATION = 4,
+
+        [Description("Other Industrial Dispute")]
+        OTHER = 5
+    }
+
+    public enum IndustrialDisputesReasonTypeEnum
+    {
+        [Description("No Retrenchment Compensation")]
+        NO_RETRENCHMENT_COMPENSATION = 1,
+
+        [Description("No payment in lieu of notice period")]
+        NO_PAYMENT_IN_LIEU_OF_NOTICE_PERIOD = 2,
+
+        [Description("Arbitrary Action by Employer")]
+        ARBITRARY_ACTION_BY_EMPLOYER = 3,
+
+        [Description("Retrenchment Without Proper Intimation")]
+        RETRENCHMENT_WITHOUT_PROPER_INTIMATION = 4,
+
+        [Description("Any Other Reason")]
+        ANY_OTHER_REASON = 5
+    }
+
+    public enum IndustrialDisputesReliefSoughtTypeEnum
+    {
+        [Description("Reinstatement")]
+        REINSTATEMENT = 1,
+
+        [Description("Lumpsum Compensation")]
+        LUMPSUM_COMPENSATION = 2,
+
+        [Description("Notice Pay")]
+        NOTICE_PAY = 3,
+
+        [Description("Retrenchment Compensation")]
+        RETRENCHMENT_COMPENSATION = 4,
+
+        [Description("Back Wages")]
+        BACK_WAGES = 5,
+
+        [Description("Any other relief")]
+        ANY_OTHER_RELIEF = 6
+    }
+
 
     #endregion
 
