@@ -46,7 +46,7 @@ namespace pbsamadhannetcoreapi.Services
         }
 
         #region Self Complaints
-        public async Task<GenericFormModel<List<ComplaintsCategory>>> Get_SelfComplaints()
+        public async Task<GenericFormModel<List<ComplaintsCategory>>> Get_ComplainantComplaints(int complainantType)
         {
             var genericFormModel =
                 new GenericFormModel<List<ComplaintsCategory>>();
@@ -57,7 +57,7 @@ namespace pbsamadhannetcoreapi.Services
                         from mapping in _context.ComplainantTypeComplaintTypeMappings
                         join complaint in _context.ComplaintsCategories
                             on mapping.ComplaintType equals complaint.Id
-                        where mapping.ComplainantType == ComplainantTypeEnum.SELF
+                        where mapping.ComplainantType == (ComplainantTypeEnum)complainantType
                         select complaint
                     )
                     .AsNoTracking()

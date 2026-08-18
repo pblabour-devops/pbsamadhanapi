@@ -39,11 +39,11 @@ namespace pbsamadhannetcoreapi.Controllers
         #endregion
 
         #region Self Complaints
-        [HttpGet, Route("getSelfComplaints")]
+        [HttpGet, Route("getComplainantComplaints")]
         //[CustomFillters.AuthorizeAttribute("Worker_INDL")]
-        public async Task<IActionResult> Get_SelfComplaints()
+        public async Task<IActionResult> Get_ComplainantComplaints([FromQuery] int complainantType)
         {
-            GenericFormModel<List<ComplaintsCategory>> genericFormModel = await _iComplaintService.Get_SelfComplaints();
+            GenericFormModel<List<ComplaintsCategory>> genericFormModel = await _iComplaintService.Get_ComplainantComplaints(complainantType);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);

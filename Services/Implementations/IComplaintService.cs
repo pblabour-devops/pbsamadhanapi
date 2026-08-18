@@ -10,7 +10,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
     public interface IComplaintService
     {
         Task<GenericFormModel<object>> Get_ComplaintsCategories();
-        Task<GenericFormModel<List<ComplaintsCategory>>> Get_SelfComplaints();
+        Task<GenericFormModel<List<ComplaintsCategory>>> Get_ComplainantComplaints(int complainantType);
         Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId);
         Task<GenericServiceResultTemplate> CreateAppComplaintTypeMapping(AppComplaintTypeMapping requestData);
         Task<GenericFormModel<List<Complaint_EmployerORContractorDetail>>> Get_EmployerOrContractorDetails(long id);
