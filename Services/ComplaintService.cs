@@ -1482,6 +1482,131 @@ namespace pbsamadhannetcoreapi.Services
 
         #endregion
 
+        #region Industrial Disputes
+        public async Task<GenericFormModel<Complaint_IndustrialDispute>> Get_IndustrialDisputeDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_IndustrialDispute>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_IndustrialDisputes.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
+
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_IndustrialDispute();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "IndustrialDisputeTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<IndustrialDisputeTypeEnum>()
+                });
+
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "ID");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_IndustrialDisputeReasonMapping>>> Get_IndustrialReasonDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<List<Complaint_IndustrialDisputeReasonMapping>>();
+
+            try
+            {
+                if (appRefId != 0) 
+                {
+                    var parentWithChildObject = await _context.Complaint_IndustrialDisputeReasonMappings.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).ToListAsync();
+
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                    }
+                }
+                else 
+                {
+                    genericFormModel.FormModel = new List<Complaint_IndustrialDisputeReasonMapping>();
+                }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "IndustrialDisputesReasonTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<IndustrialDisputesReasonTypeEnum>()
+                });
+
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_IndustrialDisputeReliefSoughtMapping>>> Get_IndustrialReliefSoughtDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<List<Complaint_IndustrialDisputeReliefSoughtMapping>>();
+
+            try
+            {
+                if (appRefId != 0) 
+                {
+                    var parentWithChildObject = await _context.Complaint_IndustrialDisputeReliefSoughtMappings.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).ToListAsync();
+
+
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                    }
+                }
+                else 
+                {
+                    genericFormModel.FormModel = new List<Complaint_IndustrialDisputeReliefSoughtMapping>();
+                }
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "IndustrialDisputesReliefSoughtType",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<IndustrialDisputesReliefSoughtTypeEnum>()
+                });
+
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
+        #endregion
 
     }
 }

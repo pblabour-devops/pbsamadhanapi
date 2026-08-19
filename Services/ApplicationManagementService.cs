@@ -252,6 +252,7 @@ namespace pbsamadhannetcoreapi.Services
                                    .Include(x => x.Complaint_Claim_CodeOnWages)
                                    .Include(x => x.Complaint_MaternityBenefitComplaints)
                                    .Include(x => x.Complaint_RecOfMon_GeneralDetail)
+                                   .Include(x => x.Complaint_IndustrialDispute)
                                    .Where(x => x.AppId == appRefId).FirstOrDefaultAsync();
                 var mappedComplaintCategoryIds = await _context.AppComplaintTypeMappings.Where(x => x.AppRefId == appRefId).Select(x => x.ComplaintsCategoryRefId).Distinct().ToListAsync();
                 var ComplaintsCategories = await _context.ComplaintsCategories.ToListAsync();
@@ -291,25 +292,7 @@ namespace pbsamadhannetcoreapi.Services
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
-                    UiNextPageComponentPath = "samadhaan/gratuity-claims",
-                    RootActivityRefId = "0",
-                    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
-                    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
-                });
-
-                //{
-                appFormSteps.Add(new AppFormStepsInfo()
-                {
-                    StepTitle = "Gratuity Claims",
-                    EntityParentKeyId = entityParentKeyId,
-                    IsFilled = parentWithChildObject?.Complaint_GratuityClaims != null,
-                    IsLink = entityParentKeyId == 0 ? false : true,
-                    UiPageComponentPath = "/samadhaan/gratuity-claims",
-                    StepCode = "GC",
-                    ApplicationType = applicationType,
-                    AppRefId = appRefId,
-                    IsCommonStep = false,
-                    UiNextPageComponentPath = "samadhaan/wages",
+                    UiNextPageComponentPath = "samadhaan/industrial-disputes",
                     RootActivityRefId = "0",
                     ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
                     ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
@@ -317,47 +300,12 @@ namespace pbsamadhannetcoreapi.Services
 
                 appFormSteps.Add(new AppFormStepsInfo()
                 {
-                    StepTitle = "Claim Under Code On Wages",
+                    StepTitle = "Industrial Disputes",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = parentWithChildObject?.Complaint_Claim_CodeOnWages != null,
+                    IsFilled = parentWithChildObject?.Complaint_IndustrialDispute != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
-                    UiPageComponentPath = "/samadhaan/wages",
-                    StepCode = "CCOW",
-                    ApplicationType = applicationType,
-                    AppRefId = appRefId,
-                    IsCommonStep = false,
-                    UiNextPageComponentPath = "/samadhaan/mb-complaint",
-                    RootActivityRefId = "0",
-                    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
-                    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
-                });
-                //}
-
-                appFormSteps.Add(new AppFormStepsInfo()
-                {
-                    StepTitle = "Meternity Benefits Complaints",
-                    EntityParentKeyId = entityParentKeyId,
-                    IsFilled = parentWithChildObject?.Complaint_MaternityBenefitComplaints != null,
-                    IsLink = entityParentKeyId == 0 ? false : true,
-                    UiPageComponentPath = "/samadhaan/mb-complaint",
-                    StepCode = "MBC",
-                    ApplicationType = applicationType,
-                    AppRefId = appRefId,
-                    IsCommonStep = false,
-                    UiNextPageComponentPath = "/samadhaan/recovery-of-money",
-                    RootActivityRefId = "0",
-                    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
-                    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
-                });
-
-                appFormSteps.Add(new AppFormStepsInfo()
-                {
-                    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
-                    EntityParentKeyId = entityParentKeyId,
-                    IsFilled = parentWithChildObject?.Complaint_RecOfMon_GeneralDetail != null,
-                    IsLink = entityParentKeyId == 0 ? false : true,
-                    UiPageComponentPath = "/samadhaan/recovery-of-money",
-                    StepCode = "RM",
+                    UiPageComponentPath = "/samadhaan/industrial-disputes",
+                    StepCode = "ID",
                     ApplicationType = applicationType,
                     AppRefId = appRefId,
                     IsCommonStep = false,
@@ -366,6 +314,76 @@ namespace pbsamadhannetcoreapi.Services
                     ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
                     ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
                 });
+
+                //{
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Gratuity Claims",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = parentWithChildObject?.Complaint_GratuityClaims != null,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/gratuity-claims",
+                //    StepCode = "GC",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = "samadhaan/wages",
+                //    RootActivityRefId = "0",
+                //    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+                //    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                //});
+
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Claim Under Code On Wages",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = parentWithChildObject?.Complaint_Claim_CodeOnWages != null,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/wages",
+                //    StepCode = "CCOW",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = "/samadhaan/mb-complaint",
+                //    RootActivityRefId = "0",
+                //    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+                //    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                //});
+                ////}
+
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Meternity Benefits Complaints",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = parentWithChildObject?.Complaint_MaternityBenefitComplaints != null,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/mb-complaint",
+                //    StepCode = "MBC",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = "/samadhaan/recovery-of-money",
+                //    RootActivityRefId = "0",
+                //    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+                //    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                //});
+
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Recovery Of Money Under Section 59(1) of IR Code",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = parentWithChildObject?.Complaint_RecOfMon_GeneralDetail != null,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/recovery-of-money",
+                //    StepCode = "RM",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = "/shared/appdocuments",
+                //    RootActivityRefId = "0",
+                //    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+                //    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                //});
 
                 appFormSteps.Add(new AppFormStepsInfo()
                 {

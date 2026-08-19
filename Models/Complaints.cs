@@ -2061,11 +2061,33 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Money due reason type is required..!")]
         public IndustrialDisputesReasonTypeEnum IndustrialDisputesReasonType { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
     }
 
     #endregion
 
-    #region
+    #region Industrial Disputes Relief Sought Mapping
 
     public class Complaint_IndustrialDisputeReliefSoughtMapping
     {
@@ -2080,6 +2102,28 @@ namespace pbsamadhannetcoreapi.Models
 
         [Required(ErrorMessage = "Money due reason type is required..!")]
         public IndustrialDisputesReliefSoughtTypeEnum IndustrialDisputesReliefSoughtType { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
     }
     #endregion
     #endregion

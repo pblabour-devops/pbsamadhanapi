@@ -523,5 +523,43 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
+        #region Industrial Disputes
+        [HttpGet, Route("getIndustrialDisputeDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_IndustrialDisputeDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_IndustrialDispute> genericFormModel = await _iComplaintService.Get_IndustrialDisputeDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getIndustrialReasonDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_IndustrialReasonDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_IndustrialDisputeReasonMapping>> genericFormModel = await _iComplaintService.Get_IndustrialReasonDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getIndustrialReliefSoughtDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_IndustrialReliefSoughtDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_IndustrialDisputeReliefSoughtMapping>> genericFormModel = await _iComplaintService.Get_IndustrialReliefSoughtDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
     }
 }
