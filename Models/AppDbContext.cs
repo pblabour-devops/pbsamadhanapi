@@ -977,6 +977,11 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_IndustrialDispute> Complaint_IndustrialDisputes { get; set; }
         public DbSet<Complaint_IndustrialDisputeReasonMapping> Complaint_IndustrialDisputeReasonMappings { get; set; }
         public DbSet<Complaint_IndustrialDisputeReliefSoughtMapping> Complaint_IndustrialDisputeReliefSoughtMappings { get; set; }
+        public DbSet<Complaint_PenaltyImpositionIndustrialRelationCode> Complaint_PenaltyImpositionIndustrialRelationCodes { get; set; }
+        public DbSet<Complaint_StandingOrderContraventionIRCode> Complaint_StandingOrderContraventionIRCodes { get; set; }
+        public DbSet<Complaint_OtherContraventionProvisionIRCode> Complaint_OtherContraventionProvisionIRCodes { get; set; }
+
+
 
         #endregion
 
@@ -2391,6 +2396,26 @@ namespace pbsamadhannetcoreapi.Models
             .WithOne(ad => ad.Application)
             .HasForeignKey<Complaint_IndustrialDisputeReliefSoughtMapping>(ad => ad.AppRefId)
             .OnDelete(DeleteBehavior.Restrict);
+            #endregion
+
+            #region Penality of imposition section 85
+            modelBuilder.Entity<Application>()
+             .HasOne<Complaint_PenaltyImpositionIndustrialRelationCode>(s => s.Complaint_PenaltyImpositionIndustrialRelationCode)
+             .WithOne(ad => ad.Application)
+             .HasForeignKey<Complaint_PenaltyImpositionIndustrialRelationCode>(ad => ad.AppRefId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+              .HasMany<Complaint_StandingOrderContraventionIRCode>(s => s.Complaint_StandingOrderContraventionIRCodes)
+              .WithOne(ad => ad.Application)
+              .HasForeignKey(ad => ad.AppRefId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Application>()
+             .HasMany<Complaint_OtherContraventionProvisionIRCode>(s => s.Complaint_OtherContraventionProvisionIRCodes)
+             .WithOne(ad => ad.Application)
+             .HasForeignKey(ad => ad.AppRefId)
+             .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
         }

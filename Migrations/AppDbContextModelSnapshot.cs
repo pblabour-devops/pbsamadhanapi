@@ -4245,6 +4245,76 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("Complaint_Non_Pay_Bonus_PeriodAmts");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_OtherContraventionProvisionIRCode", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("OtherContraventionOffences")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("OtherContraventionSection")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_OtherContraventionProvisionIRCodes");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionIndustrialRelationCode", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("BreachSectionType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsBreachOfSection30")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsBreachOfSection35")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSection70Breach_RetrenchmentCompensation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSection70Breach_RetrenchmentNoticeToGovt")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSection70Breach_WagesInLieuOfNotice")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SpecifyUnfairLabourPracticePartyType")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnfairLabourPracticeSubCategoryType")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnfairLabourPracticeType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_PenaltyImpositionIndustrialRelationCodes");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_AwardDetail", b =>
                 {
                     b.Property<long>("Id")
@@ -4524,6 +4594,31 @@ namespace pblabournetcoreapi.Migrations
                         .IsUnique();
 
                     b.ToTable("Complaint_Review_OfDismissals");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_StandingOrderContraventionIRCode", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StandingOrderClause")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("StandingOrderContravention")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId");
+
+                    b.ToTable("Complaint_StandingOrderContraventionIRCodes");
                 });
 
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_Wages_Not_Paid", b =>
@@ -26658,6 +26753,28 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_OtherContraventionProvisionIRCode", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_OtherContraventionProvisionIRCodes")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionIndustrialRelationCode", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_PenaltyImpositionIndustrialRelationCode")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionIndustrialRelationCode", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_RecOfMon_AwardDetail", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -26752,6 +26869,17 @@ namespace pblabournetcoreapi.Migrations
                         .WithOne("Complaint_Review_OfDismissal")
                         .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_Review_OfDismissal", "AppRefId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_StandingOrderContraventionIRCode", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithMany("Complaint_StandingOrderContraventionIRCodes")
+                        .HasForeignKey("AppRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Application");
@@ -28723,6 +28851,10 @@ namespace pblabournetcoreapi.Migrations
 
                     b.Navigation("Complaint_Non_Pay_Bonus_PeriodAmts");
 
+                    b.Navigation("Complaint_OtherContraventionProvisionIRCodes");
+
+                    b.Navigation("Complaint_PenaltyImpositionIndustrialRelationCode");
+
                     b.Navigation("Complaint_RecOfMon_AwardDetail");
 
                     b.Navigation("Complaint_RecOfMon_GeneralDetail");
@@ -28740,6 +28872,8 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_RecOfMon_SettlementDetail");
 
                     b.Navigation("Complaint_Review_OfDismissal");
+
+                    b.Navigation("Complaint_StandingOrderContraventionIRCodes");
 
                     b.Navigation("Complaint_Wages_Not_Paid");
 

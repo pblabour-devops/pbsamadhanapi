@@ -2128,4 +2128,95 @@ namespace pbsamadhannetcoreapi.Models
     #endregion
     #endregion
 
+    #region Penalty Imposition
+    public class Complaint_PenaltyImpositionIndustrialRelationCode
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Please select breach of section.")]
+        public PenaltyBreachSectionEnum BreachSectionType { get; set; }
+
+        public bool IsSection70Breach_WagesInLieuOfNotice { get; set; }
+
+        public bool IsSection70Breach_RetrenchmentCompensation { get; set; }
+
+        public bool IsSection70Breach_RetrenchmentNoticeToGovt { get; set; }
+        public SpecifyUnfairLabourPracticeTypeEnum? SpecifyUnfairLabourPracticePartyType { get; set; }
+
+        public UnfairLabourPracticeTypeEnum? UnfairLabourPracticeType { get; set; }
+
+        public UnfairLabourPracticeSubCategoryTypeEnum? UnfairLabourPracticeSubCategoryType { get; set; }
+
+        public bool IsBreachOfSection30 { get; set; }
+
+        public bool IsBreachOfSection35 { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_StandingOrderContraventionIRCode
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [StringLength(1000)]
+        public string StandingOrderContravention { get; set; }
+
+        [StringLength(500)]
+        public string StandingOrderClause { get; set; }
+
+    }
+
+    public class Complaint_OtherContraventionProvisionIRCode
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required(ErrorMessage = "Application reference is required.")]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [StringLength(500)]
+        public string OtherContraventionSection { get; set; }
+
+        [StringLength(1000)]
+        public string OtherContraventionOffences { get; set; }
+    }
+    #endregion
+
 }

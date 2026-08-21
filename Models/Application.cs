@@ -21,7 +21,6 @@ namespace pbsamadhannetcoreapi.Models
         [Required(ErrorMessage = "Public application reference number is required..!")]
         [StringLength(20, ErrorMessage = "The max length of public application reference number is 100 characters..!")]
 
-        //********Unique constrain is pending******
         public string PublicAppRefNum { get; set; }
 
         [Required(ErrorMessage = "Iteration count is required..!")]
@@ -225,9 +224,9 @@ namespace pbsamadhannetcoreapi.Models
         public virtual Complaint_IndustrialDispute Complaint_IndustrialDispute { get; set; }
         public virtual Complaint_IndustrialDisputeReasonMapping Complaint_IndustrialDisputeReasonMapping { get; set; }
         public virtual Complaint_IndustrialDisputeReliefSoughtMapping Complaint_IndustrialDisputeReliefSoughtMapping { get; set; }
-
-
-
+        public virtual Complaint_PenaltyImpositionIndustrialRelationCode Complaint_PenaltyImpositionIndustrialRelationCode { get; set; }
+        public virtual ICollection<Complaint_StandingOrderContraventionIRCode> Complaint_StandingOrderContraventionIRCodes { get; set; }
+        public virtual ICollection<Complaint_OtherContraventionProvisionIRCode> Complaint_OtherContraventionProvisionIRCodes { get; set; }
         #endregion]
 
     }

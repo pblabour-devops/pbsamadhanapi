@@ -1,4 +1,5 @@
-﻿using pbsamadhannetcoreapi.CommonUtiliteis.CustomeAttributes;
+﻿
+using pbsamadhannetcoreapi.CommonUtiliteis.CustomeAttributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2159,6 +2160,91 @@ namespace pbsamadhannetcoreapi.Models
         ANY_OTHER_RELIEF = 6
     }
 
+    public enum PenaltyBreachSectionEnum
+    {
+        [Description("Breach of Section 67")]
+        SECTION67 = 67,
+
+        [Description("Breach of Section 70")]
+        SECTION70 = 70,
+
+        [Description("Breach of Section 73")]
+        SECTION73 = 73,
+
+        [Description("Breach of Section 75")]
+        SECTION75 = 75,
+
+        [Description("Breach of Section 84")]
+        SECTION84 = 84
+    }
+
+    public enum SpecifyUnfairLabourPracticeTypeEnum
+    {
+        [Description("On the Part of Employers and Trade Union of Employers")]
+        EMPLOYER = 1,
+
+        [Description("On the Part of Workers and Trade Union of Workers")]
+        WORKER = 2
+    }
+
+    public enum UnfairLabourPracticeTypeEnum
+    {
+        [Description("(1) To interfere with, restrain from, or coerce, workers in the exercise of their right to organise, form, join or assist a Trade Union or to engage in concerted activities for the purposes of collective bargaining or other mutual aid or protection, that is to say,—")]
+        INTERFERERESTRAINCOERCEWORKERS = 1,
+
+        [Description("(2) To dominate, interfere with or contribute support, financial or otherwise, to any Trade Union, that is to say,—")]
+        DOMINATEINTERFERESUPPORTTRADEUNION = 2,
+
+        [Description("(3) To establish employer sponsored Trade Unions of workers")]
+        ESTABLISHEMPLOYERSPONSOREDTRADEUNION = 3,
+
+        [Description("(4) To encourage or discourage membership in any Trade Union by discriminating against any worker, that is to say,—")]
+        ENCOURAGEDISCOURAGEMEMBERSHIP = 4,
+
+        [Description("(5) To discharge or dismiss workers,—")]
+        DISCHARGEDISMISSWORKERS = 5,
+
+        [Description("(6) To abolish the work of a regular nature being done by workers, and to give such work to contractors as a measure of breaking a strike")]
+        ABOLISHREGULARWORKTOBREAKSTRIKE = 6,
+
+        [Description("(7) To transfer a worker mala fide from one place to another, under the guise of following management policy")]
+        TRANSFERWORKERMALAFIDE = 7,
+
+        [Description("(8) To insist upon individual workers, who are on a legal strike to sign a good conduct bond, as a precondition to allowing them to resume work")]
+        INSISTGOODCONDUCTBOND = 8,
+
+        [Description("(9) To show favouritism or partiality to one set of workers regardless of merit")]
+        SHOWFAVOURITISM = 9,
+
+        [Description("(10) To employ workers as badli workers, casuals or temporaries and to continue them as such for years, with the object of depriving them of the status and privileges of permanent workers")]
+        EMPLOYASBADLICASUALTEMPORARY = 10,
+
+        [Description("(11) To discharge or discriminate against any worker for filing charges or testifying against an employer in any enquiry or proceeding relating to any industrial dispute")]
+        DISCHARGEFORTESTIFYING = 11,
+
+        [Description("(12) To recruit worker during a strike which is not an illegal strike")]
+        RECRUITDURINGLEGALSTRIKE = 12,
+
+        [Description("(13) Failure to implement award, settlement or agreement")]
+        FAILURETOIMPLEMENTAWARD = 13,
+
+        [Description("(14) To indulge in acts of force or violence")]
+        ACTSOFFORCEORVIOLENCE = 14,
+
+        [Description("(15) To refuse to bargain collectively, in good faith with the recognised Trade Unions")]
+        REFUSETOBARGAINCOLLECTIVELY = 15,
+
+        [Description("(16) Proposing or continuing a lock-out deemed to be illegal under this Code")]
+        PROPOSINGILLEGALLOCKOUT = 16
+    }
+
+    public enum UnfairLabourPracticeSubCategoryTypeEnum
+    {
+        [Description("(1) To interfere with, restrain from, or coerce, workers in the exercise of their right to organise, form, join or assist a Trade Union or to engage in concerted activities for the purposes of collective bargaining or other mutual aid or protection, that is to say,—")]
+        INTERFERERESTRAINCOERCEWORKERS = 1,
+
+      
+    }
 
     #endregion
 
