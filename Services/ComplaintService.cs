@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -1534,7 +1535,7 @@ namespace pbsamadhannetcoreapi.Services
 
             try
             {
-                if (appRefId != 0) 
+                if (appRefId != 0)
                 {
                     var parentWithChildObject = await _context.Complaint_IndustrialDisputeReasonMappings.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).ToListAsync();
 
@@ -1544,7 +1545,7 @@ namespace pbsamadhannetcoreapi.Services
                         genericFormModel.FormModel = parentWithChildObject;
                     }
                 }
-                else 
+                else
                 {
                     genericFormModel.FormModel = new List<Complaint_IndustrialDisputeReasonMapping>();
                 }
@@ -1573,7 +1574,7 @@ namespace pbsamadhannetcoreapi.Services
 
             try
             {
-                if (appRefId != 0) 
+                if (appRefId != 0)
                 {
                     var parentWithChildObject = await _context.Complaint_IndustrialDisputeReliefSoughtMappings.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).ToListAsync();
 
@@ -1583,7 +1584,7 @@ namespace pbsamadhannetcoreapi.Services
                         genericFormModel.FormModel = parentWithChildObject;
                     }
                 }
-                else 
+                else
                 {
                     genericFormModel.FormModel = new List<Complaint_IndustrialDisputeReliefSoughtMapping>();
                 }
@@ -1606,6 +1607,66 @@ namespace pbsamadhannetcoreapi.Services
             return genericFormModel;
         }
 
+        #endregion
+
+        #region
+
+        public async Task<GenericFormModel<Complaint_PenaltyImpositionIndustrialRelationCode>> Get_PenaltyImpositionIndustrialRelationCodeDetail(long appRefId)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_PenaltyImpositionIndustrialRelationCode>();
+            try
+            {
+                if (appRefId != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_PenaltyImpositionIndustrialRelationCodes.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x =>x.Application).FirstOrDefaultAsync();
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_PenaltyImpositionIndustrialRelationCode();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "PenaltyBreachSectionEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<PenaltyBreachSectionEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "SpecifyUnfairLabourPracticeTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<SpecifyUnfairLabourPracticeTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "UnfairLabourPracticeTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<UnfairLabourPracticeTypeEnum>()
+                });
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "UnfairLabourPracticeSubCategoryTypeEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<UnfairLabourPracticeSubCategoryTypeEnum>()
+                });
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : appRefId), "PCOW");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
         #endregion
 
     }

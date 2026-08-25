@@ -561,5 +561,19 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
+        #region Penalty Imposition Industrial RelationCode
+        [HttpGet, Route("getPenaltyImpositionIndustrialRelationCodeDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_PenaltyImpositionIndustrialRelationCodeDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_PenaltyImpositionIndustrialRelationCode> genericFormModel = await _iComplaintService.Get_PenaltyImpositionIndustrialRelationCodeDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
+
     }
 }

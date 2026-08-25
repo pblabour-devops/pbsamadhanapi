@@ -2163,19 +2163,19 @@ namespace pbsamadhannetcoreapi.Models
     public enum PenaltyBreachSectionEnum
     {
         [Description("Breach of Section 67")]
-        SECTION67 = 67,
+        SECTION67 = 1,
 
         [Description("Breach of Section 70")]
-        SECTION70 = 70,
+        SECTION70 = 2,
 
         [Description("Breach of Section 73")]
-        SECTION73 = 73,
+        SECTION73 = 3,
 
         [Description("Breach of Section 75")]
-        SECTION75 = 75,
+        SECTION75 = 4,
 
         [Description("Breach of Section 84")]
-        SECTION84 = 84
+        SECTION84 = 5
     }
 
     public enum SpecifyUnfairLabourPracticeTypeEnum
@@ -2235,15 +2235,94 @@ namespace pbsamadhannetcoreapi.Models
         REFUSETOBARGAINCOLLECTIVELY = 15,
 
         [Description("(16) Proposing or continuing a lock-out deemed to be illegal under this Code")]
-        PROPOSINGILLEGALLOCKOUT = 16
-    }
+        PROPOSINGILLEGALLOCKOUT = 16,
 
+        [Description("(1) To advise or actively support or instigate any strike deemed to be illegal under this Code")]
+        WORKER_ADVISE_SUPPORT_INSTIGATE_ILLEGAL_STRIKE = 17,
+
+        [Description("(2) To coerce workers in the exercise of their right to self-organisation or to join a Trade Union or refrain from, joining any Trade Union, that is to say—")]
+        WORKER_COERCE_SELF_ORGANISATION = 18,
+
+        [Description("(3) For a recognised union to refuse to bargain collectively in good faith with the employer")]
+        WORKER_RECOGNISED_UNION_REFUSE_BARGAIN = 19,
+
+        [Description("(4) To indulge in coercive activities against certification of a bargaining representative")]
+        WORKER_COERCIVE_ACTIVITIES_BARGAINING_REPRESENTATIVE = 20,
+
+        [Description("(5) To stage, encourage or instigate such forms of coercive actions as wilful, go-slow, squatting on the work premises after working hours or gherao of any of the members of the managerial or other staff")]
+        WORKER_COERCIVE_ACTIONS = 21,
+
+        [Description("(6) To stage demonstrations at the residence of the employers or the managerial staff members")]
+        WORKER_DEMONSTRATIONS_AT_RESIDENCE = 22,
+
+        [Description("(7) To incite or indulge in wilful damage to employer's property connected with the industry")]
+        WORKER_WILFUL_DAMAGE_EMPLOYER_PROPERTY = 23,
+
+        [Description("(8) To indulge in acts of force or violence or to hold out threats of intimidation against any worker with a view to prevent him from attending work")]
+        WORKER_FORCE_VIOLENCE_INTIMIDATION = 24
+    }
     public enum UnfairLabourPracticeSubCategoryTypeEnum
     {
-        [Description("(1) To interfere with, restrain from, or coerce, workers in the exercise of their right to organise, form, join or assist a Trade Union or to engage in concerted activities for the purposes of collective bargaining or other mutual aid or protection, that is to say,—")]
-        INTERFERERESTRAINCOERCEWORKERS = 1,
+        [Description("(1a) Threatening workers with discharge or dismissal, if they join a Trade Union")]
+        INTERFERE_RESTRAIN_COERCE_WORKERS_1A = 1,
 
-      
+        [Description("(1b) Threatening a lock-out or closure, if a Trade Union is organised")]
+        INTERFERE_RESTRAIN_COERCE_WORKERS_1B = 2,
+
+        [Description("(1c) Granting wage increase to workers at crucial periods of Trade Union organisation, with a view to undermining the efforts of the Trade Union organisation")]
+        INTERFERE_RESTRAIN_COERCE_WORKERS_1C = 3,
+
+        [Description("(2a) An employer taking an active interest in organising a Trade Union of his workers")]
+        DOMINATE_INTERFERE_SUPPORT_TRADE_UNION_2A = 4,
+
+        [Description("(2b) An employer showing partiality or granting favour to one of several Trade Unions attempting to organise his workers or to its members, where such a Trade Union is not a recognised Trade Union")]
+        DOMINATE_INTERFERE_SUPPORT_TRADE_UNION_2B = 5,
+
+        [Description("(4a) Discharging or punishing a worker, because he urged other workers to join or organise a Trade Union")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4A = 6,
+
+        [Description("(4b) Discharging or dismissing a worker for taking part in any strike (not being a strike which is deemed to be an illegal strike under this Code)")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4B = 7,
+
+        [Description("(4c) Changing seniority rating of workers because of Trade Union activities")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4C = 8,
+
+        [Description("(4d) Refusing to promote workers to higher posts on account of their Trade Union activities")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4D = 9,
+
+        [Description("(4e) Giving unmerited promotions to certain workers with a view to creating discord amongst other workers, or to undermine the strength of their Trade Union")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4E = 10,
+
+        [Description("(4f) Discharging office-bearers or active members of the Trade Union on account of their Trade Union activities")]
+        ENCOURAGE_DISCOURAGE_TRADE_UNION_MEMBERSHIP_4F = 11,
+
+        [Description("(5a) By way of victimisation")]
+        DISCHARGE_DISMISS_WORKERS_5A = 12,
+
+        [Description("(5b) Not in good faith, but in the colourable exercise of the employer's rights")]
+        DISCHARGE_DISMISS_WORKERS_5B = 13,
+
+        [Description("(5c) By falsely implicating a worker in a criminal case on false evidence or on concocted evidence")]
+        DISCHARGE_DISMISS_WORKERS_5C = 14,
+
+        [Description("(5d) For patently false reasons")]
+        DISCHARGE_DISMISS_WORKERS_5D = 15,
+
+        [Description("(5e) On untrue or trumped up allegations of absence without leave")]
+        DISCHARGE_DISMISS_WORKERS_5E = 16,
+
+        [Description("(5f) In utter disregard of the principles of natural justice in the conduct of domestic enquiry or with undue haste")]
+        DISCHARGE_DISMISS_WORKERS_5F = 17,
+
+        [Description("(5g) For misconduct of a minor or technical character, without having any regard to the nature of the particular misconduct or the past record or service of the worker, thereby leading to a disproportionate punishment")]
+        DISCHARGE_DISMISS_WORKERS_5G = 18,
+
+        [Description("(2a) For a Trade Union or its members to picket in such a manner that non-striking workers are physically debarred from entering the work places")]
+        WORKERS_COERCE_SELF_ORGANISATION_2A = 19,
+
+        [Description("(2b) To indulge in acts of force or violence or to hold out threats of intimidation in connection with a strike against non-striking workers or against managerial staff")]
+        WORKERS_COERCE_SELF_ORGANISATION_2B = 20
+
     }
 
     #endregion
