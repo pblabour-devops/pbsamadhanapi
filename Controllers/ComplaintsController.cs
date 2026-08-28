@@ -573,6 +573,30 @@ namespace pbsamadhannetcoreapi.Controllers
             }
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
+
+        [HttpGet, Route("getComplaintStandingOrderContraventionIRCodeDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_ComplaintStandingOrderContraventionIRCodeDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_StandingOrderContraventionIRCode>> genericFormModel = await _iComplaintService.Get_ComplaintStandingOrderContraventionIRCodeDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+
+        [HttpGet, Route("getComplaintOtherContraventionProvisionIRCodeDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_ComplaintOtherContraventionProvisionIRCodeDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_OtherContraventionProvisionIRCode>> genericFormModel = await _iComplaintService.Get_ComplaintOtherContraventionProvisionIRCodeDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
         #endregion
 
     }
