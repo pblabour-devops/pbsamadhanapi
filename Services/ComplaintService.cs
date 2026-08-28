@@ -1618,7 +1618,7 @@ namespace pbsamadhannetcoreapi.Services
             {
                 if (appRefId != 0)
                 {
-                    var parentWithChildObject = await _context.Complaint_PenaltyImpositionIndustrialRelationCodes.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x =>x.Application).FirstOrDefaultAsync();
+                    var parentWithChildObject = await _context.Complaint_PenaltyImpositionIndustrialRelationCodes.AsNoTracking().Where(x => x.AppRefId == appRefId).Include(x => x.Application).FirstOrDefaultAsync();
                     if (parentWithChildObject != null)
                     {
                         genericFormModel.FormModel = parentWithChildObject;
@@ -1667,6 +1667,61 @@ namespace pbsamadhannetcoreapi.Services
 
             return genericFormModel;
         }
+
+        public async Task<GenericFormModel<List<Complaint_StandingOrderContraventionIRCode>>> Get_ComplaintStandingOrderContraventionIRCodeDetail(long id)
+        {
+            GenericFormModel<List<Complaint_StandingOrderContraventionIRCode>> genericFormModel = new GenericFormModel<List<Complaint_StandingOrderContraventionIRCode>>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_StandingOrderContraventionIRCodes.AsNoTracking().Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_StandingOrderContraventionIRCode>();
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
+            return genericFormModel;
+        }
+
+        public async Task<GenericFormModel<List<Complaint_OtherContraventionProvisionIRCode>>> Get_ComplaintOtherContraventionProvisionIRCodeDetail(long id)
+        {
+            GenericFormModel<List<Complaint_OtherContraventionProvisionIRCode>> genericFormModel = new GenericFormModel<List<Complaint_OtherContraventionProvisionIRCode>>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_OtherContraventionProvisionIRCodes.AsNoTracking().Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_OtherContraventionProvisionIRCode>();
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
+            return genericFormModel;
+        }
+
         #endregion
 
     }
