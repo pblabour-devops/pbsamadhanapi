@@ -52,5 +52,6 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<List<Complaint_StandingOrderContraventionIRCode>>> Get_ComplaintStandingOrderContraventionIRCodeDetail(long id);
         Task<GenericFormModel<List<Complaint_OtherContraventionProvisionIRCode>>> Get_ComplaintOtherContraventionProvisionIRCodeDetail(long id);
         Task<GenericFormModel<Complaint_PenaltyImpositionCodeOnWage>> Get_ComplaintPenaltyImpositionCodeOnWageDetail(long id);
+        Task<GenericFormModel<List<Complaint_PenaltyCodeOnWagesOffence>>> Get_Complaint_PenaltyCodeOnWagesOffenceDetail(long id);
     }
 }

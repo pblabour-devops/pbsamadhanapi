@@ -1721,7 +1721,9 @@ namespace pbsamadhannetcoreapi.Services
 
             return genericFormModel;
         }
+        #endregion
 
+        #region Penality Code On Wages
 
         public async Task<GenericFormModel<Complaint_PenaltyImpositionCodeOnWage>> Get_ComplaintPenaltyImpositionCodeOnWageDetail(long id)
         {
@@ -1765,7 +1767,36 @@ namespace pbsamadhannetcoreapi.Services
             return genericFormModel;
         }
 
+        public async Task<GenericFormModel<List<Complaint_PenaltyCodeOnWagesOffence>>> Get_Complaint_PenaltyCodeOnWagesOffenceDetail(long id)
+        {
+            GenericFormModel<List<Complaint_PenaltyCodeOnWagesOffence>> genericFormModel = new GenericFormModel<List<Complaint_PenaltyCodeOnWagesOffence>>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_PenaltyCodeOnWagesOffences.AsNoTracking().Where(x => x.AppRefId == id).Include(x => x.Application).ToListAsync();
+                    if (parentWithChildObject != null && parentWithChildObject.Any())
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new List<Complaint_PenaltyCodeOnWagesOffence>();
+                }
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+            }
+
+            return genericFormModel;
+        }
+
+
         #endregion
+
 
     }
 }

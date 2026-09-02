@@ -611,6 +611,18 @@ namespace pbsamadhannetcoreapi.Controllers
             }
             return StatusCode(StatusCodes.Status200OK, genericFormModel);
         }
+
+        [HttpGet, Route("getComplaint_PenaltyCodeOnWagesOffenceDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_Complaint_PenaltyCodeOnWagesOffenceDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<List<Complaint_PenaltyCodeOnWagesOffence>> genericFormModel = await _iComplaintService.Get_Complaint_PenaltyCodeOnWagesOffenceDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
         #endregion
     }
 }
