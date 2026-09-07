@@ -54,9 +54,9 @@ namespace pbsamadhannetcoreapi.Controllers
         #region Worker details
         [HttpGet, Route("getWorkerDetails")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
-        public async Task<IActionResult> Get_GeneralDetail([FromQuery] Int64 id, Int64 projectSiteId)
+        public async Task<IActionResult> Get_GeneralDetail([FromQuery] Int64 id, [FromQuery] string issueIds)
         {
-            GenericFormModel<WorkerDetail> genericFormModel = await _iComplaintService.GetWorkerDetails(id, projectSiteId);
+            GenericFormModel<WorkerDetail> genericFormModel = await _iComplaintService.GetWorkerDetails(id, issueIds);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
@@ -512,9 +512,9 @@ namespace pbsamadhannetcoreapi.Controllers
         #region Appeal
         [HttpGet, Route("getAppealDetail")]
         //[CustomFillters.AuthorizeAttribute("worker_INDL")]
-        public async Task<IActionResult> GetAppealDetail([FromQuery] Int64 id)
+        public async Task<IActionResult> GetAppealDetail([FromQuery] Int64 id, [FromQuery] string issueIds)
         {
-            GenericFormModel<Complaint_Appeal> genericFormModel = await _iComplaintService.GetAppealDetail(id);
+            GenericFormModel<Complaint_Appeal> genericFormModel = await _iComplaintService.GetAppealDetail(id, issueIds);
             if (genericFormModel.HasError)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);

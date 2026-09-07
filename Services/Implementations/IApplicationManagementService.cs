@@ -11,7 +11,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
     {
         Task<ApplicationInitiateResponseViewModel> InitiateApplication(ApplicationTypeEnum applicationType, T entityType, Int64 projectSiteRefId, ApplicationPurposeTypeEnum applicationPurposeType, string userName, Int64 iPin, Int64 investPunjab_AppId, bool legacy_IsMigrated, Int64 legacy_AppId, Int64 Legacy_AppFormId, string legacy_NAR, string legacy_LicenceNo, int projectSiteVersion);
         Task<bool> UpdateAppLastModifiedDate(Int64 AppId);
-        Task<List<AppFormStepsInfo>> GetAppFormStepperInfo(Int64 appRefId, ApplicationTypeEnum applicationType, Int64 entityParentKeyId, string stepCode);
+        Task<List<AppFormStepsInfo>> GetAppFormStepperInfo(Int64 appRefId, ApplicationTypeEnum applicationType, Int64 entityParentKeyId, string stepCode, string issueIds = null);
         Task<string> LockApplication(Int64 AppId, int AppActionType, string remarks, ApplicationTypeEnum applicationType);
         Task<List<AppFileUploadInfoViewModel>> InitiateAppFileInfo(Int64 AppId);
         Task<GenericResponseTemplateModel<RecordActionResponseViewModel>> RecordApplicationAction(ApplicationActionViewModel formModel, string userId);

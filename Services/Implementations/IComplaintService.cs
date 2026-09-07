@@ -11,7 +11,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
     {
         Task<GenericFormModel<object>> Get_ComplaintsCategories();
         Task<GenericFormModel<List<ComplaintsCategory>>> Get_ComplainantComplaints(int complainantType);
-        Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId);
+        Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(Int64 id, [FromQuery] string issueIds);
         Task<GenericServiceResultTemplate> CreateAppComplaintTypeMapping(AppComplaintTypeMapping requestData);
         Task<GenericFormModel<List<Complaint_EmployerORContractorDetail>>> Get_EmployerOrContractorDetails(long id);
         Task<GenericFormModel<Complaint_WorkplaceDetail>> Get_WorkPlaceDetail(long id);
@@ -44,7 +44,7 @@ namespace pbsamadhannetcoreapi.Services.Implementations
         Task<GenericFormModel<Complaint_Review_OfDismissal>> Get_ReviewofDismissalDetail(long id);
         Task<GenericResponseTemplateModel<List<Application>>> Get_ComplaintsDraftApplication();
         Task<GenericResponseTemplateModel<List<Application>>> Get_AllApplication();
-        Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId);
+        Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId,string issueIds);
         Task<GenericFormModel<Complaint_IndustrialDispute>> Get_IndustrialDisputeDetail(long appRefId);
         Task<GenericFormModel<List<Complaint_IndustrialDisputeReasonMapping>>> Get_IndustrialReasonDetail(long appRefId);
         Task<GenericFormModel<List<Complaint_IndustrialDisputeReliefSoughtMapping>>> Get_IndustrialReliefSoughtDetail(long appRefId);

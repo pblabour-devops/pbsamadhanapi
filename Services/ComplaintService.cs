@@ -84,7 +84,7 @@ namespace pbsamadhannetcoreapi.Services
         #endregion
 
         #region Worker Details
-        public async Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(long id, long projectSiteId)
+        public async Task<GenericFormModel<WorkerDetail>> GetWorkerDetails(Int64 id, [FromQuery] string issueIds)
         {
             GenericFormModel<WorkerDetail> genericFormModel = new GenericFormModel<WorkerDetail>();
             try
@@ -109,7 +109,7 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : id), "WD");
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : id), "WD", issueIds);
             }
             catch (Exception ex)
             {
@@ -1444,7 +1444,7 @@ namespace pbsamadhannetcoreapi.Services
         #endregion
 
         #region GET APPEAL DETAILS
-        public async Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId)
+        public async Task<GenericFormModel<Complaint_Appeal>> GetAppealDetail(long appRefId, [FromQuery] string issueIds)
         {
             var genericFormModel = new GenericFormModel<Complaint_Appeal>();
             try
@@ -1469,7 +1469,7 @@ namespace pbsamadhannetcoreapi.Services
                     genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
                 }
 
-                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "LOFF");
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(appRefId, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, appRefId, "AP", issueIds);
             }
             catch (Exception ex)
             {
