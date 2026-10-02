@@ -4270,6 +4270,65 @@ namespace pblabournetcoreapi.Migrations
                     b.ToTable("Complaint_OtherContraventionProvisionIRCodes");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyCodeOnWagesOffence", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Offence")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("SectionRule")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_PenaltyCodeOnWagesOffences");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionCodeOnWage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AppRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ApplicationFilingDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("ClaimApplicationRefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("FinalOrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IsEmployerPaidLessAmountType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppRefId")
+                        .IsUnique();
+
+                    b.ToTable("Complaint_PenaltyImpositionCodeOnWages");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionIndustrialRelationCode", b =>
                 {
                     b.Property<long>("Id")
@@ -26764,6 +26823,28 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Application");
                 });
 
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyCodeOnWagesOffence", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_PenaltyCodeOnWagesOffence")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_PenaltyCodeOnWagesOffence", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
+            modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionCodeOnWage", b =>
+                {
+                    b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
+                        .WithOne("Complaint_PenaltyImpositionCodeOnWage")
+                        .HasForeignKey("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionCodeOnWage", "AppRefId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+                });
+
             modelBuilder.Entity("pbsamadhannetcoreapi.Models.Complaint_PenaltyImpositionIndustrialRelationCode", b =>
                 {
                     b.HasOne("pbsamadhannetcoreapi.Models.Application", "Application")
@@ -28852,6 +28933,10 @@ namespace pblabournetcoreapi.Migrations
                     b.Navigation("Complaint_Non_Pay_Bonus_PeriodAmts");
 
                     b.Navigation("Complaint_OtherContraventionProvisionIRCodes");
+
+                    b.Navigation("Complaint_PenaltyCodeOnWagesOffence");
+
+                    b.Navigation("Complaint_PenaltyImpositionCodeOnWage");
 
                     b.Navigation("Complaint_PenaltyImpositionIndustrialRelationCode");
 

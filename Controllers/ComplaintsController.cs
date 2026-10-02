@@ -599,5 +599,18 @@ namespace pbsamadhannetcoreapi.Controllers
         }
         #endregion
 
+        #region Penality Code On Wages
+        [HttpGet, Route("getComplaintPenaltyImpositionCodeOnWageDetail")]
+        //[CustomFillters.AuthorizeAttribute("worker_INDL")]
+        public async Task<IActionResult> Get_ComplaintPenaltyImpositionCodeOnWageDetail([FromQuery] Int64 id)
+        {
+            GenericFormModel<Complaint_PenaltyImpositionCodeOnWage> genericFormModel = await _iComplaintService.Get_ComplaintPenaltyImpositionCodeOnWageDetail(id);
+            if (genericFormModel.HasError)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, genericFormModel.ErrorDesc);
+            }
+            return StatusCode(StatusCodes.Status200OK, genericFormModel);
+        }
+        #endregion
     }
 }

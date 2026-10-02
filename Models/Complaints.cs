@@ -2128,7 +2128,7 @@ namespace pbsamadhannetcoreapi.Models
     #endregion
     #endregion
 
-    #region Penalty Imposition
+    #region Penalty Imposition Industrial Relation
     public class Complaint_PenaltyImpositionIndustrialRelationCode
     {
         [Key]
@@ -2198,6 +2198,27 @@ namespace pbsamadhannetcoreapi.Models
         [StringLength(500)]
         public string StandingOrderClause { get; set; }
 
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
     }
 
     public class Complaint_OtherContraventionProvisionIRCode
@@ -2216,6 +2237,116 @@ namespace pbsamadhannetcoreapi.Models
 
         [StringLength(1000)]
         public string OtherContraventionOffences { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+    #endregion
+
+    #region Penality Imposition Code On Wages
+    public class Complaint_PenaltyImpositionCodeOnWage
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Please specify whether employer has paid less amount.")]
+        public YesNoEnum IsEmployerPaidLessAmountType { get; set; }
+
+        public Int64? ClaimApplicationRefId { get; set; }
+
+        public DateTime? FinalOrderDate { get; set; }
+
+        [Required(ErrorMessage = "Date of filing of application is required.")]
+        public DateTime? ApplicationFilingDate { get; set; }
+
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
+    }
+
+    public class Complaint_PenaltyCodeOnWagesOffence
+    {
+        [Key]
+        public Int64 Id { get; set; }
+
+        [Required]
+        [ForeignKey("Application")]
+        public Int64 AppRefId { get; set; }
+        public virtual Application Application { get; set; }
+
+        [Required(ErrorMessage = "Section rule is required.")]
+        [StringLength(500, ErrorMessage = "Section rule cannot exceed 500 characters.")]
+        public string SectionRule { get; set; }
+
+        [Required(ErrorMessage = "Offence is required.")]
+        [StringLength(2000, ErrorMessage = "Offence cannot exceed 2000 characters.")]
+        public string Offence { get; set; }
+
+        #region NotMapped
+
+        [NotMapped]
+        public ApplicationPurposeTypeEnum ApplicationPurposeType { get; set; }
+
+        [NotMapped]
+        public ApplicationTypeEnum ApplicationType { get; set; }
+
+        [NotMapped]
+        public int ProjectSiteVersion { get; set; }
+
+        [NotMapped]
+        public ToDoActivityModeTypeEnum ToDoActivityModeType { get; set; }
+
+        [NotMapped]
+        public ToDoActivityCategoryTypeEnum ToDoActivityCategoryType { get; set; }
+
+        [NotMapped]
+        public string RootActivityRefId { get; set; }
+
+        #endregion
     }
     #endregion
 

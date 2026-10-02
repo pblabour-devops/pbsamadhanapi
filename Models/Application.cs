@@ -227,6 +227,10 @@ namespace pbsamadhannetcoreapi.Models
         public virtual Complaint_PenaltyImpositionIndustrialRelationCode Complaint_PenaltyImpositionIndustrialRelationCode { get; set; }
         public virtual ICollection<Complaint_StandingOrderContraventionIRCode> Complaint_StandingOrderContraventionIRCodes { get; set; }
         public virtual ICollection<Complaint_OtherContraventionProvisionIRCode> Complaint_OtherContraventionProvisionIRCodes { get; set; }
+        public virtual Complaint_PenaltyImpositionCodeOnWage Complaint_PenaltyImpositionCodeOnWage { get; set; }
+        public virtual Complaint_PenaltyCodeOnWagesOffence Complaint_PenaltyCodeOnWagesOffence { get; set; }
+
+
         #endregion]
 
     }

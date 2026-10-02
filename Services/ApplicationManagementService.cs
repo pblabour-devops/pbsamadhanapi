@@ -254,6 +254,7 @@ namespace pbsamadhannetcoreapi.Services
                                    .Include(x => x.Complaint_RecOfMon_GeneralDetail)
                                    .Include(x => x.Complaint_IndustrialDispute)
                                    .Include(x => x.Complaint_PenaltyImpositionIndustrialRelationCode)
+                                   .Include(x => x.Complaint_PenaltyImpositionCodeOnWage)
                                    .Where(x => x.AppId == appRefId).FirstOrDefaultAsync();
                 var mappedComplaintCategoryIds = await _context.AppComplaintTypeMappings.Where(x => x.AppRefId == appRefId).Select(x => x.ComplaintsCategoryRefId).Distinct().ToListAsync();
                 var ComplaintsCategories = await _context.ComplaintsCategories.ToListAsync();
@@ -303,7 +304,7 @@ namespace pbsamadhannetcoreapi.Services
                 {
                     StepTitle = "Details Of Offences",
                     EntityParentKeyId = entityParentKeyId,
-                    IsFilled = parentWithChildObject?.Complaint_PenaltyImpositionIndustrialRelationCode != null,
+                    IsFilled = parentWithChildObject?.Complaint_PenaltyImpositionCodeOnWage != null,
                     IsLink = entityParentKeyId == 0 ? false : true,
                     UiPageComponentPath = "/samadhaan/penality-code-on-wages",
                     StepCode = "PCOW",
@@ -315,6 +316,23 @@ namespace pbsamadhannetcoreapi.Services
                     ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
                     ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
                 });
+
+                //appFormSteps.Add(new AppFormStepsInfo()
+                //{
+                //    StepTitle = "Details Of Offences",
+                //    EntityParentKeyId = entityParentKeyId,
+                //    IsFilled = parentWithChildObject?.Complaint_PenaltyImpositionIndustrialRelationCode != null,
+                //    IsLink = entityParentKeyId == 0 ? false : true,
+                //    UiPageComponentPath = "/samadhaan/penality-industrial-relations-code",
+                //    StepCode = "IRC",
+                //    ApplicationType = applicationType,
+                //    AppRefId = appRefId,
+                //    IsCommonStep = false,
+                //    UiNextPageComponentPath = "/shared/appdocuments",
+                //    RootActivityRefId = "0",
+                //    ToDoActivityCategoryType = ToDoActivityCategoryTypeEnum.DEFAULT,
+                //    ToDoActivityModeType = ToDoActivityModeTypeEnum.DEFAULT
+                //});
 
                 //appFormSteps.Add(new AppFormStepsInfo()
                 //{

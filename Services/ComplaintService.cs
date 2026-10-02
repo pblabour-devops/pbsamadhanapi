@@ -1722,6 +1722,49 @@ namespace pbsamadhannetcoreapi.Services
             return genericFormModel;
         }
 
+
+        public async Task<GenericFormModel<Complaint_PenaltyImpositionCodeOnWage>> Get_ComplaintPenaltyImpositionCodeOnWageDetail(long id)
+        {
+            var genericFormModel = new GenericFormModel<Complaint_PenaltyImpositionCodeOnWage>();
+            try
+            {
+                if (id != 0)
+                {
+                    var parentWithChildObject = await _context.Complaint_PenaltyImpositionCodeOnWages.AsNoTracking().Where(x => x.AppRefId == id).Include(x => x.Application).FirstOrDefaultAsync();
+                    if (parentWithChildObject != null)
+                    {
+                        genericFormModel.FormModel = parentWithChildObject;
+                        genericFormModel.IsEditAllowed = parentWithChildObject.Application.IsAllowEdit;
+                        genericFormModel.IsLocked = parentWithChildObject.Application.IsLocked;
+                        genericFormModel.ApplicationLifeCycleStatusType = parentWithChildObject.Application.ApplicationLifeCycleStatusType;
+                    }
+                }
+                else
+                {
+                    genericFormModel.FormModel = new Complaint_PenaltyImpositionCodeOnWage();
+                    genericFormModel.IsEditAllowed = true;
+                    genericFormModel.IsLocked = false;
+                    genericFormModel.ApplicationLifeCycleStatusType = ApplicationLifeCycleStatusTypeEnum.NOT_SUBMITTED;
+                }
+
+                genericFormModel.EnumTemplateLists = new List<EnumListTemplate>();
+                genericFormModel.EnumTemplateLists.Add(new EnumListTemplate()
+                {
+                    SelectListTypeCode = "YesNoEnum",
+                    SelectListItems = EnumOps.GetEnumAsSelectList<YesNoEnum>()
+                });
+                genericFormModel.AppFormStepsList = await _iApplicationMamnagementService.GetAppFormStepperInfo(id, ApplicationTypeEnum.SAMADHAN_COMPLAINTS, (genericFormModel.FormModel != null ? genericFormModel.FormModel.Id : id), "PCOW");
+            }
+            catch (Exception ex)
+            {
+                genericFormModel.HasError = true;
+                genericFormModel.ErrorDesc = ex.Message;
+                throw;
+            }
+
+            return genericFormModel;
+        }
+
         #endregion
 
     }

@@ -980,6 +980,10 @@ namespace pbsamadhannetcoreapi.Models
         public DbSet<Complaint_PenaltyImpositionIndustrialRelationCode> Complaint_PenaltyImpositionIndustrialRelationCodes { get; set; }
         public DbSet<Complaint_StandingOrderContraventionIRCode> Complaint_StandingOrderContraventionIRCodes { get; set; }
         public DbSet<Complaint_OtherContraventionProvisionIRCode> Complaint_OtherContraventionProvisionIRCodes { get; set; }
+        public DbSet<Complaint_PenaltyImpositionCodeOnWage> Complaint_PenaltyImpositionCodeOnWages { get; set; }
+        public DbSet<Complaint_PenaltyCodeOnWagesOffence> Complaint_PenaltyCodeOnWagesOffences { get; set; }
+
+
 
 
 
@@ -2418,6 +2422,17 @@ namespace pbsamadhannetcoreapi.Models
              .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
+            modelBuilder.Entity<Application>()
+             .HasOne<Complaint_PenaltyCodeOnWagesOffence>(s => s.Complaint_PenaltyCodeOnWagesOffence)
+             .WithOne(ad => ad.Application)
+             .HasForeignKey<Complaint_PenaltyCodeOnWagesOffence>(ad => ad.AppRefId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+            .HasOne<Complaint_PenaltyImpositionCodeOnWage>(s => s.Complaint_PenaltyImpositionCodeOnWage)
+            .WithOne(ad => ad.Application)
+            .HasForeignKey<Complaint_PenaltyImpositionCodeOnWage>(ad => ad.AppRefId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
